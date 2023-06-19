@@ -10,7 +10,7 @@ public class Admin : User
     private int id_admin = 0;
     public Admin()
     {
-
+        //Test commit Randaz
     }
 
     public int Id_admin
