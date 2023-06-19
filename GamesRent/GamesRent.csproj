@@ -1,0 +1,50 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\addgame.jpg" />
+    <None Remove="Images\addgame.png" />
+    <None Remove="Images\adminlogo.jpg" />
+    <None Remove="Images\adminlogo.png" />
+    <None Remove="Images\console.png" />
+    <None Remove="Images\crCost.png" />
+    <None Remove="Images\deletegame.jpg" />
+    <None Remove="Images\deletegame.png" />
+    <None Remove="Images\loan.png" />
+    <None Remove="Images\logo.jpg" />
+    <None Remove="Images\logo.png" />
+    <None Remove="Images\name.png" />
+    <None Remove="Images\settings.png" />
+    <None Remove="Images\user.png" />
+    <None Remove="Images\wallet.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="SQL\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\addgame.png" />
+    <Resource Include="Images\adminlogo.png" />
+    <Resource Include="Images\console.png" />
+    <Resource Include="Images\crCost.png" />
+    <Resource Include="Images\deletegame.png" />
+    <Resource Include="Images\loan.png" />
+    <Resource Include="Images\logo.png" />
+    <Resource Include="Images\name.png" />
+    <Resource Include="Images\settings.png" />
+    <Resource Include="Images\user.png" />
+    <Resource Include="Images\wallet.png" />
+  </ItemGroup>
+
+</Project>

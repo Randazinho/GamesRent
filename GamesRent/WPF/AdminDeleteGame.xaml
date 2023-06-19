@@ -1,0 +1,22 @@
+﻿<Window x:Class="GamesRent.WPF.AdminDeleteGame"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GamesRent.WPF"
+        mc:Ignorable="d"
+        Title="Delete a game" WindowStartupLocation="CenterScreen" Background="White" WindowState="Maximized">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Border Background="Black" CornerRadius="10" Margin="5">
+            <StackPanel Margin="20">
+                <Image Height="120" Width="200" Source="../Images/deletegame.png"/>
+                <Label Name="WelcomeLabel" Content="Delete a Game" Background="Black" Foreground="White" FontSize="25" HorizontalAlignment="Center"/>
+                <Label Name="Games" Content="placeholder" Initialized="Games_Initialized"  Background="Black"  Foreground="White" FontSize="25" HorizontalAlignment="Center"/>
+                <Label FontSize="15" Foreground="White" HorizontalAlignment="Center">ID of the game to delete</Label>
+                <TextBox FontSize="15" Name="TxtBoxId" Background="White" Foreground="Black"/>
+                <Button Name="DeleteGame" Click="DeleteGame_Click" FontSize="25" Margin="0,20,0,20" Content="Delete this game" Background="Black" Foreground="red"/>
+                <Button Name="AdminGameMainMenu" Click="AdminGameMainMenu_Click" FontSize="25" Margin="0,20,0,20" Content="Return" Background="Black" Foreground="White"/>
+            </StackPanel>
+        </Border>
+    </ScrollViewer>
+</Window>

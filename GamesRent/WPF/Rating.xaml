@@ -1,0 +1,17 @@
+﻿<Window x:Class="GamesRent.WPF.Rating"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GamesRent.WPF"
+        mc:Ignorable="d"
+        Title="Rate your rater !" WindowStartupLocation="CenterScreen" Background="White">
+    <Border Background="Black" CornerRadius="10" Margin="5">
+        <StackPanel Margin="20">
+            <Image Height="50" Width="100" Source="../Images/logo.png" Stretch="Uniform"/>
+            <Label Content="Your rate" Foreground="White" FontSize="20" Margin="0,20,0,20" HorizontalAlignment="Center"/>
+            <TextBox Name="TxtBoxRating"  Background="Black"    FontSize="25" Foreground="White" Margin="40,0,40,0"/>
+            <Button x:Name="btnSubRate" Click="btnSubRate_Click" Content="Rate" Background="White" Foreground="Black" FontSize="20" Margin="100,40,100,20"/>
+        </StackPanel>
+    </Border>
+</Window>

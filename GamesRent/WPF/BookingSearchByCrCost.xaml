@@ -1,0 +1,26 @@
+﻿<Window x:Class="GamesRent.WPF.BookingSearchByCrCost"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GamesRent.WPF"
+        mc:Ignorable="d"
+        Title="SearchByCrCost" WindowStartupLocation="CenterScreen" Background="White" WindowState="Maximized">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Border Background="Black" CornerRadius="10" Margin="5">
+            <StackPanel Margin="20">
+                <Image Height="120" Width="200" Source="../Images/crCost.png" HorizontalAlignment="Center"/>
+                <Label x:Name="Games" Content="Games" Initialized="Games_Initialized"  Background="Black"  Foreground="White" FontSize="25" HorizontalAlignment="Center"/>
+                <Label FontSize="15" Name="LabelCreditCost" Foreground="White" HorizontalAlignment="Center" Content="Credit Cost"/>
+                <TextBox FontSize="15" x:Name="TxtBoxCreditCost" Background="White" Foreground="Black"/>
+                <Button x:Name="Search" Click="Search_Click" FontSize="25" Margin="0,20,0,20" Content="Search" Background="Black" Foreground="BlueViolet"/>
+                <Label Name="LabelID" FontSize="15" Foreground="White" HorizontalAlignment="Center" Content="ID of the game you want to book"/>
+                <TextBox FontSize="15" x:Name="TxtBoxId" Background="White" Foreground="Black"/>
+                <Label Name="LabelWeeks"  FontSize="15" Foreground="White" HorizontalAlignment="Center">For how many weeks ? (Max 52)</Label>
+                <TextBox FontSize="15" Name="TxtWeeks" Background="White" Foreground="Black"/>
+                <Button x:Name="BookGame" Click="BookGame_Click" FontSize="25" Margin="0,20,0,20" Content="Book this game" Background="Black" Foreground="BlueViolet"/>
+                <Button x:Name="Booking" Click="Booking_Click" FontSize="25" Margin="0,20,0,20" Content="Return" Background="Black" Foreground="White"/>
+            </StackPanel>
+        </Border>
+    </ScrollViewer>
+</Window>
