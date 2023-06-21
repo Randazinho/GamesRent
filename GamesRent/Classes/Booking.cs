@@ -57,5 +57,34 @@ public class Booking
       get; 
       set; 
     }
+    public static Booking Find(int id_booking)
+    {
+        BookingDAO BookDAO = new BookingDAO();
+        return BookDAO.Find(id_booking);
+    }
+
+    public static List<Booking> FindAllBookingByPlayerID(List<Booking> Bookings, int id_player)
+    {
+        BookingDAO BookDAO = new BookingDAO();
+        return BookDAO.FindAllBookingByPlayerID(Bookings, id_player);
+    }
+
+    public static List<Booking> FindAllBookingByGameID(List<Booking> Bookings, int id_game)
+    {
+        BookingDAO BookDAO = new BookingDAO();
+        return BookDAO.FindAllBookingByGameID(Bookings, id_game);
+    }
+
+    public void DeleteBooking(int id_booking)
+    {
+        BookingDAO BookDAO = new BookingDAO();
+        BookDAO.Delete(id_booking);
+    }
+
+    public static Booking FindABookByIdGameAndIDPlayer(int id_game, int id_player)
+    {
+        BookingDAO BookDAO = new BookingDAO();
+        return BookDAO.FindABookByIdGameAndIDPlayer(id_game,id_player);
+    }
 
 }
