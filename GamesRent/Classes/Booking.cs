@@ -57,12 +57,6 @@ public class Booking
       get; 
       set; 
     }
-    public static Booking Find(int id_booking)
-    {
-        BookingDAO BookDAO = new BookingDAO();
-        return BookDAO.Find(id_booking);
-    }
-
     public static List<Booking> FindAllBookingByPlayerID(List<Booking> Bookings, int id_player)
     {
         BookingDAO BookDAO = new BookingDAO();
@@ -81,10 +75,28 @@ public class Booking
         BookDAO.Delete(id_booking);
     }
 
+    public int CreateBookingByIdGame(int id_player, int id_game, int week)
+    {
+        BookingDAO BookDAO = new BookingDAO();
+        return BookDAO.CreateBookingByIdGame(id_player, id_game, week);
+    }
+
+    public int FindLastId(int id_booking)
+    {
+        BookingDAO BookDAO = new BookingDAO();
+        return BookDAO.FindLastId(id_booking);
+    }
+
+    public int FindWeekByIDPlayer(int id_player, int id_game)
+    {
+        BookingDAO BookDAO = new BookingDAO();
+        return BookDAO.FindWeekByIDPlayer(id_player, id_game);
+    }
+
     public static Booking FindABookByIdGameAndIDPlayer(int id_game, int id_player)
     {
         BookingDAO BookDAO = new BookingDAO();
-        return BookDAO.FindABookByIdGameAndIDPlayer(id_game,id_player);
+        return BookDAO.FindABookByIdGameAndIDPlayer(id_game, id_player);
     }
 
 }
