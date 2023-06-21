@@ -57,6 +57,11 @@ public class Booking
       get; 
       set; 
     }
+    public static Booking Find(int id_booking)
+    {
+        BookingDAO BookDAO = new BookingDAO();
+        return BookDAO.Find(id_booking);
+    }
     public static List<Booking> FindAllBookingByPlayerID(List<Booking> Bookings, int id_player)
     {
         BookingDAO BookDAO = new BookingDAO();
