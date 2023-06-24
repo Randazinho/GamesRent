@@ -130,5 +130,4 @@ public class Loan
         LoanDAO LDAO = new LoanDAO();
         LDAO.EndLoan(id_loan);
     }
-
 }
