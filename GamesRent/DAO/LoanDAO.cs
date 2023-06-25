@@ -238,12 +238,12 @@ public class LoanDAO : DAO<Loan>
             {
                 note = 0;
             }
-            PDAO.Rating(loan.Player.Id_player, note);
+            PDAO.RatingPlayer(loan.Player.Id_player, note);
         }
         else
         {
             MessageBox.Show("Game returned on time, thank you");
-            PDAO.Rating(loan.Player.Id_player, note);
+            PDAO.RatingPlayer(loan.Player.Id_player, note);
         }
     }
     public void EndLoan(int id_loan)//mettre fin à réservation càd joueur qui rend son jeu => remettre le ongoing à 0

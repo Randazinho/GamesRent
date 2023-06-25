@@ -117,4 +117,48 @@ public class Player : User
         get { return nbr_rater; }
         set { nbr_rater = value; }
     }
+
+    public static Player Find(int id_player)
+    {
+        PlayerDAO PDAO = new PlayerDAO();
+        return PDAO.Find(id_player);
+    }
+
+    public static List<Player> FindAllPlayer(List<Player> Players)
+    {
+        PlayerDAO PDAO = new PlayerDAO();
+        return PDAO.FindAllPlayer(Players);
+    }
+
+    public int LoanAllowed(int idplayer, int id_game, int week)
+    {
+        PlayerDAO PDAO = new PlayerDAO();
+        return PDAO.LoanAllowed(idplayer,id_game,week);
+    }
+
+    public static void AddBirthDayBonus(String today)
+    {
+        PlayerDAO PDAO = new PlayerDAO();
+        PDAO.AddBirthDayBonus(today);
+    }
+
+    public static void UpdateWalletByID(int id_borrower, int ammount, int id_owner)
+    {
+        PlayerDAO PDAO = new PlayerDAO();
+        PDAO.UpdateWalletByID(id_borrower,ammount,id_owner);
+    }
+
+    public int FindLastId()
+    {
+        PlayerDAO PDAO = new PlayerDAO();
+        return PDAO.FindLastId();
+    }
+
+    public void RatingPlayer(int id_player, int note)
+    {
+        PlayerDAO PDAO = new PlayerDAO();
+        PDAO.RatingPlayer(id_player,note);
+    }
+
+
 }
