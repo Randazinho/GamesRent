@@ -35,9 +35,9 @@ namespace GamesRent.WPF
             {
                 int rate = Convert.ToInt32(TxtBoxRating.Text);
                 //MessageBox.Show(" " + rate);
-                if(rate>0 && rate<10)
+                if(rate>0 && rate<=10)
                 {
-                    PDAO.Rating(copy.Player_owner.Id_player, rate);
+                    PDAO.RatingPlayer(copy.Player_owner.Id_player, rate);
                     this.Close();
                 }
                 else

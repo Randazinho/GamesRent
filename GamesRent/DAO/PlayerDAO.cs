@@ -206,7 +206,7 @@ public class PlayerDAO : DAO<Player>
         }
         return id_user;
     }
-    public void Rating(int id_player, int note)//maj le rating d'un joueur 
+    public void RatingPlayer(int id_player, int note)//maj le rating d'un joueur 
     {
         using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["GamesDB"].ConnectionString))
         {
