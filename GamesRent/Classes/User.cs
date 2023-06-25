@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Documents;
 using System.Windows;
 using System.Reflection.PortableExecutable;
+using System.Xml.Linq;
 
 public class User
 {
@@ -46,4 +47,23 @@ public class User
         get;
         set;
     }
+
+    public static User FindUserByUsername(string username)
+    {
+        UserDAO UDAO = new UserDAO();
+        return UDAO.FindUserByUsername(username);
+    }
+
+    public int Login(string login, string password)
+    {
+        UserDAO UDAO = new UserDAO();
+        return UDAO.Login(login,password);
+    }
+
+    public void CreateNewUser(string username, string password, DateTime dateofbirth)
+    {
+        UserDAO UDAO = new UserDAO();
+        UDAO.CreateNewUser(username, password, dateofbirth);
+    }
+
 }
