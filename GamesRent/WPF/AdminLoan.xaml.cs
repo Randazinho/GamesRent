@@ -34,8 +34,8 @@ namespace GamesRent.WPF
             try
             {
                 List<Loan> loanlist = new List<Loan>();
-                LoanDAO LDAO = new LoanDAO();
-                loanlist = LDAO.FindAllLoan(loanlist);
+                Loan L = new Loan();
+                loanlist = L.FindAllLoan(loanlist);
                 string concats = "";
                 foreach (Loan l in loanlist)
                 {

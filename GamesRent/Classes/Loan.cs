@@ -84,31 +84,31 @@ public class Loan
         set { ongoing = value; }
     }
 
-    public static Loan Find(int id_loan)
+    public Loan Find(int id_loan)
     {
         LoanDAO LDAO = new LoanDAO();
         return LDAO.Find(id_loan);
     }
 
-    public static List<Loan> FindAllLoan(List<Loan> Loans)
+    public List<Loan> FindAllLoan(List<Loan> Loans)
     {
         LoanDAO LDAO = new LoanDAO();
         return LDAO.FindAllLoan(Loans);
     }
 
-    public static List<Loan> FindAllLoanByIdPlayerOngoing(int idplayer, List<Loan> Loans)
+    public List<Loan> FindAllLoanByIdPlayerOngoing(int idplayer, List<Loan> Loans)
     {
         LoanDAO LDAO = new LoanDAO();
         return LDAO.FindAllLoanByIdPlayerOngoing(idplayer,Loans);
     }
 
-    public static List<Loan> FindAllLoanByIdPlayerNotOngoing(int idplayer, List<Loan> Loans)
+    public List<Loan> FindAllLoanByIdPlayerNotOngoing(int idplayer, List<Loan> Loans)
     {
         LoanDAO LDAO = new LoanDAO();
         return LDAO.FindAllLoanByIdPlayerNotOngoing(idplayer, Loans);
     }
 
-    public static List<Loan> FindAllLoanByIdCopy(List<Loan> Loans, int id_copy)
+    public List<Loan> FindAllLoanByIdCopy(List<Loan> Loans, int id_copy)
     {
         LoanDAO LDAO = new LoanDAO();
         return LDAO.FindAllLoanByIdCopy(Loans,id_copy);

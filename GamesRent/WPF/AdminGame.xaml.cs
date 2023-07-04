@@ -26,8 +26,8 @@ namespace GamesRent.WPF
         private void Games_Initialized(object sender, EventArgs e)
         {
             List<Game> glist = new List<Game>();
-            GameDAO GDAO = new GameDAO();
-            glist = GDAO.FindAllGame(glist);
+            Game G = new Game();
+            glist = G.FindAllGame(glist);
             string concats = "";
             foreach (Game g in glist)
             {

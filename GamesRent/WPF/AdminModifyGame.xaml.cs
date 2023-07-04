@@ -32,8 +32,8 @@ namespace GamesRent.WPF
         private void Games_Initialized(object sender, EventArgs e)
         {
             List<Game> glist = new List<Game>();
-            GameDAO GDAO = new GameDAO();
-            glist = GDAO.FindAllGame(glist);
+            Game G = new Game();
+            glist = G.FindAllGame(glist);
             string concats = "";
             foreach (Game g in glist)
             {
@@ -51,8 +51,8 @@ namespace GamesRent.WPF
                 if (id_game > 0 & NewCrCost > 0)
                 {
                     //MessageBox.Show(id_game + " " + NewCrCost);
-                    GameDAO GDAO = new GameDAO();
-                    GDAO.UpdateCostByID(id_game, NewCrCost);
+                    Game G = new Game();
+                    G.UpdateCostByID(id_game, NewCrCost);
                     //recharge la page pour afficher le nouveau creditcost
                     AdminModifyGame dashboard = new AdminModifyGame();
                     dashboard.Show();
