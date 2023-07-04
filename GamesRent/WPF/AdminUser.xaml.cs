@@ -33,8 +33,8 @@ namespace GamesRent.WPF
         private void Players_Initialized(object sender, EventArgs e)
         {
             List<Player> plrlist = new List<Player>();
-            PlayerDAO PDAO = new PlayerDAO();
-            plrlist = PDAO.FindAllPlayer(plrlist);
+            Player P = new Player();
+            plrlist = P.FindAllPlayer(plrlist);
             string concats = "";
             foreach (Player p in plrlist)
             {

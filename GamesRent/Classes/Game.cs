@@ -71,31 +71,31 @@ public class Game
         GameDao.UpdateCostByID(id_game, cr_cost);
     }
 
-    public static Game Find(int id_game)
+    public Game Find(int id_game)
     {
         GameDAO GameDao = new GameDAO();
         return GameDao.Find(id_game);
     }
 
-    public static List<Game> FindGameByName(string name, List<Game> Games)
+    public List<Game> FindGameByName(string name, List<Game> Games)
     {
         GameDAO GameDao = new GameDAO();
         return GameDao.FindGameByName(name, Games);
     }
 
-    public static List<Game> FindAllGame(List<Game> Games)
+    public List<Game> FindAllGame(List<Game> Games)
     {
         GameDAO GameDao = new GameDAO();
         return GameDao.FindAllGame(Games);
     }
 
-    public static List<Game> FindGameByConsole(string console, List<Game> Games)
+    public List<Game> FindGameByConsole(string console, List<Game> Games)
     {
         GameDAO GameDao = new GameDAO();
         return GameDao.FindGameByConsole(console,Games);
     }
 
-    public static List<Game> FindGameByCrCost(int crCost, List<Game> Games)
+    public List<Game> FindGameByCrCost(int crCost, List<Game> Games)
     {
         GameDAO GameDao = new GameDAO();
         return GameDao.FindGameByCrCost(crCost, Games);
@@ -113,7 +113,7 @@ public class Game
         GameDao.DeleteGame(id_game);
     }
 
-    public static int CopyAvailable(int id_game, int id_player, int id_booking, int week)
+    public int CopyAvailable(int id_game, int id_player, int id_booking, int week)
     {
         GameDAO GameDao = new GameDAO();
         return GameDao.CopyAvailable(id_game,id_player,id_booking,week);

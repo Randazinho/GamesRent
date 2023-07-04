@@ -42,8 +42,8 @@ namespace GamesRent.WPF
                 console= TxtBoxConsole.Text;
                 if (crCost > 0 & name!="" & console!="")
                 {
-                    GameDAO GDAO = new GameDAO();
-                    GDAO.CreateGameByAdmin(name,crCost, console);
+                    Game G = new Game();
+                    G.CreateGameByAdmin(name, crCost, console);
                     //recharge la page pour afficher le nouveau creditcost
                     MessageBox.Show("Game added");
                     AdminGame dashboard = new AdminGame();

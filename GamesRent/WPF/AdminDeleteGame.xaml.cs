@@ -33,8 +33,8 @@ namespace GamesRent.WPF
         private void Games_Initialized(object sender, EventArgs e)
         {
             List<Game> glist = new List<Game>();
-            GameDAO GDAO = new GameDAO();
-            glist = GDAO.FindAllGame(glist);
+            Game G = new Game();
+            G.FindAllGame(glist);
             string concats = "";
             foreach (Game g in glist)
             {
@@ -52,8 +52,8 @@ namespace GamesRent.WPF
                 MessageBox.Show(" "+idgame);
                 if (idgame > 0)
                 {
-                    GameDAO GDAO = new GameDAO();
-                    GDAO.DeleteGame(idgame);
+                    Game G = new Game();
+                    G.DeleteGame(idgame);
                     //recharge la page pour afficher la nouvelle liste
                     AdminGame dashboard = new AdminGame();
                     dashboard.Show();
