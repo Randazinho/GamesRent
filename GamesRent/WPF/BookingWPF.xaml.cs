@@ -22,8 +22,8 @@ namespace GamesRent.WPF
         public Player p;
         public BookingWPF(int idplayer)
         {
-            PlayerDAO Pdao = new PlayerDAO();
-            p = Pdao.Find(idplayer);
+            Player P = new Player();
+            p = P.Find(idplayer);
             InitializeComponent();
         }
         private void MainMenu_Click(object sender, RoutedEventArgs e)

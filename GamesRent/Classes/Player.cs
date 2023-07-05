@@ -118,13 +118,13 @@ public class Player : User
         set { nbr_rater = value; }
     }
 
-    public static Player Find(int id_player)
+    public Player Find(int id_player)
     {
         PlayerDAO PDAO = new PlayerDAO();
         return PDAO.Find(id_player);
     }
 
-    public static List<Player> FindAllPlayer(List<Player> Players)
+    public List<Player> FindAllPlayer(List<Player> Players)
     {
         PlayerDAO PDAO = new PlayerDAO();
         return PDAO.FindAllPlayer(Players);
@@ -136,13 +136,13 @@ public class Player : User
         return PDAO.LoanAllowed(idplayer,id_game,week);
     }
 
-    public static void AddBirthDayBonus(String today)
+    public void AddBirthDayBonus(String today)
     {
         PlayerDAO PDAO = new PlayerDAO();
         PDAO.AddBirthDayBonus(today);
     }
 
-    public static void UpdateWalletByID(int id_borrower, int ammount, int id_owner)
+    public void UpdateWalletByID(int id_borrower, int ammount, int id_owner)
     {
         PlayerDAO PDAO = new PlayerDAO();
         PDAO.UpdateWalletByID(id_borrower,ammount,id_owner);

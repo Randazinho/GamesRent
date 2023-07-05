@@ -56,19 +56,19 @@ public class Copy : Game //copy hérite de jeu car une copy est comme une instan
         }
     }
 
-    public static Copy Find(int id_copy)
+    public Copy Find(int id_copy)
     {
         CopyDAO CDAO = new CopyDAO();
         return CDAO.Find(id_copy);
     }
 
-    public static List<Copy> FindAll(List<Copy> Copies, int id_player)
+    public List<Copy> FindAll(List<Copy> Copies, int id_player)
     {
         CopyDAO CDAO = new CopyDAO();
         return CDAO.FindAll(Copies, id_player);
     }
 
-    public static List<Copy> FindAllCopyByGameID(List<Copy> Copies, int id_game)
+    public List<Copy> FindAllCopyByGameID(List<Copy> Copies, int id_game)
     {
         CopyDAO CDAO = new CopyDAO();
         return CDAO.FindAll(Copies, id_game);

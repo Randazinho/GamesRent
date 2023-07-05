@@ -22,8 +22,8 @@ namespace GamesRent.WPF
         public Player p;
         public BookingList(int idplayer)
         {
-            PlayerDAO Pdao = new PlayerDAO();
-            p = Pdao.Find(idplayer);
+            Player P = new Player();
+            p = P.Find(idplayer);
             InitializeComponent();
         }
         private void Booking_Initialized(object sender, EventArgs e)
@@ -31,8 +31,8 @@ namespace GamesRent.WPF
             try
             {
                 List<Booking> blist = new List<Booking>();
-                BookingDAO BDAO = new BookingDAO();
-                blist = BDAO.FindAllBookingByPlayerID(blist, p.Id_player);
+                Booking B = new Booking();
+                blist = B.FindAllBookingByPlayerID(blist, p.Id_player);
                 string concats = "";
                 foreach (Booking b in blist)
                 {
@@ -63,8 +63,8 @@ namespace GamesRent.WPF
                 if (idbook > 0)
                 {
 
-                    BookingDAO BDAO = new BookingDAO();
-                    BDAO.Delete(idbook);
+                    Booking B = new Booking();
+                    B.DeleteBooking(idbook);
                     //recharge la page pour afficher la nouvelle liste
                     BookingList dashboard = new BookingList(p.Id_player);
                     dashboard.Show();

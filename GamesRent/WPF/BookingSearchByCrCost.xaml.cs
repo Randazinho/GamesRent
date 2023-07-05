@@ -20,11 +20,10 @@ namespace GamesRent.WPF
     public partial class BookingSearchByCrCost : Window
     {
         public Player p;
-        PlayerDAO PDAO = new PlayerDAO();
         public BookingSearchByCrCost(int idplayer)
         {
-            PlayerDAO Pdao = new PlayerDAO();
-            p = Pdao.Find(idplayer);
+            Player P = new Player();
+            p = P.Find(idplayer);
             InitializeComponent();
             BookGame.Visibility = Visibility.Collapsed;
             TxtBoxId.Visibility = Visibility.Collapsed;
@@ -52,17 +51,17 @@ namespace GamesRent.WPF
                 int week = Convert.ToInt32(TxtWeeks.Text);
                 if (idgame > 0 & (week > 0 & week < 53))
                 {
-                    BookingDAO BDAO = new BookingDAO();
+                    Booking B = new Booking();
                     int id_booking = 0;
-                    GameDAO GDAO = new GameDAO();
-                    Game game = GDAO.Find(idgame);
-                    int loanAllowed = PDAO.LoanAllowed(p.Id_player, idgame, week);
+                    Game G = new Game();
+                    Game game = G.Find(idgame);
+                    int loanAllowed = p.LoanAllowed(p.Id_player, idgame, week);
                     if (loanAllowed == 1)
                     {
-                        id_booking = BDAO.CreateBookingByIdGame(p.Id_player, idgame,week);
+                        id_booking = B.CreateBookingByIdGame(p.Id_player, idgame,week);
                         MessageBox.Show("ID de la booking : " + id_booking);
                         //ici check si copie available
-                        int flag = GDAO.CopyAvailable(idgame, p.Id_player, id_booking, week);
+                        int flag = G.CopyAvailable(idgame, p.Id_player, id_booking, week);
                         if (flag == 0)
                         {
                             BookingList dashboard = new BookingList(p.Id_player);
@@ -120,8 +119,8 @@ namespace GamesRent.WPF
                 {
                     crCost = Convert.ToInt32(TxtBoxCreditCost.Text);
                     List<Game> glist = new List<Game>();
-                    GameDAO GDAO = new GameDAO();
-                    glist = GDAO.FindGameByCrCost(crCost, glist);
+                    Game G = new Game();
+                    glist = G.FindGameByCrCost(crCost, glist);
                     string concats = "";
                     if (glist.Count > 0)
                     {
