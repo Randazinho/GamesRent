@@ -48,7 +48,7 @@ public class User
         set;
     }
 
-    public static User FindUserByUsername(string username)
+    public User FindUserByUsername(string username)
     {
         UserDAO UDAO = new UserDAO();
         return UDAO.FindUserByUsername(username);
