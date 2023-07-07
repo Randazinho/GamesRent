@@ -22,8 +22,8 @@ namespace GamesRent.WPF
         public Player p;
         public LoanWPFOld(int idplayer)
         {
-            PlayerDAO Pdao = new PlayerDAO();
-            p = Pdao.Find(idplayer);
+            Player P = new Player();
+            p = P.Find(idplayer);
             InitializeComponent();
         }
 
@@ -37,8 +37,8 @@ namespace GamesRent.WPF
         private void Loans_Initialized(object sender, EventArgs e)
         {
             List<Loan> Llist = new List<Loan>();
-            LoanDAO LDAO = new LoanDAO();
-            Llist = LDAO.FindAllLoanByIdPlayerNotOngoing(p.Id_player, Llist);
+            Loan L = new Loan();
+            Llist = L.FindAllLoanByIdPlayerNotOngoing(p.Id_player, Llist);
             string concats = "";
             if (Llist.Count > 0)
             {

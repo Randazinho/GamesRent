@@ -22,8 +22,8 @@ namespace GamesRent.WPF
         public Player p;
         public LoanWPFInProgress(int idplayer)
         {
-            PlayerDAO Pdao = new PlayerDAO();
-            p = Pdao.Find(idplayer);
+            Player P = new Player();
+            p = P.Find(idplayer);
             InitializeComponent();
         }
 
@@ -36,8 +36,8 @@ namespace GamesRent.WPF
         private void Loans_Initialized(object sender, EventArgs e)
         {
             List<Loan> Llist = new List<Loan>();
-            LoanDAO LDAO = new LoanDAO();
-            Llist = LDAO.FindAllLoanByIdPlayerOngoing(p.Id_player, Llist);
+            Loan L = new Loan();
+            Llist = L.FindAllLoanByIdPlayerOngoing(p.Id_player, Llist);
             string concats = "";
             if (Llist.Count > 0)
             {
@@ -49,7 +49,8 @@ namespace GamesRent.WPF
             }
             else
             {
-                Loans.Content = "No Ongoing Loan at the moment";
+                Loans.Content = "No ongoing Loan to show";
+                MessageBox.Show("No ongoing Loan to show");
             }
         }
 
@@ -60,15 +61,19 @@ namespace GamesRent.WPF
                 int idloan = Convert.ToInt32(TxtBoxId.Text);
                 if (idloan > 0)
                 {
-                    LoanDAO LDAO = new LoanDAO();
-                    LDAO.EndLoan(idloan);
+                    Loan L = new Loan();
+                    L.EndLoan(idloan);
                     Loan loan = new Loan();
-                    loan = LDAO.Find(idloan);
+                    loan = L.Find(idloan);
                     MessageBox.Show("Ongoing changed");
                     Rating dashboard = new Rating(loan.Copy.Id_copy);//id copy
                     dashboard.Show();
-                    LDAO.CalculateBalance(idloan);
-                    MessageBox.Show("The Lender was well noted, this loan now goes in your old loan list..");
+                    L.CalculateBalance(idloan);
+                    TxtBoxId.Text = "";
+                    Loans.Content = "The game has been returned";
+                    ReturnGame.Visibility = Visibility.Hidden;
+                    LabelID.Visibility = Visibility.Hidden;
+                    TxtBoxId.Visibility = Visibility.Hidden;
                 }
                 else throw new Exception("");
             }

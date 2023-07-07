@@ -20,22 +20,22 @@ namespace GamesRent.WPF
     public partial class GameWPFAddCopy : Window
     {
         public Player p;
-        GameDAO GDAO = new GameDAO();
-        LoanDAO LDAO = new LoanDAO();
-        PlayerDAO PDAO = new PlayerDAO();
-        BookingDAO BDAO = new BookingDAO();
+        Game G = new Game();
+        Loan L = new Loan();
+        Player P = new Player();
+        Booking B = new Booking();
         public GameWPFAddCopy(int idplayer)
         {
-            PlayerDAO Pdao = new PlayerDAO();
-            p = Pdao.Find(idplayer);
+            Player P = new Player();
+            p = P.Find(idplayer);
             InitializeComponent();
         }
 
         private void Games_Initialized(object sender, EventArgs e)
         {
             List<Game> glist = new List<Game>();
-            GameDAO GDAO = new GameDAO();
-            glist = GDAO.FindAllGame(glist);
+            Game G = new Game();
+            glist = G.FindAllGame(glist);
             string concats = "";
             foreach (Game g in glist)
             {
@@ -52,23 +52,23 @@ namespace GamesRent.WPF
                 id_game = Convert.ToInt32(TxtBoxIdGame.Text);
                 if (id_game>0)
                 {
-                    CopyDAO CDAO = new CopyDAO();
-                    int idcopy =CDAO.CreateCopy(id_game,p.Id_player);
+                    Copy C = new Copy();
+                    int idcopy =C.CreateCopy(id_game,p.Id_player);
                     //recharge la page pour la nouvelle liste de copies
                     GameWPFAddCopy dashboard = new GameWPFAddCopy(p.Id_player);
                     dashboard.Show();
                     this.Close();
                     //selectbooking
-                    int idplayerborrower = GDAO.SelectBooking(id_game);
+                    int idplayerborrower = G.SelectBooking(id_game);
                     if(idplayerborrower!=0)//on peut créer la loan
                     {
                         //Select le nombre week de la booking 
-                        int week = BDAO.FindWeekByIDPlayer(idplayerborrower,id_game);
-                        LDAO.CreateLoan(idcopy,idplayerborrower,week); 
+                        int week = B.FindWeekByIDPlayer(idplayerborrower,id_game);
+                        L.CreateLoan(idcopy,idplayerborrower,week); 
                         //empecher de book plusieurs fois le même jeu par un même player en même temps
-                        Booking book = BDAO.FindABookByIdGameAndIDPlayer(id_game, idplayerborrower);
-                        BDAO.Delete(book.Id_booking);
-                        PDAO.UpdateWalletByID(idplayerborrower, GDAO.Find(idcopy).CreditCost, p.Id_player);
+                        Booking book = B.FindABookByIdGameAndIDPlayer(id_game, idplayerborrower);
+                        B.DeleteBooking(book.Id_booking);
+                        P.UpdateWalletByID(idplayerborrower, G.Find(idcopy).CreditCost, p.Id_player);
                         MessageBox.Show("Wallet uptaded");
                     }
                 }

@@ -22,8 +22,8 @@ namespace GamesRent.WPF
         public Player p;
         public GameWPF(int idplayer)
         {
-            PlayerDAO Pdao = new PlayerDAO();
-            p = Pdao.Find(idplayer);
+            Player P = new Player();
+            p = P.Find(idplayer);
             InitializeComponent();
         }
         private void MainMenu_Click(object sender, RoutedEventArgs e)
@@ -38,8 +38,8 @@ namespace GamesRent.WPF
             try
             {
                 List<Copy> clist = new List<Copy>();
-                CopyDAO CDAO = new CopyDAO();
-                clist = CDAO.FindAll(clist, p.Id_player);
+                Copy C = new Copy();
+                clist = C.FindAll(clist, p.Id_player);
                 string concats = "";
                 foreach (Copy c in clist)
                 {

@@ -20,12 +20,11 @@ namespace GamesRent.WPF
     public partial class Rating : Window
     {
         public Player p;
-        PlayerDAO PDAO = new PlayerDAO();
+        Player P = new Player();
         Copy copy = new Copy();
-        CopyDAO CDAO = new CopyDAO();
         public Rating(int idcopy)
         {
-            copy = CDAO.Find(idcopy);
+            copy = copy.Find(idcopy);
             InitializeComponent();
         }
 
@@ -37,7 +36,8 @@ namespace GamesRent.WPF
                 //MessageBox.Show(" " + rate);
                 if(rate>0 && rate<=10)
                 {
-                    PDAO.RatingPlayer(copy.Player_owner.Id_player, rate);
+                    P.RatingPlayer(copy.Player_owner.Id_player, rate);
+                    MessageBox.Show("The Lender was well noted, this loan now goes in your old loan list..");
                     this.Close();
                 }
                 else

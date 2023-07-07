@@ -22,8 +22,8 @@ namespace GamesRent.WPF
         public Player p;
         public GameWPFDeleteCopy(int idplayer)
         {
-            PlayerDAO Pdao = new PlayerDAO();
-            p = Pdao.Find(idplayer);
+            Player P = new Player();
+            p = P.Find(idplayer);
             InitializeComponent();
         }
 
@@ -32,8 +32,8 @@ namespace GamesRent.WPF
             try
             {
                 List<Copy> clist = new List<Copy>();
-                CopyDAO CDAO = new CopyDAO();
-                clist = CDAO.FindAll(clist, p.Id_player);
+                Copy C = new Copy();
+                clist = C.FindAll(clist, p.Id_player);
                 string concats = "";
                 foreach (Copy c in clist)
                 {
@@ -55,8 +55,8 @@ namespace GamesRent.WPF
                 idcopy = Convert.ToInt32(TxtBoxIdCopy.Text);
                 if (idcopy > 0)
                 {
-                    CopyDAO CDAO = new CopyDAO();
-                    CDAO.DeleteCopy(idcopy);
+                    Copy C = new Copy();
+                    C.DeleteCopy(idcopy);
                     //recharge la page pour afficher la nouvelle liste
                     GameWPFDeleteCopy dashboard = new GameWPFDeleteCopy(p.Id_player);
                     dashboard.Show();
