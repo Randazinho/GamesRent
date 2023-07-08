@@ -25,6 +25,16 @@ namespace GamesRent.WPF
             Player P = new Player();
             p = P.Find(idplayer);
             InitializeComponent();
+            List<Loan> Llist = new List<Loan>();
+            Loan L = new Loan();
+            Llist = L.FindAllLoanByIdPlayerOngoing(p.Id_player, Llist);
+            string concats = "";
+            if (Llist.Count > 0)
+            {
+                ReturnGame.Visibility = Visibility.Visible;
+                LabelID.Visibility = Visibility.Visible;
+                TxtBoxId.Visibility = Visibility.Visible;
+            }
         }
 
         private void MainMenu_Click(object sender, RoutedEventArgs e)
@@ -47,6 +57,7 @@ namespace GamesRent.WPF
                 }
                 Loans.Content = concats.Substring(0, concats.Length - 1);
             }
+
             else
             {
                 Loans.Content = "No ongoing Loan to show";
