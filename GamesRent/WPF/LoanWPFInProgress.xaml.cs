@@ -76,7 +76,7 @@ namespace GamesRent.WPF
                     L.EndLoan(idloan);
                     Loan loan = new Loan();
                     loan = L.Find(idloan);
-                    MessageBox.Show("Ongoing changed");
+                    //MessageBox.Show("Ongoing changed");
                     Rating dashboard = new Rating(loan.Copy.Id_copy);//id copy
                     dashboard.Show();
                     L.CalculateBalance(idloan);

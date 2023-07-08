@@ -26,7 +26,7 @@ namespace GamesRent.WPF
 
         private void btnSubmitLogin_Click(object sender, RoutedEventArgs e)
         {
-            UserDAO UDAO = new UserDAO();
+            User User = new User();
             string username = txtUsername.Text;
             string password = txtPassword.Password;
             string date = LabelForbirthday.Text;
@@ -35,10 +35,10 @@ namespace GamesRent.WPF
                 DateTime dateofbirth = DateTime.Parse(date);
                 //créer un compte
                 //check si le nouveau username existe déjà ?
-                User user = UDAO.FindUserByUsername(username);
+                User user = User.FindUserByUsername(username);
                 if (user == null)
                 {
-                    UDAO.CreateNewUser(username, password, dateofbirth);
+                    User.CreateNewUser(username, password, dateofbirth);
                     MessageBox.Show("Account created");
                     LoginScreen dashboard = new LoginScreen();
                     dashboard.Show();

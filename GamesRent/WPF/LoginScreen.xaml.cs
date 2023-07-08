@@ -36,8 +36,8 @@ namespace GamesRent
             if (DateTime.Now.ToShortDateString() != DateB.Date)
             {
                 InitializeComponent();
-                PlayerDAO PDAO = new PlayerDAO();
-                PDAO.AddBirthDayBonus(DateTime.Now.ToString("d-M"));
+                Player P = new Player();
+                P.AddBirthDayBonus(DateTime.Now.ToString("d-M"));
                 DDAO.UpdateToday(DateTime.Now.ToShortDateString());
             }
             else
@@ -48,7 +48,7 @@ namespace GamesRent
 
         private void btnSubmitLogin_Click(object sender, RoutedEventArgs e)
         {
-            UserDAO user = new UserDAO();
+            User user = new User();
             username = txtUsername.Text;
             password = txtPassword.Password;
             if (username.Equals("") | password.Equals(""))
