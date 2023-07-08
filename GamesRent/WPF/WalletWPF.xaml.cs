@@ -26,8 +26,8 @@ namespace GamesRent.WPF
         public WalletWPF(int idplayer)
         {
             idplay = idplayer;
-            PlayerDAO Pdao = new PlayerDAO();
-            p = Pdao.Find(idplayer);
+            Player P = new Player();
+            p = P.Find(idplayer);
             wallet = p.Credit;
             InitializeComponent();
         }
@@ -40,8 +40,8 @@ namespace GamesRent.WPF
 
         private void Credit_Initialized(object sender, EventArgs e)
         {
-            PlayerDAO Pdao = new PlayerDAO();
-            plr = Pdao.Find(idplay);
+            Player P = new Player();
+            plr = P.Find(idplay);
             wallet = plr.Credit;
             Credit.Content = wallet;
             if (p.Credit <= 0)

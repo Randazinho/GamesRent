@@ -11,9 +11,9 @@
             <StackPanel Margin="20">
                 <Image Height="120" Width="200" Source="../Images/logo.png"/>
                 <Label Name="Bookings" Content="placeholder" Initialized="Booking_Initialized"  Background="Black"  Foreground="White" FontSize="25" HorizontalAlignment="Center"/>
-                <Label FontSize="15" Foreground="White" HorizontalAlignment="Center">ID of the Booking to delete</Label>
-                <TextBox FontSize="15" Name="TxtBoxId" Background="White" Foreground="Black"/>
-                <Button Name="DeleteBooking" Click="DeleteBooking_Click" FontSize="25" Margin="0,20,0,20" Content="Delete this Booking" Background="Black" Foreground="red"/>
+                <Label Name="LabelID" FontSize="15" Foreground="White" HorizontalAlignment="Center" Visibility="Hidden">ID of the Booking to delete</Label>
+                <TextBox FontSize="15" Name="TxtBoxId" Background="White" Foreground="Black" Visibility="Hidden"/>
+                <Button Name="DeleteBooking" Click="DeleteBooking_Click" FontSize="25" Margin="0,20,0,20" Content="Delete this Booking" Background="Black" Foreground="red" Visibility="Hidden"/>
                 <Button Name="BookingMainMenu" Click="BookingMainMenu_Click" FontSize="25" Margin="0,20,0,20" Content="Return" Background="Black" Foreground="White"/>
             </StackPanel>
         </Border>

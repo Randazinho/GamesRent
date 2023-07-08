@@ -19,7 +19,6 @@ namespace GamesRent.WPF
     /// </summary>
     public partial class MainForAdmin : Window
     {
-        private UserDAO UserDAOAdmin;
         public Admin Admin;
         public MainForAdmin()
         {

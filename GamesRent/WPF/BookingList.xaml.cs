@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,6 +26,16 @@ namespace GamesRent.WPF
             Player P = new Player();
             p = P.Find(idplayer);
             InitializeComponent();
+            List<Booking> blist = new List<Booking>();
+            Booking B = new Booking();
+            blist = B.FindAllBookingByPlayerID(blist, p.Id_player);
+            string concats = "";
+            if (blist.Count > 0)
+            {
+                DeleteBooking.Visibility = Visibility.Visible;
+                LabelID.Visibility = Visibility.Visible;
+                TxtBoxId.Visibility = Visibility.Visible;
+            }
         }
         private void Booking_Initialized(object sender, EventArgs e)
         {
@@ -43,6 +54,7 @@ namespace GamesRent.WPF
             catch
             {
                 Bookings.Content = "No booking for the moment";
+                MessageBox.Show("No booking for the moment");
             }
         }
 

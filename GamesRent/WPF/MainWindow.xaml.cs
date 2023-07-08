@@ -24,8 +24,8 @@ namespace GamesRent
         public Player p;
         public MainWindow(int idplayer)
         {
-            PlayerDAO Pdao = new PlayerDAO();
-            p = Pdao.Find(idplayer);
+            Player P = new Player();
+            p = P.Find(idplayer);
             InitializeComponent();
         }
         private void WelcomeLabel_Initialized(object sender, EventArgs e)
