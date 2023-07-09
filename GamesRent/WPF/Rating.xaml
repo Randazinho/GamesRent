@@ -10,8 +10,8 @@
         <StackPanel Margin="20">
             <Image Height="50" Width="100" Source="../Images/logo.png" Stretch="Uniform"/>
             <Label Content="Your rate" Foreground="White" FontSize="20" Margin="0,20,0,20" HorizontalAlignment="Center"/>
-            <ListBox Name="lstRate" >
-                <ListBox.ItemTemplate>
+            <ComboBox Name="lstRate">
+                <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <Grid Margin="0,2">
                             <Grid.ColumnDefinitions>
@@ -21,8 +21,8 @@
                             <TextBlock Text="{Binding Value}" />
                         </Grid>
                     </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
             <Button x:Name="btnSubRate" Click="btnSubRate_Click" Content="Rate" Background="White" Foreground="Black" FontSize="20" Margin="100,40,100,20"/>
         </StackPanel>
     </Border>
