@@ -29,30 +29,36 @@ namespace GamesRent.WPF
             InitializeComponent();
 
             List<RateValue> items = new List<RateValue>();
-            items.Add(new RateValue() { Value = "1" });
-            items.Add(new RateValue() { Value = "2" });
-            items.Add(new RateValue() { Value = "3" });
+            for (int i = 1; i < 11; i++)
+            {
+                items.Add(new RateValue() { Value = i.ToString() });
+            }
 
             lstRate.ItemsSource = items;
+            lstRate.SelectedIndex = 4;
+
         }
 
         private void btnSubRate_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                int rate = Convert.ToInt32((lstRate.SelectedItem as RateValue).Value);
-
-
-                if (rate>0 && rate<=10)
+                if (lstRate.SelectedItem != null)
                 {
-                    P.RatingPlayer(copy.Player_owner.Id_player, rate);
-                    MessageBox.Show("The Lender was well noted, this loan now goes in your old loan list..");
-                    this.Close();
-                }
-                else
-                {
-                    throw new Exception();
-                }
+                    int rate = Convert.ToInt32((lstRate.SelectedItem as RateValue).Value);
+                    if (rate > 0 && rate <= 10)
+                    {
+                        P.RatingPlayer(copy.Player_owner.Id_player, rate);
+                        MessageBox.Show("The Lender was well noted, this loan now goes in your old loan list..");
+                        this.Close();
+                    }
+                    else
+                    {
+                        throw new Exception();
+                    }
+
+                }             
+
             }
             catch
             {
