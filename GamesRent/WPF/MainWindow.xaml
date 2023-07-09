@@ -15,7 +15,7 @@
                 <Button Name="btnLoan" Click="btnLoan_Click" Content="Loan" Background="Azure" Foreground="Black"   FontSize="25" Margin="0,20,0,20"/>
                 <Button Name="btnGame" Click="btnGame_Click" Content="Games" Background="Azure" Foreground="Black"   FontSize="25" Margin="0,20,0,20"/>
                 <Button Name="btnWallet" Click="btnWallet_Click" Content="Wallet" Background="Azure" Foreground="Black"   FontSize="25" Margin="0,20,0,20"/>
-                <Button Name="btnUnlog" Click="btnUnlog_Click"  Content="Unlog" Background="Black" Foreground="Tomato" FontSize="25"  Margin="0,20,0,20"/>
+                <Button Name="btnLogout" Click="btnLogout_Click"  Content="Logout" Background="Black" Foreground="Tomato" FontSize="25"  Margin="0,20,0,20"/>
             </StackPanel>
         </Border>
     </ScrollViewer>

@@ -46,7 +46,7 @@ namespace GamesRent.WPF
             this.Close();
         }
 
-        private void btnUnlog_Click(object sender, RoutedEventArgs e)
+        private void btnLogout_Click(object sender, RoutedEventArgs e)
         {
             LoginScreen loginwindow = new LoginScreen();
             loginwindow.Show();
