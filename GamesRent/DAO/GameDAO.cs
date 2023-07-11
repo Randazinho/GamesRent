@@ -265,16 +265,16 @@ public class GameDAO : DAO<Game>
     {
         //MessageBox.Show(" Hello "+id_game+" "+id_player+" "+id_booking);
         List<Loan> Loans = new List<Loan>();
-        LoanDAO LDAO = new LoanDAO();
-        BookingDAO BDAO = new BookingDAO();
-        GameDAO GDAO = new GameDAO();
+        Loan L = new Loan();
+        Booking B = new Booking();
+        Game G = new Game();
         int nbrLoan = 0;
         int j = 0;
         int flag1 = 0;
         //check si une copie existe pour ce jeu si oui regarder si elle concernée par une loan si oui est-elle ongoing =1 ?
         List<Copy> clist = new List<Copy>();
-        CopyDAO CDAO = new CopyDAO();
-        clist = CDAO.FindAllCopyByGameID(clist,id_game);
+        Copy C = new Copy();
+        clist = C.FindAllCopyByGameID(clist,id_game);
         int ncopy=clist.Count;
         if(clist.Count > 0)
         {
@@ -284,7 +284,7 @@ public class GameDAO : DAO<Game>
                 nbrLoan = 0;
                 try
                 {
-                    Loans = LDAO.FindAllLoanByIdCopy(Loans, clist[j].Id_copy); // Correspond à la copie d'un seul player
+                    Loans = L.FindAllLoanByIdCopy(Loans, clist[j].Id_copy); // Correspond à la copie d'un seul player
                     nbrLoan = Loans.Count;
                     int i = 0, flag2 = 0;
                     while (i < nbrLoan & flag2 == 0)
@@ -302,23 +302,23 @@ public class GameDAO : DAO<Game>
                     if(flag2==0)
                     {
                         //une copie existe elle a déjà été louée au moins une fois mais elle ne l'est pas pour l'instant => on peut créer la loan
-                        Game game = GDAO.Find(id_game);
+                        Game game = G.Find(id_game);
                         int crcost = game.CreditCost;
                         int player_borrower = id_player;
-                        PlayerDAO PDAO = new PlayerDAO();
-                        Player player = PDAO.Find(id_player);
+                        Player P = new Player();
+                        Player player = P.Find(id_player);
                         //choper le player_owner 
-                        Copy copy =CDAO.Find(clist[j].Id_copy);
+                        Copy copy =C.Find(clist[j].Id_copy);
                         int id_player_owner = copy.Player_owner.Id_player;
                         //création de la loan
                         if(player.Credit>(game.CreditCost)*week)  
                         {
-                            LDAO.CreateLoan(clist[j].Id_copy, id_player, week);
+                            L.CreateLoan(clist[j].Id_copy, id_player, week);
                             flag1 = 1;
-                            MessageBox.Show("Loan created, don't forget to return the game on time to avoid additional costs" +
+                            MessageBox.Show("A Copy is available => Loan created, don't forget to return the game on time to avoid additional costs" +
                                 " |Booking deleted");
-                            BDAO.Delete(id_booking);
-                            PDAO.UpdateWalletByID(player_borrower, crcost*week, id_player_owner);
+                            B.DeleteBooking(id_booking);
+                            P.UpdateWalletByID(player_borrower, crcost*week, id_player_owner);
                             MessageBox.Show("Wallet uptaded");
                             return 1;
                         }
@@ -332,23 +332,23 @@ public class GameDAO : DAO<Game>
                 catch
                 {
                     //une copy du jeu est dispo et n'a jamais été concernée par une loan => on peut créer la loan
-                    Game game = GDAO.Find(id_game);
+                    Game game = G.Find(id_game);
                     int crcost = game.CreditCost;
                     int player_borrower = id_player;
-                    PlayerDAO PDAO = new PlayerDAO();
-                    Player player = PDAO.Find(id_player);
+                    Player P = new Player();
+                    Player player = P.Find(id_player);
                     //choper le player_owner 
-                    Copy copy = CDAO.Find(clist[j].Id_copy);
+                    Copy copy = C.Find(clist[j].Id_copy);
                     int id_player_owner = copy.Player_owner.Id_player;
                     //création de la loan
                     if (player.Credit > (game.CreditCost) * week)
                     {
-                        LDAO.CreateLoan(clist[j].Id_copy, id_player,week);
+                        L.CreateLoan(clist[j].Id_copy, id_player,week);
                         flag1 = 1;
-                        MessageBox.Show("Loan created, don't forget to return the game on time to avoid additional costs" +
+                        MessageBox.Show("A Copy is available =>Loan created, don't forget to return the game on time to avoid additional costs" +
                             " |Booking deleted");
-                        BDAO.Delete(id_booking);
-                        PDAO.UpdateWalletByID(player_borrower, crcost*week, id_player_owner);
+                        B.DeleteBooking(id_booking);
+                        P.UpdateWalletByID(player_borrower, crcost*week, id_player_owner);
                         MessageBox.Show("Wallet uptaded");
                         return 1;
                     }
@@ -370,9 +370,9 @@ public class GameDAO : DAO<Game>
 
     public int SelectBooking(int idgame)//sélectionne le joueur à qui on attribue une copie selon les règles de gestion
     {
-        BookingDAO BDAO = new BookingDAO();
+        Booking B = new Booking();
         List<Booking> bookings = new List<Booking>();
-        bookings = BDAO.FindAllBookingByGameID(bookings, idgame);
+        bookings = B.FindAllBookingByGameID(bookings, idgame);
         int nbr_booker = bookings.Count;
         if (nbr_booker > 0)
         {
@@ -473,7 +473,7 @@ public class GameDAO : DAO<Game>
                         }
                         else
                         {
-                            for (int i = 0; i < nbr_booker; i++)//ici on retire de la liste bookings les éléments qui ont une date supérier à la registration date min
+                            for (int i = 0; i < nbr_booker; i++)//ici on retire de la liste bookings les éléments qui ont une date supérieur à la registration date min
                             {
                                 if (bookings[i].Player.RegistrationDate > mindate)
                                 {

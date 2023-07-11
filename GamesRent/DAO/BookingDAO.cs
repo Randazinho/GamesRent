@@ -32,8 +32,8 @@ public class BookingDAO : DAO<Booking>
         Booking logbook = new Booking();
         using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["GamesDB"].ConnectionString))
         {
-            PlayerDAO Pdao = new PlayerDAO();
-            GameDAO GDAO = new GameDAO();
+            Player P = new Player();
+            Game G = new Game();
             try
             {
                 if (connection.State == ConnectionState.Closed)
@@ -49,7 +49,7 @@ public class BookingDAO : DAO<Booking>
                     {
                         while (reader.Read())
                         {
-                            Booking logbook2 = new Booking(reader.GetInt32(0), reader.GetDateTime(1), Pdao.Find(reader.GetInt32(2)), GDAO.Find(reader.GetInt32(3)), reader.GetInt32(4));
+                            Booking logbook2 = new Booking(reader.GetInt32(0), reader.GetDateTime(1), P.Find(reader.GetInt32(2)), G.Find(reader.GetInt32(3)), reader.GetInt32(4));
                             logbook = logbook2;
                         }
                     }
@@ -73,8 +73,8 @@ public class BookingDAO : DAO<Booking>
     }
     public List<Booking> FindAllBookingByPlayerID(List<Booking> Bookings, int id_player)
     {
-        PlayerDAO Pdao = new PlayerDAO();
-        GameDAO GDAO = new GameDAO();
+        Player P = new Player();
+        Game G = new Game();
         using (SqlConnection connection = new SqlConnection(this.connectionString))
         {
             try
@@ -86,7 +86,7 @@ public class BookingDAO : DAO<Booking>
                 {
                     while (reader.Read())
                     {
-                        Booking book = new Booking(reader.GetInt32(0), reader.GetDateTime(1), Pdao.Find(reader.GetInt32(2)), GDAO.Find(reader.GetInt32(3)), reader.GetInt32(4));
+                        Booking book = new Booking(reader.GetInt32(0), reader.GetDateTime(1), P.Find(reader.GetInt32(2)), G.Find(reader.GetInt32(3)), reader.GetInt32(4));
                         Bookings.Add(book);
                     }
                 }
@@ -101,8 +101,8 @@ public class BookingDAO : DAO<Booking>
     }
     public List<Booking> FindAllBookingByGameID(List<Booking> Bookings, int id_game)
     {
-        GameDAO GDAO = new GameDAO();
-        PlayerDAO Pdao = new PlayerDAO();
+        Player P = new Player();
+        Game G = new Game();
         using (SqlConnection connection = new SqlConnection(this.connectionString))
         {
             try
@@ -114,7 +114,7 @@ public class BookingDAO : DAO<Booking>
                 {
                     while (reader.Read())
                     {
-                        Booking book = new Booking(reader.GetInt32(0), reader.GetDateTime(1), Pdao.Find(reader.GetInt32(2)), GDAO.Find(reader.GetInt32(3)), reader.GetInt32(4));
+                        Booking book = new Booking(reader.GetInt32(0), reader.GetDateTime(1), P.Find(reader.GetInt32(2)), G.Find(reader.GetInt32(3)), reader.GetInt32(4));
                         Bookings.Add(book);
                     }
                 }
@@ -157,7 +157,7 @@ public class BookingDAO : DAO<Booking>
         //MessageBox.Show("idplayer "+ id_player + "idgame : "+id_game);
         using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["GamesDB"].ConnectionString))
         {
-            BookingDAO BDAO = new BookingDAO();
+            Booking B = new Booking();
             int id_booking = 0;
             try
             {
@@ -171,7 +171,7 @@ public class BookingDAO : DAO<Booking>
                 sqlinsert.Parameters.AddWithValue("@id_game", id_game);
                 sqlinsert.Parameters.AddWithValue("@week", week);
                 sqlinsert.ExecuteNonQuery();
-                id_booking = BDAO.FindLastId(id_booking);
+                id_booking = B.FindLastId(id_booking);
                 MessageBox.Show("Games added to your booking wishlist");
             }
             catch (Exception ex)
@@ -225,8 +225,8 @@ public class BookingDAO : DAO<Booking>
         int week = 0;
         using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["GamesDB"].ConnectionString))
         {
-            PlayerDAO Pdao = new PlayerDAO();
-            GameDAO GDAO = new GameDAO();
+            Player P = new Player();
+            Game G = new Game();
             try
             {
                 if (connection.State == ConnectionState.Closed)
@@ -243,7 +243,7 @@ public class BookingDAO : DAO<Booking>
                     {
                         while (reader.Read())
                         {
-                            Booking logbook2 = new Booking(reader.GetInt32(0), reader.GetDateTime(1), Pdao.Find(reader.GetInt32(2)), GDAO.Find(reader.GetInt32(3)), reader.GetInt32(4));
+                            Booking logbook2 = new Booking(reader.GetInt32(0), reader.GetDateTime(1), P.Find(reader.GetInt32(2)), G.Find(reader.GetInt32(3)), reader.GetInt32(4));
                             logbook = logbook2;
                             week= logbook.Week; 
                         }
@@ -272,8 +272,8 @@ public class BookingDAO : DAO<Booking>
         Booking logbook = new Booking();
         using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["GamesDB"].ConnectionString))
         {
-            PlayerDAO Pdao = new PlayerDAO();
-            GameDAO GDAO = new GameDAO();
+            Player P = new Player();
+            Game G = new Game();
             try
             {
                 if (connection.State == ConnectionState.Closed)
@@ -290,7 +290,7 @@ public class BookingDAO : DAO<Booking>
                     {
                         while (reader.Read())
                         {
-                            Booking logbook2 = new Booking(reader.GetInt32(0), reader.GetDateTime(1), Pdao.Find(reader.GetInt32(2)), GDAO.Find(reader.GetInt32(3)), reader.GetInt32(4));
+                            Booking logbook2 = new Booking(reader.GetInt32(0), reader.GetDateTime(1), P.Find(reader.GetInt32(2)), G.Find(reader.GetInt32(3)), reader.GetInt32(4));
                             logbook = logbook2;
                         }
                     }

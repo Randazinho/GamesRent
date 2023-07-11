@@ -31,8 +31,8 @@ public class CopyDAO : DAO<Copy>
         Copy logcop = new Copy();
         using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["GamesDB"].ConnectionString))
         {
-            PlayerDAO PDAO = new PlayerDAO();
-            GameDAO GDAO = new GameDAO();
+            Player P = new Player();
+            Game G = new Game();
             try
             {
                 if (connection.State == ConnectionState.Closed)
@@ -49,7 +49,7 @@ public class CopyDAO : DAO<Copy>
                         while (reader.Read())
                         {
                             //0 = Id copy , 1 = id jeu, 2 = id joueur
-                            Copy logcop2 = new Copy(reader.GetInt32(0), GDAO.Find(reader.GetInt32(1)), PDAO.Find(reader.GetInt32(2)));
+                            Copy logcop2 = new Copy(reader.GetInt32(0), G.Find(reader.GetInt32(1)), P.Find(reader.GetInt32(2)));
                             logcop = logcop2;
                         }
                     }
@@ -73,8 +73,8 @@ public class CopyDAO : DAO<Copy>
     }
     public List<Copy> FindAll(List<Copy> Copies, int id_player)
     {
-        PlayerDAO PDAO = new PlayerDAO();
-        GameDAO GDAO = new GameDAO();
+        Player P = new Player();
+        Game G = new Game();
         using (SqlConnection connection = new SqlConnection(this.connectionString))
         {
             try
@@ -86,7 +86,7 @@ public class CopyDAO : DAO<Copy>
                 {
                     while (reader.Read())
                     {
-                        Copy cop = new Copy(reader.GetInt32(0), GDAO.Find(reader.GetInt32(1)), PDAO.Find(reader.GetInt32(2)));
+                        Copy cop = new Copy(reader.GetInt32(0), G.Find(reader.GetInt32(1)), P.Find(reader.GetInt32(2)));
                         Copies.Add(cop);
                     }
                 }
@@ -102,8 +102,8 @@ public class CopyDAO : DAO<Copy>
 
     public List<Copy> FindAllCopyByGameID(List<Copy> Copies, int id_game)
     {
-        PlayerDAO PDAO = new PlayerDAO();
-        GameDAO GDAO = new GameDAO();
+        Player P = new Player();
+        Game G = new Game();
         using (SqlConnection connection = new SqlConnection(this.connectionString))
         {
             try
@@ -115,7 +115,7 @@ public class CopyDAO : DAO<Copy>
                 {
                     while (reader.Read())
                     {
-                        Copy cop = new Copy(reader.GetInt32(0), GDAO.Find(reader.GetInt32(1)), PDAO.Find(reader.GetInt32(2)));
+                        Copy cop = new Copy(reader.GetInt32(0), G.Find(reader.GetInt32(1)), P.Find(reader.GetInt32(2)));
                         Copies.Add(cop);
                     }
                 }
@@ -133,7 +133,7 @@ public class CopyDAO : DAO<Copy>
     {
         using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["GamesDB"].ConnectionString))
         {
-            CopyDAO CDAO = new CopyDAO();
+            Copy C = new Copy();
             int id_copy = 0;
             try
             {
@@ -145,7 +145,7 @@ public class CopyDAO : DAO<Copy>
                 sqlinsert.Parameters.AddWithValue("@id_game", id_game);
                 sqlinsert.Parameters.AddWithValue("@id_player", id_player);
                 sqlinsert.ExecuteNonQuery();
-                id_copy = CDAO.FindLastId(id_copy);
+                id_copy = C.FindLastId(id_copy);
             }
             catch (Exception ex)
             {

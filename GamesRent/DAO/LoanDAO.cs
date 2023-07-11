@@ -29,8 +29,8 @@ public class LoanDAO : DAO<Loan>
         Loan loan = new Loan();
         using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["GamesDB"].ConnectionString))
         {
-            PlayerDAO PDAO = new PlayerDAO();
-            CopyDAO CDAO = new CopyDAO();
+            Player P = new Player();
+            Copy C = new Copy();
             try
             {
                 if (connection.State == ConnectionState.Closed)
@@ -47,7 +47,7 @@ public class LoanDAO : DAO<Loan>
                         while (readclientinfo.Read())
                         {
                             //Id loan, startdate, endate, ongoing, playerid, copyid
-                            Loan lloan2 = new Loan(readclientinfo.GetInt32(0), readclientinfo.GetDateTime(1), readclientinfo.GetDateTime(2), readclientinfo.GetInt32(3), PDAO.Find(readclientinfo.GetInt32(4)), CDAO.Find(readclientinfo.GetInt32(5)));
+                            Loan lloan2 = new Loan(readclientinfo.GetInt32(0), readclientinfo.GetDateTime(1), readclientinfo.GetDateTime(2), readclientinfo.GetInt32(3), P.Find(readclientinfo.GetInt32(4)), C.Find(readclientinfo.GetInt32(5)));
                             loan = lloan2;
                         }
                     }
@@ -72,8 +72,8 @@ public class LoanDAO : DAO<Loan>
 
     public List<Loan> FindAllLoan(List<Loan> Loans)
     {
-        PlayerDAO PDAO = new PlayerDAO();
-        CopyDAO CDAO = new CopyDAO();
+        Player P = new Player();
+        Copy C = new Copy();
         using (SqlConnection connection = new SqlConnection(this.connectionString))
         {
             try
@@ -84,7 +84,7 @@ public class LoanDAO : DAO<Loan>
                 {
                     while (reader.Read())
                     {
-                        Loan lo = new Loan(reader.GetInt32(0), reader.GetDateTime(1), reader.GetDateTime(2), reader.GetInt32(3), PDAO.Find(reader.GetInt32(4)), CDAO.Find(reader.GetInt32(5)));
+                        Loan lo = new Loan(reader.GetInt32(0), reader.GetDateTime(1), reader.GetDateTime(2), reader.GetInt32(3), P.Find(reader.GetInt32(4)), C.Find(reader.GetInt32(5)));
                         Loans.Add(lo);
                     }
                 }
@@ -100,8 +100,8 @@ public class LoanDAO : DAO<Loan>
 
     public List<Loan> FindAllLoanByIdPlayerOngoing(int idplayer, List<Loan> Loans)
     {
-        PlayerDAO PDAO = new PlayerDAO();
-        CopyDAO CDAO = new CopyDAO();
+        Player P = new Player();
+        Copy C = new Copy();
         using (SqlConnection connection = new SqlConnection(this.connectionString))
         {
             try
@@ -113,7 +113,7 @@ public class LoanDAO : DAO<Loan>
                 {
                     while (reader.Read())
                     {
-                        Loan lo = new Loan(reader.GetInt32(0), reader.GetDateTime(1), reader.GetDateTime(2), reader.GetInt32(3), PDAO.Find(reader.GetInt32(4)), CDAO.Find(reader.GetInt32(5)));
+                        Loan lo = new Loan(reader.GetInt32(0), reader.GetDateTime(1), reader.GetDateTime(2), reader.GetInt32(3), P.Find(reader.GetInt32(4)), C.Find(reader.GetInt32(5)));
                         Loans.Add(lo);
                     }
                 }
@@ -129,8 +129,8 @@ public class LoanDAO : DAO<Loan>
 
     public List<Loan> FindAllLoanByIdPlayerNotOngoing(int idplayer, List<Loan> Loans)
     {
-        PlayerDAO PDAO = new PlayerDAO();
-        CopyDAO CDAO = new CopyDAO();
+        Player P = new Player();
+        Copy C = new Copy();
         using (SqlConnection connection = new SqlConnection(this.connectionString))
         {
             try
@@ -142,7 +142,7 @@ public class LoanDAO : DAO<Loan>
                 {
                     while (reader.Read())
                     {
-                        Loan lo = new Loan(reader.GetInt32(0), reader.GetDateTime(1), reader.GetDateTime(2), reader.GetInt32(3), PDAO.Find(reader.GetInt32(4)), CDAO.Find(reader.GetInt32(5)));
+                        Loan lo = new Loan(reader.GetInt32(0), reader.GetDateTime(1), reader.GetDateTime(2), reader.GetInt32(3), P.Find(reader.GetInt32(4)), C.Find(reader.GetInt32(5)));
                         Loans.Add(lo);
                     }
                 }
@@ -158,8 +158,8 @@ public class LoanDAO : DAO<Loan>
 
     public List<Loan> FindAllLoanByIdCopy(List<Loan> Loans, int id_copy)
     {
-        PlayerDAO PDAO = new PlayerDAO();
-        CopyDAO CDAO = new CopyDAO();
+        Player P = new Player();
+        Copy C = new Copy();
         using (SqlConnection connection = new SqlConnection(this.connectionString))
         {
             try
@@ -171,7 +171,7 @@ public class LoanDAO : DAO<Loan>
                 {
                     while (readclientinfo.Read())
                     {
-                        Loan loa = new Loan(readclientinfo.GetInt32(0), readclientinfo.GetDateTime(1), readclientinfo.GetDateTime(2), readclientinfo.GetInt32(3), PDAO.Find(readclientinfo.GetInt32(4)), CDAO.Find(readclientinfo.GetInt32(5)));
+                        Loan loa = new Loan(readclientinfo.GetInt32(0), readclientinfo.GetDateTime(1), readclientinfo.GetDateTime(2), readclientinfo.GetInt32(3), P.Find(readclientinfo.GetInt32(4)), C.Find(readclientinfo.GetInt32(5)));
                         Loans.Add(loa);
                     }
                 }
@@ -221,29 +221,29 @@ public class LoanDAO : DAO<Loan>
     public void CalculateBalance(int id_loan)//calculer le prix d'une amende si retard
     {
         Loan loan = Find(id_loan);
-        CopyDAO CDAO = new CopyDAO();
-        PlayerDAO PDAO = new PlayerDAO();
+        Player P = new Player();
+        Copy C = new Copy();
         int note = 10;
-        Copy copy =CDAO.Find(loan.Copy.Id_copy);
+        Copy copy =C.Find(loan.Copy.Id_copy);
         //MessageBox.Show("Copy : "+copy.ToString());
         if (loan.EndDate<DateTime.Now)// il est en retard
         {
             TimeSpan Ts = DateTime.Now - loan.EndDate;
             int nbrjour = (Int32)Ts.TotalDays;
             int amende = nbrjour * 5;
-            PDAO.UpdateWalletByID(loan.Player.Id_player, amende,copy.Player_owner.Id_player);
+            P.UpdateWalletByID(loan.Player.Id_player, amende,copy.Player_owner.Id_player);
             MessageBox.Show("You have paid the fine of "+amende);
             note = note-nbrjour;
             if(note<0)
             {
                 note = 0;
             }
-            PDAO.RatingPlayer(loan.Player.Id_player, note);
+            P.RatingPlayer(loan.Player.Id_player, note);
         }
         else
         {
             MessageBox.Show("Game returned on time, thank you");
-            PDAO.RatingPlayer(loan.Player.Id_player, note);
+            P.RatingPlayer(loan.Player.Id_player, note);
         }
     }
     public void EndLoan(int id_loan)//mettre fin à réservation càd joueur qui rend son jeu => remettre le ongoing à 0

@@ -96,10 +96,10 @@ public class PlayerDAO : DAO<Player>
     }
     public int LoanAllowed(int idplayer, int id_game, int week)//Permet d'accorder la location d'un jeu selon son wallet et si booking pas déjà fait sur le même jeu
     {
-        PlayerDAO PDAO = new PlayerDAO();
-        Player player = PDAO.Find(idplayer);
-        GameDAO GDAO = new GameDAO();
-        Game game = GDAO.Find(id_game);
+        Player P = new Player();
+        Player player = P.Find(idplayer);
+        Game G = new Game();
+        Game game = G.Find(id_game);
         BookingDAO BDAO = new BookingDAO();
         Booking booking = BDAO.FindABookByIdGameAndIDPlayer(id_game,idplayer);
         if (player.Credit > game.CreditCost*week & booking==null)
