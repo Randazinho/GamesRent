@@ -36,7 +36,6 @@ namespace GamesRent.WPF
 
             lstRate.ItemsSource = items;
             lstRate.SelectedIndex = 4;
-
         }
 
         private void btnSubRate_Click(object sender, RoutedEventArgs e)

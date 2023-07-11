@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static GamesRent.WPF.Rating;
 
 namespace GamesRent.WPF
 {
@@ -22,6 +23,21 @@ namespace GamesRent.WPF
         public AdminModifyGame()
         {
             InitializeComponent();
+            List<Game> glist = new List<Game>();
+            Game G = new Game();
+            glist = G.FindAllGame(glist);
+            int games = glist.Count;
+            if (games > 0)
+            {
+                List<IdValue> items = new List<IdValue>();
+                for (int i = 0; i < games; i++)
+                {
+                    items.Add(new IdValue() { Value = glist[i].Id_game.ToString() });
+                }
+
+                lstID.ItemsSource = items;
+                lstID.SelectedIndex = 0;
+            }
         }
         private void AdminGameMainMenu_Click(object sender, RoutedEventArgs e)
         {
@@ -46,13 +62,14 @@ namespace GamesRent.WPF
             int id_game,NewCrCost;
             try
             {
-                id_game = Convert.ToInt32(TxtBoxIdGame.Text);
+                id_game = Convert.ToInt32((lstID.SelectedItem as IdValue).Value);
                 NewCrCost = Convert.ToInt32(TxtBoxCreditCost.Text);
                 if (id_game > 0 & NewCrCost > 0)
                 {
                     //MessageBox.Show(id_game + " " + NewCrCost);
                     Game G = new Game();
                     G.UpdateCostByID(id_game, NewCrCost);
+                    MessageBox.Show("The Credit Cost has been updated");
                     //recharge la page pour afficher le nouveau creditcost
                     AdminModifyGame dashboard = new AdminModifyGame();
                     dashboard.Show();
@@ -64,8 +81,11 @@ namespace GamesRent.WPF
             {
                 MessageBox.Show("Error with the Id selected or with the new CreditCost");
                 TxtBoxCreditCost.Text = "";
-                TxtBoxIdGame.Text = "";
             }
+        }
+        public class IdValue
+        {
+            public string Value { get; set; }
         }
     }
 }

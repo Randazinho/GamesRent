@@ -13,8 +13,8 @@
                 <Label Name="WelcomeLabel" Content="Manage Games" Background="Black" Foreground="White" FontSize="25"/>
                 <Label Name="Games" Content="placeholder" Initialized="Games_Initialized"  Background="Black"  Foreground="White" FontSize="25" HorizontalAlignment="Center"/>
                 <Button Name="AddGame" Click="AddGame_Click" FontSize="25" Margin="0,20,0,20" Content="Add a Game" Background="Black" Foreground="Green"/>
-                <Button Name="ModifyGame" Click="ModifyGame_Click" FontSize="25" Margin="0,20,0,20" Content="Edit Credits Cost" Background="Black" Foreground="Orange"/>
                 <Button Name="DeleteGame" Click="DeleteGame_Click" FontSize="25" Margin="0,20,0,20" Content="Delete a Game" Background="Black" Foreground="OrangeRed"/>
+                <Button Name="ModifyGame" Click="ModifyGame_Click" FontSize="25" Margin="0,20,0,20" Content="Edit Credits Cost" Background="Black" Foreground="Orange"/>
                 <Button Name="AdminMainMenu" Click="AdminMainMenu_Click" FontSize="25" Margin="0,20,0,20" Content="Return" Background="Black" Foreground="White"/>
             </StackPanel>
         </Border>
