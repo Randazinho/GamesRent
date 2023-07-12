@@ -23,7 +23,7 @@ public class Game
 
     public override string ToString()
     {
-        return "ID :" + id_game + " Title : " + name + " Console : " + console + " CreditCost : " + creditCost;
+        return " "+ name + " Console : " + console + " CreditCost : " + creditCost;
     }
 
     public Game() {}

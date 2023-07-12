@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,21 +24,23 @@ namespace GamesRent.WPF
         public AdminModifyGame()
         {
             InitializeComponent();
+            List<NameValue> Items = new List<NameValue>();
             List<Game> glist = new List<Game>();
             Game G = new Game();
             glist = G.FindAllGame(glist);
             int games = glist.Count;
             if (games > 0)
             {
-                List<IdValue> items = new List<IdValue>();
+                List<NameValue> items = new List<NameValue>();
                 for (int i = 0; i < games; i++)
                 {
-                    items.Add(new IdValue() { Value = glist[i].Id_game.ToString() });
+                    items.Add(new NameValue() { Name = glist[i].ToString(),
+                    Id =glist[i].Id_game});
                 }
-
-                lstID.ItemsSource = items;
-                lstID.SelectedIndex = 0;
+                lstGame.ItemsSource = items;
+                lstGame.SelectedIndex = 0;
             }
+            DataContext = this;
         }
         private void AdminGameMainMenu_Click(object sender, RoutedEventArgs e)
         {
@@ -45,24 +48,12 @@ namespace GamesRent.WPF
             dashboard.Show();
             this.Close();
         }
-        private void Games_Initialized(object sender, EventArgs e)
-        {
-            List<Game> glist = new List<Game>();
-            Game G = new Game();
-            glist = G.FindAllGame(glist);
-            string concats = "";
-            foreach (Game g in glist)
-            {
-                concats += g.ToString() + "\n";
-            }
-            Games.Content = concats.Substring(0, concats.Length - 1);
-        }
         private void ModifyGame_Click(object sender, RoutedEventArgs e)
         {
             int id_game,NewCrCost;
             try
             {
-                id_game = Convert.ToInt32((lstID.SelectedItem as IdValue).Value);
+                id_game = Convert.ToInt32((lstGame.SelectedItem as NameValue).Id);
                 NewCrCost = Convert.ToInt32(TxtBoxCreditCost.Text);
                 if (id_game > 0 & NewCrCost > 0)
                 {
@@ -79,13 +70,19 @@ namespace GamesRent.WPF
             }
             catch
             {
-                MessageBox.Show("Error with the Id selected or with the new CreditCost");
+                MessageBox.Show("Error with the new CreditCost");
                 TxtBoxCreditCost.Text = "";
             }
         }
-        public class IdValue
+        public class NameValue
         {
-            public string Value { get; set; }
+            public int Id { get; set; }
+            public string Name { get; set; }
+        }
+
+        private void lstGame_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
