@@ -12,7 +12,7 @@
                 <Image Height="120" Width="200" Source="../Images/settings.png"/>
                 <Label HorizontalAlignment="Center" FontSize="35" Foreground="Orange">List of the games</Label>
                 <Label Name="Games" Content="placeholder" Initialized="Games_Initialized"  Background="Black"  Foreground="White" FontSize="25" HorizontalAlignment="Center"/>
-                <Label FontSize="25" Foreground="White" HorizontalAlignment="Center">Id of the game to edit</Label>
+                <Label FontSize="25" Foreground="White" HorizontalAlignment="Center">Select the Id of the game to edit</Label>
                 <ComboBox Name="lstID">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>

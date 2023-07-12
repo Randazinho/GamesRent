@@ -22,6 +22,21 @@ namespace GamesRent.WPF
         public AdminDeleteGame()
         {
             InitializeComponent();
+            List<Game> glist = new List<Game>();
+            Game G = new Game();
+            glist = G.FindAllGame(glist);
+            int games = glist.Count;
+            if (games > 0)
+            {
+                List<IdValue> items = new List<IdValue>();
+                for (int i = 0; i < games; i++)
+                {
+                    items.Add(new IdValue() { Value = glist[i].Id_game.ToString() });
+                }
+
+                lstID.ItemsSource = items;
+                lstID.SelectedIndex = 0;
+            }
         }
 
         private void AdminGameMainMenu_Click(object sender, RoutedEventArgs e)
@@ -48,8 +63,9 @@ namespace GamesRent.WPF
             int idgame = 0;
             try
             {
-                idgame = Convert.ToInt32(TxtBoxId.Text);
-                MessageBox.Show(" "+idgame);
+
+                idgame = Convert.ToInt32((lstID.SelectedItem as IdValue).Value);
+                //MessageBox.Show(" "+idgame);
                 if (idgame > 0)
                 {
                     Game G = new Game();
@@ -64,8 +80,11 @@ namespace GamesRent.WPF
             catch
             {
                 MessageBox.Show("Error with the Id selected");
-                TxtBoxId.Text = "";
             }
+        }
+        public class IdValue
+        {
+            public string Value { get; set; }
         }
     }
 }
