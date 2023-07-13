@@ -10,8 +10,8 @@
         <Border Background="Black" CornerRadius="10" Margin="5">
             <StackPanel Margin="20">
                 <Image Height="120" Width="200" Source="../Images/logo.png" Stretch="Uniform" />
-                <Label Name="WelcomeLabel" Content="Manage Games" Background="Black" Foreground="White" FontSize="25"/>
-                <Label Name="Games" Content="placeholder" Initialized="Games_Initialized"  Background="Black"  Foreground="White" FontSize="25" HorizontalAlignment="Center"/>
+                <Label Name="WelcomeLabel" Content="Managed Games" Background="Black" Foreground="White" FontSize="25" HorizontalAlignment="Center" />
+                <Label Name="Games" Content="placeholder" Initialized="Games_Initialized"  Background="Black"  Foreground="White" FontSize="15" HorizontalAlignment="Center"/>
                 <Button Name="AddGame" Click="AddGame_Click" FontSize="25" Margin="0,20,0,20" Content="Add a Game" Background="Black" Foreground="Green"/>
                 <Button Name="DeleteGame" Click="DeleteGame_Click" FontSize="25" Margin="0,20,0,20" Content="Delete a Game" Background="Black" Foreground="OrangeRed"/>
                 <Button Name="ModifyGame" Click="ModifyGame_Click" FontSize="25" Margin="0,20,0,20" Content="Edit Credits Cost" Background="Black" Foreground="Orange"/>

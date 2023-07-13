@@ -34,8 +34,6 @@ namespace GamesRent.WPF
                     items.Add(new IdValue() { Value = glist[i].Id_game.ToString() });
                 }
 
-                lstID.ItemsSource = items;
-                lstID.SelectedIndex = 0;
             }
         }
 
@@ -55,7 +53,7 @@ namespace GamesRent.WPF
             {
                 concats += g.ToString() + "\n";
             }
-            Games.Content = concats.Substring(0, concats.Length - 1);
+   
         }
 
         private void DeleteGame_Click(object sender, RoutedEventArgs e)

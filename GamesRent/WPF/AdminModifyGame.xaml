@@ -13,16 +13,18 @@
                 <Label HorizontalAlignment="Center" FontSize="35" Foreground="Orange">List of the games</Label>
                 <Grid>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <ListBox ItemsSource="{Binding Items}" Name="lstGame" SelectionChanged="lstGame_SelectionChanged">
-                            <ListBox.ItemTemplate>
+                        <ItemsControl ItemsSource="{Binding ItemsList}" Name="lstGame">
+                            <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <RadioButton Content="{Binding Name}" IsChecked="{Binding IsSelected}" />
+                                    <RadioButton Content="{Binding Name}" Foreground="White" FontSize="14"
+                         IsChecked="{Binding IsSelected, Mode=TwoWay}"
+                         GroupName="Items"
+                         Click="RadioButton_Click"/>
                                 </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
                     </StackPanel>
                 </Grid>
-                <Label FontSize="25" Foreground="White" HorizontalAlignment="Center">Select the game to edit</Label>
                 <Label FontSize="25" Foreground="White" HorizontalAlignment="Center">New Credit Cost</Label>
                 <TextBox FontSize="15" Name="TxtBoxCreditCost" Background="white" Foreground="Black"/>
                 <Button Name="ModifyGame" Click="ModifyGame_Click" FontSize="25" Margin="0,20,0,20" Content="Edit this game" Background="Black" Foreground="Orange"/>

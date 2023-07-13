@@ -24,21 +24,20 @@ namespace GamesRent.WPF
         public AdminModifyGame()
         {
             InitializeComponent();
-            List<NameValue> Items = new List<NameValue>();
+            List<Item> Items = new List<Item>();
             List<Game> glist = new List<Game>();
             Game G = new Game();
             glist = G.FindAllGame(glist);
             int games = glist.Count;
             if (games > 0)
             {
-                List<NameValue> items = new List<NameValue>();
+                List<Item> items = new List<Item>();
                 for (int i = 0; i < games; i++)
                 {
-                    items.Add(new NameValue() { Name = glist[i].ToString(),
+                    items.Add(new Item() { Name = glist[i].ToString(),
                     Id =glist[i].Id_game});
                 }
                 lstGame.ItemsSource = items;
-                lstGame.SelectedIndex = 0;
             }
             DataContext = this;
         }
@@ -53,7 +52,7 @@ namespace GamesRent.WPF
             int id_game,NewCrCost;
             try
             {
-                id_game = Convert.ToInt32((lstGame.SelectedItem as NameValue).Id);
+                id_game = Convert.ToInt32(SelectedItem.Id);
                 NewCrCost = Convert.ToInt32(TxtBoxCreditCost.Text);
                 if (id_game > 0 & NewCrCost > 0)
                 {
@@ -70,19 +69,19 @@ namespace GamesRent.WPF
             }
             catch
             {
-                MessageBox.Show("Error with the new CreditCost");
+                MessageBox.Show("Select a game");
                 TxtBoxCreditCost.Text = "";
             }
         }
-        public class NameValue
+        public class Item
         {
             public int Id { get; set; }
             public string Name { get; set; }
         }
-
-        private void lstGame_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        public Item SelectedItem { get; set; }
+        private void RadioButton_Click(object sender, RoutedEventArgs e)
         {
-
+            SelectedItem = ((RadioButton)sender).DataContext as Item;
         }
     }
 }
