@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static GamesRent.WPF.AdminModifyGame;
 
 namespace GamesRent.WPF
 {
@@ -26,10 +27,9 @@ namespace GamesRent.WPF
             Player P = new Player();
             p = P.Find(idplayer);
             InitializeComponent();
+            CreateNumberList();
             BookGame.Visibility = Visibility.Collapsed;
-            TxtBoxId.Visibility = Visibility.Collapsed;
-            LabelID.Visibility = Visibility.Collapsed;
-            TxtWeeks.Visibility = Visibility.Collapsed;
+            numberListBox.Visibility = Visibility.Collapsed;
             LabelWeeks.Visibility = Visibility.Collapsed;
         }
 
@@ -39,18 +39,12 @@ namespace GamesRent.WPF
             dashboard.Show();
             this.Close();
         }
-
-        private void Games_Initialized(object sender, EventArgs e)
-        {
-            Games.Content = "A game for which platform?";
-        }
-
         private void BookGame_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                int idgame = Convert.ToInt32(TxtBoxId.Text);
-                int week = Convert.ToInt32(TxtWeeks.Text);
+                int idgame = Convert.ToInt32(SelectedItem.Id);
+                int week = (int)numberListBox.SelectedItem;
                 if (idgame>0 & (week>0 & week<53))
                 {
                     Booking B = new Booking();
@@ -96,42 +90,42 @@ namespace GamesRent.WPF
             }
             catch
             {
-                MessageBox.Show("Error in the information filled in");
+                MessageBox.Show("Select a game and the number of weeks");
                 TxtBoxConsole.Text = "";
-                TxtBoxId.Text = "";
                 BookGame.Visibility = Visibility.Collapsed;
-                TxtBoxId.Visibility = Visibility.Collapsed;
-                LabelID.Visibility = Visibility.Collapsed;
-                TxtWeeks.Visibility = Visibility.Collapsed;
+                numberListBox.Visibility = Visibility.Collapsed;
                 LabelWeeks.Visibility = Visibility.Collapsed;
-                Games.Content = "";
                 LabelConsole.Visibility = Visibility.Visible;
                 TxtBoxConsole.Visibility = Visibility.Visible;
                 Search.Visibility = Visibility.Visible;
-                TxtWeeks.Text = "";
+                lstGame.ItemsSource = null;
             }
         }
 
         private void Search_Click(object sender, RoutedEventArgs e)
         {
-            if(TxtBoxConsole.Text.Count()>0)
+            if (TxtBoxConsole.Text.Count() > 0)
             {
                 string console = TxtBoxConsole.Text;
                 List<Game> glist = new List<Game>();
                 Game G = new Game();
                 glist = G.FindGameByConsole(console, glist);
-                string concats = "";
-                if (glist.Count > 0)
+                int games = glist.Count;
+                if (games > 0)
                 {
-                    foreach (Game g in glist)
+                    List<Item> items = new List<Item>();
+                    for (int i = 0; i < games; i++)
                     {
-                        concats += g.ToString() + "\n";
+                        items.Add(new Item()
+                        {
+                            Name = glist[i].ToString(),
+                            Id = glist[i].Id_game
+                        });
                     }
-                    Games.Content = concats.Substring(0, concats.Length);
+                    lstGame.ItemsSource = items;
+                    DataContext = this;
                     BookGame.Visibility = Visibility.Visible;
-                    TxtBoxId.Visibility = Visibility.Visible;
-                    LabelID.Visibility = Visibility.Visible;
-                    TxtWeeks.Visibility = Visibility.Visible;
+                    numberListBox.Visibility = Visibility.Visible;
                     LabelWeeks.Visibility = Visibility.Visible;
                     LabelConsole.Visibility = Visibility.Collapsed;
                     TxtBoxConsole.Visibility = Visibility.Collapsed;
@@ -139,22 +133,36 @@ namespace GamesRent.WPF
                 }
                 else
                 {
-                    Games.Content = "No Console found";
+                    MessageBox.Show("No Console found");
+                    lstGame.ItemsSource = null;
                     BookGame.Visibility = Visibility.Collapsed;
-                    TxtBoxId.Visibility = Visibility.Collapsed;
-                    LabelID.Visibility = Visibility.Collapsed;
+                    numberListBox.Visibility = Visibility.Collapsed;
+                    LabelWeeks.Visibility = Visibility.Collapsed;
                     LabelConsole.Visibility = Visibility.Visible;
                     TxtBoxConsole.Visibility = Visibility.Visible;
-                    TxtWeeks.Visibility = Visibility.Collapsed;
-                    LabelWeeks.Visibility = Visibility.Collapsed;
                     TxtBoxConsole.Text = "";
-                    TxtWeeks.Text = "";
                 }
             }
             else
             {
                 MessageBox.Show("Fill in at least one character");
             }
+        }
+        public Item SelectedItem { get; set; }
+        private void RadioButton_Click(object sender, RoutedEventArgs e)
+        {
+            SelectedItem = ((RadioButton)sender).DataContext as Item;
+        }
+        private void CreateNumberList()
+        {
+            List<int> numbers = new List<int>();
+
+            for (int i = 1; i <= 52; i++)
+            {
+                numbers.Add(i);
+            }
+
+            numberListBox.ItemsSource = numbers;
         }
     }
 }

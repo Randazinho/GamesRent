@@ -16,7 +16,7 @@
                         <ItemsControl ItemsSource="{Binding ItemsList}" Name="lstGame">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <RadioButton Content="{Binding Name}" Foreground="White" FontSize="14"
+                                    <RadioButton Content="{Binding Name}" Foreground="Orange" FontSize="14"
                          IsChecked="{Binding IsSelected, Mode=TwoWay}"
                          GroupName="Items"
                          Click="RadioButton_Click"/>
