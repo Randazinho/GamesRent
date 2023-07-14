@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static GamesRent.WPF.AdminModifyGame;
 
 namespace GamesRent.WPF
 {
@@ -22,19 +23,25 @@ namespace GamesRent.WPF
         public AdminDeleteGame()
         {
             InitializeComponent();
+            List<Item> Items = new List<Item>();
             List<Game> glist = new List<Game>();
             Game G = new Game();
             glist = G.FindAllGame(glist);
             int games = glist.Count;
             if (games > 0)
             {
-                List<IdValue> items = new List<IdValue>();
+                List<Item> items = new List<Item>();
                 for (int i = 0; i < games; i++)
                 {
-                    items.Add(new IdValue() { Value = glist[i].Id_game.ToString() });
+                    items.Add(new Item()
+                    {
+                        Name = glist[i].ToString(),
+                        Id = glist[i].Id_game
+                    });
                 }
-
+                lstGame.ItemsSource = items;
             }
+            DataContext = this;
         }
 
         private void AdminGameMainMenu_Click(object sender, RoutedEventArgs e)
@@ -62,7 +69,7 @@ namespace GamesRent.WPF
             try
             {
 
-                idgame = Convert.ToInt32((lstID.SelectedItem as IdValue).Value);
+                idgame = Convert.ToInt32(SelectedItem.Id);
                 //MessageBox.Show(" "+idgame);
                 if (idgame > 0)
                 {
@@ -77,12 +84,13 @@ namespace GamesRent.WPF
             }
             catch
             {
-                MessageBox.Show("Error with the Id selected");
+                MessageBox.Show("Pick a game to delete");
             }
         }
-        public class IdValue
+        public Item SelectedItem { get; set; }
+        private void RadioButton_Click(object sender, RoutedEventArgs e)
         {
-            public string Value { get; set; }
+            SelectedItem = ((RadioButton)sender).DataContext as Item;
         }
     }
 }
