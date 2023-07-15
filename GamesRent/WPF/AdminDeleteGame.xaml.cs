@@ -50,18 +50,6 @@ namespace GamesRent.WPF
             dashboard.Show();
             this.Close();
         }
-        private void Games_Initialized(object sender, EventArgs e)
-        {
-            List<Game> glist = new List<Game>();
-            Game G = new Game();
-            G.FindAllGame(glist);
-            string concats = "";
-            foreach (Game g in glist)
-            {
-                concats += g.ToString() + "\n";
-            }
-   
-        }
 
         private void DeleteGame_Click(object sender, RoutedEventArgs e)
         {

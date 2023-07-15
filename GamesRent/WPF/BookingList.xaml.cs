@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static GamesRent.WPF.AdminModifyGame;
 
 namespace GamesRent.WPF
 {
@@ -26,38 +28,32 @@ namespace GamesRent.WPF
             Player P = new Player();
             p = P.Find(idplayer);
             InitializeComponent();
+            List<Item> Items = new List<Item>();
             List<Booking> blist = new List<Booking>();
             Booking B = new Booking();
             blist = B.FindAllBookingByPlayerID(blist, p.Id_player);
-            string concats = "";
-            if (blist.Count > 0)
+            int booking = blist.Count;
+            if (booking > 0)
             {
-                DeleteBooking.Visibility = Visibility.Visible;
-                LabelID.Visibility = Visibility.Visible;
-                TxtBoxId.Visibility = Visibility.Visible;
-            }
-        }
-        private void Booking_Initialized(object sender, EventArgs e)
-        {
-            try
-            {
-                List<Booking> blist = new List<Booking>();
-                Booking B = new Booking();
-                blist = B.FindAllBookingByPlayerID(blist, p.Id_player);
-                string concats = "";
-                foreach (Booking b in blist)
+                List<Item> items = new List<Item>();
+                for (int i = 0; i < booking; i++)
                 {
-                    concats += b.ToString() + "\n";
+                    items.Add(new Item()
+                    {
+                        Name = blist[i].ToString(),
+                        Id = blist[i].Id_booking
+                    });
                 }
-                Bookings.Content = concats.Substring(0, concats.Length -1);
+                lstBooking.ItemsSource = items;
             }
-            catch
+            else
             {
-                Bookings.Content = "No booking for the moment";
                 MessageBox.Show("No booking for the moment");
+                DeleteBooking.Visibility = Visibility.Collapsed;
             }
+            DataContext = this;
         }
-
+        
         private void BookingMainMenu_Click(object sender, RoutedEventArgs e)
         {
             BookingWPF dashboard = new BookingWPF(p.Id_player);
@@ -70,7 +66,7 @@ namespace GamesRent.WPF
             int idbook = 0;
             try
             {
-                idbook = Convert.ToInt32(TxtBoxId.Text);
+                idbook = Convert.ToInt32(SelectedItem.Id);
                 MessageBox.Show(" " + idbook);
                 if (idbook > 0)
                 {
@@ -87,8 +83,12 @@ namespace GamesRent.WPF
             catch
             {
                 MessageBox.Show("Error with the Id selected");
-                TxtBoxId.Text = "";
             }
+        }
+        public Item SelectedItem { get; set; }
+        private void RadioButton_Click(object sender, RoutedEventArgs e)
+        {
+            SelectedItem = ((RadioButton)sender).DataContext as Item;
         }
     }
 }
