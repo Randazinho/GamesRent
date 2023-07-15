@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -11,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static GamesRent.WPF.AdminModifyGame;
 
 namespace GamesRent.WPF
 {
@@ -25,10 +27,9 @@ namespace GamesRent.WPF
             Player P = new Player();
             p = P.Find(idplayer);
             InitializeComponent();
+            CreateNumberList();
             BookGame.Visibility = Visibility.Collapsed;
-            TxtBoxId.Visibility = Visibility.Collapsed;
-            LabelID.Visibility = Visibility.Collapsed;
-            TxtWeeks.Visibility = Visibility.Collapsed;
+            numberListBox.Visibility = Visibility.Collapsed;
             LabelWeeks.Visibility = Visibility.Collapsed;
         }
 
@@ -38,17 +39,13 @@ namespace GamesRent.WPF
             dashboard.Show();
             this.Close();
         }
-        private void Games_Initialized(object sender, EventArgs e)
-        {
-            Games.Content = "Maximum credit cost per game ?";
-        }
-
+    
         private void BookGame_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                int idgame = Convert.ToInt32(TxtBoxId.Text);
-                int week = Convert.ToInt32(TxtWeeks.Text);
+                int idgame = Convert.ToInt32(SelectedItem.Id);
+                int week = (int)numberListBox.SelectedItem;
                 if (idgame > 0 & (week > 0 & week < 53))
                 {
                     Booking B = new Booking();
@@ -94,19 +91,15 @@ namespace GamesRent.WPF
             }
             catch
             {
-                MessageBox.Show("Error in the information filled in");
+                MessageBox.Show("Select a game and the number of weeks");
                 TxtBoxCreditCost.Text = "";
-                TxtBoxId.Text = "";
                 BookGame.Visibility = Visibility.Collapsed;
-                TxtBoxId.Visibility = Visibility.Collapsed;
-                LabelID.Visibility = Visibility.Collapsed;
-                TxtWeeks.Visibility = Visibility.Collapsed;
+                numberListBox.Visibility = Visibility.Collapsed;
                 LabelWeeks.Visibility = Visibility.Collapsed;
-                Games.Content = "";
                 LabelCreditCost.Visibility = Visibility.Visible;
                 TxtBoxCreditCost.Visibility = Visibility.Visible;
                 Search.Visibility = Visibility.Visible;
-                TxtWeeks.Text = "";
+                lstGame.ItemsSource = null;
             }
         }
 
@@ -121,18 +114,22 @@ namespace GamesRent.WPF
                     List<Game> glist = new List<Game>();
                     Game G = new Game();
                     glist = G.FindGameByCrCost(crCost, glist);
-                    string concats = "";
-                    if (glist.Count > 0)
+                    int games = glist.Count;
+                    if (games > 0)
                     {
-                        foreach (Game g in glist)
+                        List<Item> items = new List<Item>();
+                        for (int i = 0; i < games; i++)
                         {
-                            concats += g.ToString() + "\n";
+                            items.Add(new Item()
+                            {
+                                Name = glist[i].ToString(),
+                                Id = glist[i].Id_game
+                            });
                         }
-                        Games.Content = concats.Substring(0, concats.Length);
+                        lstGame.ItemsSource = items;
+                        DataContext = this;
                         BookGame.Visibility = Visibility.Visible;
-                        TxtBoxId.Visibility = Visibility.Visible;
-                        LabelID.Visibility = Visibility.Visible;
-                        TxtWeeks.Visibility = Visibility.Visible;
+                        numberListBox.Visibility = Visibility.Visible;
                         LabelWeeks.Visibility = Visibility.Visible;
                         LabelCreditCost.Visibility = Visibility.Collapsed;
                         TxtBoxCreditCost.Visibility = Visibility.Collapsed;
@@ -140,31 +137,48 @@ namespace GamesRent.WPF
                     }
                     else
                     {
-                        Games.Content = "No game found for this price";
+                        MessageBox.Show("No games found");
+                        lstGame.ItemsSource = null;
+                        BookGame.Visibility = Visibility.Collapsed;
+                        numberListBox.Visibility = Visibility.Collapsed;
+                        LabelWeeks.Visibility = Visibility.Collapsed;
+                        LabelCreditCost.Visibility = Visibility.Visible;
+                        TxtBoxCreditCost.Visibility = Visibility.Visible;
+                        TxtBoxCreditCost.Text = "";
                     }
                 }
                 catch
                 {
                     MessageBox.Show("Error in the information filled in");
                     TxtBoxCreditCost.Text = "";
-                    TxtBoxId.Text = "";
-                    Games.Content = "Pick a good Credit Cost";
                     BookGame.Visibility = Visibility.Collapsed;
-                    TxtBoxId.Visibility = Visibility.Collapsed;
-                    LabelID.Visibility = Visibility.Collapsed;
-                    TxtWeeks.Visibility = Visibility.Collapsed;
                     LabelWeeks.Visibility = Visibility.Collapsed;
                     LabelCreditCost.Visibility = Visibility.Visible;
                     TxtBoxCreditCost.Visibility = Visibility.Visible;
                     TxtBoxCreditCost.Text = "";
-                    TxtWeeks.Text = "";
+                    lstGame.ItemsSource = null;
                 }
             }
             else
             {
                 MessageBox.Show("Fill a maximum credit cost");
-                Games.Content = "Pick a good Credit Cost";
             }
+        }
+        public Item SelectedItem { get; set; }
+        private void RadioButton_Click(object sender, RoutedEventArgs e)
+        {
+            SelectedItem = ((RadioButton)sender).DataContext as Item;
+        }
+        private void CreateNumberList()
+        {
+            List<int> numbers = new List<int>();
+
+            for (int i = 1; i <= 52; i++)
+            {
+                numbers.Add(i);
+            }
+
+            numberListBox.ItemsSource = numbers;
         }
     }
 }

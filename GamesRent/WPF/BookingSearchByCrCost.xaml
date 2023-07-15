@@ -10,14 +10,31 @@
         <Border Background="Black" CornerRadius="10" Margin="5">
             <StackPanel Margin="20">
                 <Image Height="120" Width="200" Source="../Images/crCost.png" HorizontalAlignment="Center"/>
-                <Label x:Name="Games" Content="Games" Initialized="Games_Initialized"  Background="Black"  Foreground="White" FontSize="25" HorizontalAlignment="Center"/>
+                <Grid>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <ItemsControl ItemsSource="{Binding ItemsList}" Name="lstGame">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <RadioButton Content="{Binding Name}" Foreground="BlueViolet" FontSize="14"
+                         IsChecked="{Binding IsSelected, Mode=TwoWay}"
+                         GroupName="Items"
+                         Click="RadioButton_Click"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Grid>
                 <Label FontSize="15" Name="LabelCreditCost" Foreground="White" HorizontalAlignment="Center" Content="Credit Cost"/>
                 <TextBox FontSize="15" x:Name="TxtBoxCreditCost" Background="White" Foreground="Black"/>
                 <Button x:Name="Search" Click="Search_Click" FontSize="25" Margin="0,20,0,20" Content="Search" Background="Black" Foreground="BlueViolet"/>
-                <Label Name="LabelID" FontSize="15" Foreground="White" HorizontalAlignment="Center" Content="ID of the game you want to book"/>
-                <TextBox FontSize="15" x:Name="TxtBoxId" Background="White" Foreground="Black"/>
-                <Label Name="LabelWeeks"  FontSize="15" Foreground="White" HorizontalAlignment="Center">For how many weeks ? (Max 52)</Label>
-                <TextBox FontSize="15" Name="TxtWeeks" Background="White" Foreground="Black"/>
+                <Label Name="LabelWeeks"  FontSize="15" Foreground="White" HorizontalAlignment="Center">For how many weeks ? </Label>
+                <ListBox x:Name="numberListBox" HorizontalAlignment="Center" VerticalAlignment="Center" Width="60" Height="100" Background="Black" Foreground="BlueViolet" SelectedIndex="0">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" />
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
                 <Button x:Name="BookGame" Click="BookGame_Click" FontSize="25" Margin="0,20,0,20" Content="Book this game" Background="Black" Foreground="BlueViolet"/>
                 <Button x:Name="Booking" Click="Booking_Click" FontSize="25" Margin="0,20,0,20" Content="Return" Background="Black" Foreground="White"/>
             </StackPanel>
