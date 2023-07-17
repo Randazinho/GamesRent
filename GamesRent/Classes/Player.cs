@@ -29,7 +29,9 @@ public class Player : User
     }
     public override string ToString()
     {
-        return "-> ID: " + id_player + " |Pseudo :  " + pseudo + " |BirthDay :  " + dateOfBirth.ToShortDateString() + " |Credit(s) :  " + credit + " |Registration Date :  " + registrationDate.ToShortDateString() +"|Rating : "+(rating/nbr_rater)+"/10";
+        return "->" + " |Pseudo :  " + pseudo + " |BirthDay :  " + dateOfBirth.ToShortDateString() +
+           " |Credit(s) :  " + credit + " |Registration Date :  " + registrationDate.ToShortDateString() +
+           $" |Rating : {rating / nbr_rater:F1}/10";
     }
     public Player ()
     {

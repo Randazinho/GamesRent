@@ -19,7 +19,7 @@ public class Copy : Game //copy hérite de jeu car une copy est comme une instan
 
     public override string ToString()
     {
-        return "ID: "+id_copy+" Copy of  : " + Game.Name +" On "+Game.Console +"| Owned by : "+Player_owner.Pseudo;
+        return " Copy of  : " + Game.Name +" On "+Game.Console +"| Owned by : "+Player_owner.Pseudo;
     }
 
     public Copy()

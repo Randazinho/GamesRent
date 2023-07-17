@@ -164,5 +164,56 @@ public class UserDAO : DAO<User>
             }
         }
     }
+
+    public void UpdateToday(string today)
+    {
+        using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["GamesDB"].ConnectionString))
+        {
+            try
+            {
+                if (connection.State == ConnectionState.Closed)
+                    connection.Open();
+                String updateGame = "UPDATE dbo.Admin SET today =@today";
+                SqlCommand sqlupdate = new SqlCommand(updateGame, connection);
+                sqlupdate.CommandType = CommandType.Text;
+                sqlupdate.Parameters.AddWithValue("@today", today);
+                sqlupdate.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+    }
+    public string GetDate()// add bonus selon anniversaire
+    {
+        string ndate="";
+        try
+        {
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["GamesDB"].ConnectionString))
+            {
+                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Admin", connection);
+                connection.Open();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        {
+                            ndate = reader.GetString(2);
+                        };
+                    }
+                }
+            }
+        }
+        catch (SqlException)
+        {
+            throw new Exception("Une erreur sql s'est produite");
+        }
+        return ndate;
+    }
 }
 

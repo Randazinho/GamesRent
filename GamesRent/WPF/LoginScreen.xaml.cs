@@ -29,16 +29,15 @@ namespace GamesRent
         public LoginScreen()
         {
             //On check la var Today dans la BD si elle est égal à DateTime.Now ça veut dire qu'on l'a déjà éxécuté AddBirthdayBonus pour le jour donné
-            DateForBonus DateB = new DateForBonus();
-            DateForBonusDAO DDAO = new DateForBonusDAO();
-            DateB= DDAO.GetDate();
+            User U = new User();
+            string DateB = U.GetDate();
             //MessageBox.Show(""+DateB.Date.ToString()+" "+ DateTime.Now.ToShortDateString());
-            if (DateTime.Now.ToShortDateString() != DateB.Date)
+            if (DateTime.Now.ToShortDateString() != DateB)
             {
                 InitializeComponent();
+                U.UptadeToday(DateTime.Now.ToShortDateString());
                 Player P = new Player();
                 P.AddBirthDayBonus(DateTime.Now.ToString("d-M"));
-                DDAO.UpdateToday(DateTime.Now.ToShortDateString());
             }
             else
             {

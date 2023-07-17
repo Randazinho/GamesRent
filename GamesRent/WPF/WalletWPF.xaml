@@ -10,7 +10,6 @@
         <Border Background="Black" CornerRadius="10" Margin="5">
             <StackPanel Margin="20">
                 <Image Height="120" Width="200" Source="../Images/wallet.png" Stretch="Uniform" />
-                <Label Name="WalletLabel" Content="See how much Credit you got ! " Background="Black" Foreground="White" FontSize="40"/>
                 <Label Background="Black" HorizontalContentAlignment="Center" Foreground="White" FontSize="25">You got </Label>
                 <Label Name="Credit" Content="placeholder" Initialized="Credit_Initialized"  Background="Black" Foreground="ForestGreen" FontSize="30" HorizontalAlignment="Center"/>
                 <Label Background="Black" HorizontalContentAlignment="Center" Foreground="White" FontSize="25">Cr</Label>
