@@ -12,6 +12,9 @@
     <None Remove="Images\addgame.png" />
     <None Remove="Images\adminlogo.jpg" />
     <None Remove="Images\adminlogo.png" />
+    <None Remove="Images\background.jpg" />
+    <None Remove="Images\background2.jpg" />
+    <None Remove="Images\background3.jpg" />
     <None Remove="Images\console.png" />
     <None Remove="Images\crCost.png" />
     <None Remove="Images\deletegame.jpg" />
@@ -23,6 +26,12 @@
     <None Remove="Images\settings.png" />
     <None Remove="Images\user.png" />
     <None Remove="Images\wallet.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\background.jpg" />
+    <Resource Include="Images\background2.jpg" />
+    <Resource Include="Images\background3.jpg" />
   </ItemGroup>
 
   <ItemGroup>

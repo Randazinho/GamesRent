@@ -7,8 +7,11 @@
         mc:Ignorable="d"
         Title="Booking" WindowStartupLocation="CenterScreen" Background="White" WindowState="Maximized">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <Border Background="Black" CornerRadius="10" Margin="5">
-            <StackPanel Margin="20">
+        <Border CornerRadius="10" Margin="5">
+            <Border.Background>
+                <ImageBrush ImageSource="../Images/background2.jpg" />
+            </Border.Background>
+            <StackPanel Margin="20" HorizontalAlignment="Center">
                 <Image Height="120" Width="200" Source="../Images/logo.png" Stretch="Uniform" />
                 <Button Name="SearchByName" Click="SearchByName_Click" FontSize="25" Margin="0,20,0,20" Content="Search by Title" Background="White" Foreground="Black"/>
                 <Button Name="SearchByConsole" Click="SearchByConsole_Click" FontSize="25" Margin="0,20,0,20" Content="Search by Console" Background="White" Foreground="Black"/>

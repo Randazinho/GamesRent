@@ -7,15 +7,18 @@
         mc:Ignorable="d"
         Title="SearchByName" WindowStartupLocation="CenterScreen" Background="White" WindowState="Maximized">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <Border Background="Black" CornerRadius="10" Margin="5">
-            <StackPanel Margin="20">
+        <Border CornerRadius="10" Margin="5">
+            <Border.Background>
+                <ImageBrush ImageSource="../Images/background3.jpg" />
+            </Border.Background>
+            <StackPanel Margin="20" HorizontalAlignment="Center">
                 <Image Height="120" Width="200" Source="../Images/name.png"/>
                 <Grid>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Black">
                         <ItemsControl ItemsSource="{Binding ItemsList}" Name="lstGame">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <RadioButton Content="{Binding Name}" Foreground="BlueViolet" FontSize="14"
+                                    <RadioButton Content="{Binding Name}" Foreground="BlueViolet" FontSize="14" Background="white"
                          IsChecked="{Binding IsSelected, Mode=TwoWay}"
                          GroupName="Items"
                          Click="RadioButton_Click"/>
@@ -27,7 +30,7 @@
                 <Label FontSize="15" Name="LabelTitle" Foreground="White" HorizontalAlignment="Center">Games Title</Label>
                 <TextBox FontSize="15" Name="TxtBoxTitle" Background="White" Foreground="Black"/>
                 <Button Name="Search" Click="Search_Click" FontSize="25" Margin="0,20,0,20" Content="Search" Background="Black" Foreground="BlueViolet"/>
-                <Label Name="LabelWeeks"  FontSize="20" Foreground="White" HorizontalAlignment="Center">For how many weeks ? </Label>
+                <Label Name="LabelWeeks"  FontSize="20" Foreground="White" HorizontalAlignment="Center" Background="Black">For how many weeks ? </Label>
                 <ListBox x:Name="numberListBox" HorizontalAlignment="Center" VerticalAlignment="Center"  Width="60" Height="100" Background="Black" Foreground="BlueViolet" SelectedIndex="0" >
                     <ListBox.ItemTemplate>
                         <DataTemplate>

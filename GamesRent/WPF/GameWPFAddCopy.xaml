@@ -7,8 +7,11 @@
         mc:Ignorable="d"
         Title="Add Copy" WindowStartupLocation="CenterScreen" Background="White" WindowState="Maximized">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <Border Background="Black" CornerRadius="10" Margin="5">
-            <StackPanel Margin="20">
+        <Border CornerRadius="10" Margin="5">
+            <Border.Background>
+                <ImageBrush ImageSource="../Images/background3.jpg" />
+            </Border.Background>
+            <StackPanel Margin="20" HorizontalAlignment="Center">
                 <Image Height="120" Width="200" Source="../Images/addgame.png"/>
                 <Label FontSize="25" Foreground="White" HorizontalAlignment="Center">Pick an ID</Label>
                 <Label Name="Games" Content="placeholder" Initialized="Games_Initialized"  Background="Black"  Foreground="White" FontSize="25" HorizontalAlignment="Center"/>

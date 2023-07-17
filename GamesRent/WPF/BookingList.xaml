@@ -7,15 +7,18 @@
         mc:Ignorable="d"
         Title="Booking List" WindowStartupLocation="CenterScreen" Background="White" WindowState="Maximized">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <Border Background="Black" CornerRadius="10" Margin="5">
-            <StackPanel Margin="20">
+        <Border CornerRadius="10" Margin="5">
+            <Border.Background>
+                <ImageBrush ImageSource="../Images/background2.jpg" />
+            </Border.Background>
+            <StackPanel Margin="20" HorizontalAlignment="Center">
                 <Image Height="120" Width="200" Source="../Images/logo.png"/>
                 <Grid>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Black">
                         <ItemsControl ItemsSource="{Binding ItemsList}" Name="lstBooking">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <RadioButton Content="{Binding Name}" Foreground="RED" FontSize="14"
+                                    <RadioButton Content="{Binding Name}" Foreground="BlueViolet" FontSize="14"
                          IsChecked="{Binding IsSelected, Mode=TwoWay}"
                          GroupName="Items"
                          Click="RadioButton_Click"/>

@@ -7,8 +7,11 @@
         mc:Ignorable="d"
         Title="My Loan" WindowStartupLocation="CenterScreen" Background="White" WindowState="Maximized">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <Border Background="Black" CornerRadius="10" Margin="5">
-            <StackPanel Margin="20">
+        <Border CornerRadius="10" Margin="5">
+            <Border.Background>
+                <ImageBrush ImageSource="../Images/background2.jpg" />
+            </Border.Background>
+            <StackPanel Margin="20" HorizontalAlignment="Center">
                 <Image Height="120" Width="200" Source="../Images/loan.png" Stretch="Uniform" />
                 <Button Name="InProgress" Click="InProgress_Click" FontSize="25" Margin="0,20,0,20" Content="Loan in Progress" Background="White" Foreground="Green"/>
                 <Button Name="OldLoan" Click="OldLoan_Click" FontSize="25" Margin="0,20,0,20" Content="Old Loan" Background="White" Foreground="Gray"/>

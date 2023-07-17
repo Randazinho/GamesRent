@@ -7,8 +7,11 @@
         mc:Ignorable="d"
         Title="GamesRent" WindowStartupLocation="CenterScreen" Background="White" WindowState="Maximized">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <Border Background="Black" CornerRadius="10" Margin="5">
-            <StackPanel Margin="20">
+        <Border CornerRadius="10" Margin="5">
+            <Border.Background>
+                <ImageBrush ImageSource="../Images/background.jpg" />
+            </Border.Background>
+            <StackPanel Margin="20" HorizontalAlignment="Center">
                 <Image Height="120" Width="200" Source="../Images/logo.png"/>
                 <Label Name="WelcomeLabel" Content="Welcome PlaceHolder" Initialized="WelcomeLabel_Initialized" Background="BlueViolet" Foreground="White" FontSize="25" HorizontalAlignment="Center"/>
                 <Button Name="btnBooking" Click="btnBooking_Click" Content="Booking" Background="Azure" Foreground="Black"   FontSize="25" Margin="0,20,0,20"/>
