@@ -66,4 +66,16 @@ public class User
         UDAO.CreateNewUser(username, password, dateofbirth);
     }
 
+    public void UptadeToday(string today)
+    {
+        UserDAO UDAO = new UserDAO();
+        UDAO.UpdateToday(today);
+    }
+
+    public string GetDate()
+    {
+        UserDAO UDAO = new UserDAO();
+        return UDAO.GetDate();
+    }
+
 }

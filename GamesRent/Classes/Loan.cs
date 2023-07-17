@@ -35,11 +35,11 @@ public class Loan
 
     public override string ToString()
     {
-        return "|ID : " + id_loan + "| Game Title : " + copy.Game.Name + "| Borrower : " + Player.Pseudo + "| Start Date : " + startDate.ToShortDateString() + "| End Date : " + endDate.ToShortDateString() + "| Ongoing : " + ongoing;
+        return "| Game Title : " + copy.Game.Name + "| Borrower : " + Player.Pseudo + "| Start Date : " + startDate.ToShortDateString() + "| End Date : " + endDate.ToShortDateString() + "| Ongoing : " + ongoing;
     }
     public string ToStringPlayer()
     {
-        return "|ID : " + id_loan + "| Game Title : " + copy.Game.Name + "| Start Date : " + startDate.ToShortDateString() + "| End Date : " + endDate.ToShortDateString() + "| Ongoing : " + ongoing;
+        return "| Game Title : " + copy.Game.Name + "| Start Date : " + startDate.ToShortDateString() + "| End Date : " + endDate.ToShortDateString() + "| Ongoing : " + ongoing;
     }
 
     public Loan()

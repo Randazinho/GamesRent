@@ -8,9 +8,10 @@ using System.Windows.Documents;
 public class Admin : User
 {
     private int id_admin = 0;
-    public Admin()
+    string date = "";
+    public Admin(string date)
     {
-
+        this.date = date;
     }
 
     public int Id_admin
@@ -21,5 +22,11 @@ public class Admin : User
     public override string ToString()
     {
         return "Admin n° : " + id_admin;
+    }
+
+    public string Date
+    {
+        get { return date; }
+        set { date = value; }
     }
 }

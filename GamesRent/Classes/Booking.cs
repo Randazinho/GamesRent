@@ -23,7 +23,7 @@ public class Booking
 
     public override string ToString()
     {
-        return "ID Booking : " + id_booking + "| Date : " + bookingDate.ToShortDateString()+"| Game : "+game.Name+"| Console : "+game.Console + " for a duration of : "+week+" week(s)";
+        return "| Date : " + bookingDate.ToShortDateString()+"| Game : "+game.Name+"| Console : "+game.Console + " for a duration of : "+week+" week(s)";
     }
     
     public Booking ()
