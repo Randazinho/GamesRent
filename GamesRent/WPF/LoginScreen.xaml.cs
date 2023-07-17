@@ -31,7 +31,6 @@ namespace GamesRent
             //On check la var Today dans la BD si elle est égal à DateTime.Now ça veut dire qu'on l'a déjà éxécuté AddBirthdayBonus pour le jour donné
             User U = new User();
             string DateB = U.GetDate();
-            //MessageBox.Show(""+DateB.Date.ToString()+" "+ DateTime.Now.ToShortDateString());
             if (DateTime.Now.ToShortDateString() != DateB)
             {
                 InitializeComponent();

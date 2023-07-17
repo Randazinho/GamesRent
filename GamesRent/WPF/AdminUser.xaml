@@ -5,12 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GamesRent.WPF"
         mc:Ignorable="d"
-        Title="Admin User" WindowStartupLocation="CenterScreen" Background="White" WindowState="Maximized">
+        Title="Admin User" WindowStartupLocation="CenterScreen" WindowState="Maximized" Background="White">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <Border Background="Black" CornerRadius="10" Margin="5">
-            <StackPanel Margin="20">
+        <Border CornerRadius="10" Margin="5">
+            <Border.Background>
+                <ImageBrush ImageSource="../Images/background2.jpg" />
+            </Border.Background>
+            <StackPanel Margin="20" HorizontalAlignment="Center">
                 <Image Height="120" Width="200" Source="../Images/user.png"/>
-                <Label Name="Players" Content="placeholder" Initialized="Players_Initialized"  Background="Black"  Foreground="White" FontSize="25" HorizontalAlignment="Center"/>
+                <Label Name="Players" Content="placeholder" Initialized="Players_Initialized"  Background="Black"  Foreground="BlueViolet" FontSize="25" HorizontalAlignment="Center"/>
                 <Button Name="AdminMainMenu" Click="AdminMainMenu_Click" FontSize="25" Margin="0,20,0,20" Content="Return" Background="Black" Foreground="White"/>
             </StackPanel>
         </Border>

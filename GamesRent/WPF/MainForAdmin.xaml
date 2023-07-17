@@ -7,10 +7,13 @@
         mc:Ignorable="d"
         Title="Menu Admin" WindowStartupLocation="CenterScreen" Background="White" WindowState="Maximized">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <Border Background="Black" CornerRadius="10" Margin="5">
-            <StackPanel Margin="20">
+        <Border CornerRadius="10" Margin="5">
+            <Border.Background>
+                <ImageBrush ImageSource="../Images/background.jpg" />
+            </Border.Background>
+            <StackPanel Margin="20" HorizontalAlignment="Center">
                 <Image Height="180" Width="300" Source="../Images/adminlogo.png"/>
-                <Label Name="WelcomeLabel" Content="Welcome Admin" Background="Black" Foreground="BlueViolet" FontSize="25" HorizontalAlignment="Center"/>
+                <Label Name="WelcomeLabel" Content="Welcome Admin" Background="BlueViolet" Foreground="White" FontSize="25" HorizontalAlignment="Center"/>
                 <Button Name="btnLoan" Click="btnLoan_Click" Content="See Loan" Background="Azure" Foreground="Black"   FontSize="25" Margin="0,20,0,20"/>
                 <Button Name="btnGame" Click="btnGame_Click" Content="Managed Games" Background="Azure" Foreground="Black"   FontSize="25" Margin="0,20,0,20"/>
                 <Button Name="btnUser" Click="btnUser_Click" Content="See Players" Background="Azure" Foreground="Black"   FontSize="25" Margin="0,20,0,20"/>

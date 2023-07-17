@@ -7,8 +7,11 @@
         mc:Ignorable="d"
         Title="Wallet" WindowStartupLocation="CenterScreen" Background="White" WindowState="Maximized">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <Border Background="Black" CornerRadius="10" Margin="5">
-            <StackPanel Margin="20">
+        <Border CornerRadius="10" Margin="5">
+            <Border.Background>
+                <ImageBrush ImageSource="../Images/background2.jpg" />
+            </Border.Background>
+            <StackPanel Margin="20" HorizontalAlignment="Center">
                 <Image Height="120" Width="200" Source="../Images/wallet.png" Stretch="Uniform" />
                 <Label Background="Black" HorizontalContentAlignment="Center" Foreground="White" FontSize="25">You got </Label>
                 <Label Name="Credit" Content="placeholder" Initialized="Credit_Initialized"  Background="Black" Foreground="ForestGreen" FontSize="30" HorizontalAlignment="Center"/>
