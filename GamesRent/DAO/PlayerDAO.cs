@@ -165,6 +165,7 @@ public class PlayerDAO : DAO<Player>
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                MessageBox.Show("Update wallet by id");
             }
             finally
             {

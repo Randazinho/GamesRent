@@ -315,11 +315,11 @@ public class GameDAO : DAO<Game>
                         {
                             L.CreateLoan(clist[j].Id_copy, id_player, week);
                             flag1 = 1;
-                            MessageBox.Show("A Copy is available => Loan created, don't forget to return the game on time to avoid additional costs" +
+                            //MessageBox.Show("A Copy is available => Loan created, don't forget to return the game on time to avoid additional costs" +
                                 " |Booking deleted");
                             B.DeleteBooking(id_booking);
                             P.UpdateWalletByID(player_borrower, crcost*week, id_player_owner);
-                            MessageBox.Show("Wallet uptaded");
+                            //MessageBox.Show("Wallet uptaded");
                             return 1;
                         }
                         else
@@ -349,7 +349,7 @@ public class GameDAO : DAO<Game>
                             " |Booking deleted");
                         B.DeleteBooking(id_booking);
                         P.UpdateWalletByID(player_borrower, crcost*week, id_player_owner);
-                        MessageBox.Show("Wallet uptaded");
+                        //MessageBox.Show("Wallet uptaded");
                         return 1;
                     }
                     else
@@ -526,7 +526,6 @@ public class GameDAO : DAO<Game>
         }
         else
         {
-            MessageBox.Show("No one wants to rent this game at the moment, game added to your copy list");
             return 0;
         }
     }

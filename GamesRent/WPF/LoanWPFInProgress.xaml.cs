@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static GamesRent.WPF.AdminModifyGame;
 
 namespace GamesRent.WPF
 {
@@ -20,21 +21,39 @@ namespace GamesRent.WPF
     public partial class LoanWPFInProgress : Window
     {
         public Player p;
+        Game G = new Game();
+        Booking B = new Booking();
+        Player P = new Player();
         public LoanWPFInProgress(int idplayer)
         {
             Player P = new Player();
             p = P.Find(idplayer);
             InitializeComponent();
-            List<Loan> Llist = new List<Loan>();
+            List<Item> Items = new List<Item>();
+            List<Loan> llist = new List<Loan>();
             Loan L = new Loan();
-            Llist = L.FindAllLoanByIdPlayerOngoing(p.Id_player, Llist);
-            string concats = "";
-            if (Llist.Count > 0)
+            llist = L.FindAllLoanByIdPlayerOngoing(p.Id_player,llist);
+            int loan = llist.Count;
+            if (loan > 0)
             {
+                List<Item> items = new List<Item>();
+                for (int i = 0; i < loan; i++)
+                {
+                    items.Add(new Item()
+                    {
+                        Name = llist[i].ToString(),
+                        Id = llist[i].Id_loan
+                    });
+                }
+                lstBooking.ItemsSource = items;
                 ReturnGame.Visibility = Visibility.Visible;
-                LabelID.Visibility = Visibility.Visible;
-                TxtBoxId.Visibility = Visibility.Visible;
             }
+            else
+            {
+                MessageBox.Show("No loan in progress for the moment");
+                ReturnGame.Visibility = Visibility.Collapsed;
+            }
+            DataContext = this;
         }
 
         private void MainMenu_Click(object sender, RoutedEventArgs e)
@@ -43,33 +62,12 @@ namespace GamesRent.WPF
             dashboard.Show();
             this.Close();
         }
-        private void Loans_Initialized(object sender, EventArgs e)
-        {
-            List<Loan> Llist = new List<Loan>();
-            Loan L = new Loan();
-            Llist = L.FindAllLoanByIdPlayerOngoing(p.Id_player, Llist);
-            string concats = "";
-            if (Llist.Count > 0)
-            {
-                foreach (Loan l in Llist)
-                {
-                    concats += l.ToStringPlayer() + "\n";
-                }
-                Loans.Content = concats.Substring(0, concats.Length - 1);
-            }
-
-            else
-            {
-                Loans.Content = "No ongoing Loan to show";
-                MessageBox.Show("No ongoing Loan to show");
-            }
-        }
-
+        
         private void ReturnGame_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                int idloan = Convert.ToInt32(TxtBoxId.Text);
+                int idloan = Convert.ToInt32(SelectedItem.Id);
                 if (idloan > 0)
                 {
                     Loan L = new Loan();
@@ -80,19 +78,41 @@ namespace GamesRent.WPF
                     Rating dashboard = new Rating(loan.Copy.Id_copy);//id copy
                     dashboard.Show();
                     L.CalculateBalance(idloan);
-                    TxtBoxId.Text = "";
-                    Loans.Content = "The game has been returned";
                     ReturnGame.Visibility = Visibility.Hidden;
-                    LabelID.Visibility = Visibility.Hidden;
-                    TxtBoxId.Visibility = Visibility.Hidden;
+                    lstBooking.Visibility = Visibility.Hidden;
+                    try
+                    {
+                        //check si quelqu'un veut louer ce jeu car copy de nouveau available
+                        int id_game = loan.Copy.Game.Id_game;
+                        int idplayerborrower = G.SelectBooking(id_game);
+                        int idcopy = loan.Copy.Id_copy;
+                        if (idplayerborrower != 0)//on peut créer la loan
+                        {
+                            //Select le nombre week de la booking 
+                            int week = B.FindWeekByIDPlayer(idplayerborrower, id_game);
+                            L.CreateLoan(idcopy, idplayerborrower, week);
+                            //empecher de book plusieurs fois le même jeu par un même player en même temps
+                            Booking book = B.FindABookByIdGameAndIDPlayer(id_game, idplayerborrower);
+                            B.DeleteBooking(book.Id_booking);
+                            P.UpdateWalletByID(idplayerborrower, G.Find(id_game).CreditCost, loan.Copy.Player_owner.Id_player);
+                        }
+                    }catch
+                    {
+                        MessageBox.Show("Error with select booking");
+                    }
                 }
                 else throw new Exception("");
             }
             catch
             {
-                MessageBox.Show("Error in the information filled in");
-                TxtBoxId.Text = "";
+                MessageBox.Show("Error");
             }
+        }
+
+        public Item SelectedItem { get; set; }
+        private void RadioButton_Click(object sender, RoutedEventArgs e)
+        {
+            SelectedItem = ((RadioButton)sender).DataContext as Item;
         }
     }
 }
