@@ -10,8 +10,8 @@ public class Player : User
     private int id_player = 0;
     private int credit = 0;
     private string pseudo = "";
-    private DateTime registrationDate = new DateTime(2022, 1, 1);
-    private DateTime dateOfBirth = new DateTime(2022, 1, 1);
+    private DateTime registrationDate = new DateTime();
+    private DateTime dateOfBirth = new DateTime();
     private List<Copy> copys = new List<Copy>();
     private List<Booking> bookings = new List<Booking>();
     private List<Loan> loans = new List<Loan>();

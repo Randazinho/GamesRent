@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static GamesRent.WPF.AdminModifyGame;
 
 namespace GamesRent.WPF
 {
@@ -29,19 +30,30 @@ namespace GamesRent.WPF
             Player P = new Player();
             p = P.Find(idplayer);
             InitializeComponent();
-        }
-
-        private void Games_Initialized(object sender, EventArgs e)
-        {
+            List<Item> Items = new List<Item>();
             List<Game> glist = new List<Game>();
             Game G = new Game();
             glist = G.FindAllGame(glist);
-            string concats = "";
-            foreach (Game g in glist)
+            int booking = glist.Count;
+            if (booking > 0)
             {
-                concats += g.ToString() + "\n";
+                List<Item> items = new List<Item>();
+                for (int i = 0; i < booking; i++)
+                {
+                    items.Add(new Item()
+                    {
+                        Name = glist[i].ToString(),
+                        Id = glist[i].Id_game
+                    });
+                }
+                lstBooking.ItemsSource = items;
             }
-            Games.Content = concats.Substring(0, concats.Length - 1);
+            else
+            {
+                MessageBox.Show("No game available for the moment");
+                AddCopy.Visibility = Visibility.Collapsed;
+            }
+            DataContext = this;
         }
 
         private void AddCopy_Click(object sender, RoutedEventArgs e)
@@ -49,13 +61,13 @@ namespace GamesRent.WPF
             int id_game = 0;
             try
             {
-                id_game = Convert.ToInt32(TxtBoxIdGame.Text);
+                id_game = Convert.ToInt32(SelectedItem.Id);
                 if (id_game>0)
                 {
                     Copy C = new Copy();
                     int idcopy =C.CreateCopy(id_game,p.Id_player);
                     //recharge la page pour la nouvelle liste de copies
-                    GameWPFAddCopy dashboard = new GameWPFAddCopy(p.Id_player);
+                    GameWPF dashboard = new GameWPF(p.Id_player);
                     dashboard.Show();
                     this.Close();
                     //selectbooking
@@ -68,16 +80,19 @@ namespace GamesRent.WPF
                         //empecher de book plusieurs fois le même jeu par un même player en même temps
                         Booking book = B.FindABookByIdGameAndIDPlayer(id_game, idplayerborrower);
                         B.DeleteBooking(book.Id_booking);
-                        P.UpdateWalletByID(idplayerborrower, G.Find(idcopy).CreditCost, p.Id_player);
+                        P.UpdateWalletByID(idplayerborrower, G.Find(id_game).CreditCost, p.Id_player);
                         MessageBox.Show("Wallet uptaded");
+                    }
+                    else
+                    {
+                        MessageBox.Show("No-one wants to rent this game at the moment, it has been added to your list of copies");
                     }
                 }
                 else throw new Exception("");
             }
             catch
             {
-                MessageBox.Show("Error in the information filled in");
-                TxtBoxIdGame.Text = "";
+                MessageBox.Show("Error");
             }
         }
 
@@ -86,6 +101,12 @@ namespace GamesRent.WPF
             GameWPF dashboard = new GameWPF(p.Id_player);
             dashboard.Show();
             this.Close();
+        }
+
+        public Item SelectedItem { get; set; }
+        private void RadioButton_Click(object sender, RoutedEventArgs e)
+        {
+            SelectedItem = ((RadioButton)sender).DataContext as Item;
         }
     }
 }

@@ -48,8 +48,8 @@ public class Loan
     }
     public int Id_loan
     {
-        get;
-        set;
+        get { return id_loan; }
+        set { id_loan = value; }
     }
     public DateTime StartDate
     {

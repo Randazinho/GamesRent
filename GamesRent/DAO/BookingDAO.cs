@@ -144,6 +144,7 @@ public class BookingDAO : DAO<Booking>
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                MessageBox.Show("Delete booking");
             }
             finally
             {
@@ -231,7 +232,7 @@ public class BookingDAO : DAO<Booking>
             {
                 if (connection.State == ConnectionState.Closed)
                     connection.Open();
-                String queryretrieveinfo = "SELECT * FROM dbo.Booking WHERE Player_id= @id_player and VideoGame_id = @idgame";
+                String queryretrieveinfo = "SELECT * FROM dbo.Booking WHERE Player_id= @id_player and VideoGame_id = @id_game";
                 SqlCommand sql = new SqlCommand(queryretrieveinfo, connection);
                 sql.CommandType = CommandType.Text;
                 sql.Parameters.AddWithValue("@id_player", id_player);
@@ -304,6 +305,7 @@ public class BookingDAO : DAO<Booking>
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                MessageBox.Show("Find a book by id game et player");
             }
             finally
             {

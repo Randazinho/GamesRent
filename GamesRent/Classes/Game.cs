@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 public class Game
 {
-    private int id_game = 0;
-    private string name = "";
-    private int creditCost = 0;
-    private string console = "";
+    private int id_game;
+    private string name;
+    private int creditCost;
+    private string console ="";
     private List<Copy> copys = new List<Copy>();
 
     public Game(int id_game,string name, int creditCost, string console)
@@ -119,10 +119,10 @@ public class Game
         return GameDao.CopyAvailable(id_game,id_player,id_booking,week);
     }
 
-    public int SelectBooking(int idgame)
+    public int SelectBooking(int idGame)
     {
         GameDAO GameDao = new GameDAO();
-        return GameDao.SelectBooking(id_game);
+        return GameDao.SelectBooking(idGame);
     }
 
 }

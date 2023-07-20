@@ -43,19 +43,31 @@ public class Booking
 
     public Player Player
     {
-        get;
-        set;
+        get
+        {
+            return player;
+        }
+        set
+        {
+            player = value;
+        }
     }
 
     public Game Game
     {
-        get;
-        set;
+        get
+        {
+            return game;
+        }
+        set
+        {
+            game = value;
+        }
     }
     public int Week 
     {
-        get { return Week; }
-        set { Week = value; }
+        get { return week; }
+        set { week = value; }
     }
     public Booking Find(int id_booking)
     {
