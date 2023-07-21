@@ -37,8 +37,8 @@ public class Booking
     }
     public DateTime BookingDate
     {
-        get { return BookingDate; }
-        set { BookingDate = value; }
+        get { return bookingDate; }
+        set { bookingDate = value; }
     }
 
     public Player Player
