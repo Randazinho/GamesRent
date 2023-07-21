@@ -1,0 +1,21 @@
+﻿<Window x:Class="GamesRent.WPF.AboutMe"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GamesRent.WPF"
+        mc:Ignorable="d"
+        Title="Wallet" WindowStartupLocation="CenterScreen" Background="White" WindowState="Maximized">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Border CornerRadius="10" Margin="5">
+            <Border.Background>
+                <ImageBrush ImageSource="../Images/background2.jpg" />
+            </Border.Background>
+            <StackPanel Margin="20" HorizontalAlignment="Center">
+                <Image Height="120" Width="200" Source="../Images/user.png" Stretch="Uniform" />
+                <Label Name="AboutMeContent" Content="placeholder" Initialized="AboutMe_Initialized"  Background="Black" Foreground="BlueViolet" FontSize="30" HorizontalAlignment="Center"/>
+                <Button Name="MainMenu" Click="MainMenu_Click" FontSize="25" Margin="0,20,0,20" Content="Return" Background="Black" Foreground="White"/>
+            </StackPanel>
+        </Border>
+    </ScrollViewer>
+</Window>
