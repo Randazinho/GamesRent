@@ -68,6 +68,13 @@ namespace GamesRent
             this.Close();
         }
 
+        private void btnAboutMe_Click(object sender, RoutedEventArgs e)
+        {
+            AboutMe AboutmeW = new AboutMe(p.Id_player);
+            AboutmeW.Show();
+            this.Close();
+        }
+
         private void btnLogout_Click(object sender, RoutedEventArgs e)
         {
             LoginScreen loginwindow = new LoginScreen();

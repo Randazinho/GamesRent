@@ -33,6 +33,15 @@ public class Player : User
            " |Credit(s) :  " + credit + " |Registration Date :  " + registrationDate.ToShortDateString() +
            $" |Rating : {rating / nbr_rater:F1}/10";
     }
+
+    public string ToStringAboutMe()
+    {
+        return
+            "\tYou have been registered since "+registrationDate.ToShortDateString()
+            + "\n\tYour birthday is " + dateOfBirth.ToShortDateString()
+            + $"\n\tYour reputation is {rating / nbr_rater:F1}/10 according to {nbr_rater} rating(s)\t";
+    }
+
     public Player ()
     {
 
@@ -161,6 +170,4 @@ public class Player : User
         PlayerDAO PDAO = new PlayerDAO();
         PDAO.RatingPlayer(id_player,note);
     }
-
-
 }
