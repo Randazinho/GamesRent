@@ -60,12 +60,5 @@ namespace GamesRent.WPF
             dashboard.Show();
             this.Close();
         }
-
-        /*private void DeleteCopy_Click(object sender, RoutedEventArgs e)
-        {
-            GameWPFDeleteCopy dashboard = new GameWPFDeleteCopy(p.Id_player);
-            dashboard.Show();
-            this.Close();
-        }*/
     }
 }
