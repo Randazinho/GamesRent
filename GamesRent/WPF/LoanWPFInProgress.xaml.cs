@@ -105,7 +105,7 @@ namespace GamesRent.WPF
             }
             catch
             {
-                MessageBox.Show("Error");
+                MessageBox.Show("Pick a loan");
             }
         }
 
