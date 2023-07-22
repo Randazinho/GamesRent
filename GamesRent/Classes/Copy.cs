@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 public class Copy : Game //copy hérite de jeu car une copy est comme une instance de jeu
 {
-    private int id_copy = 0;
+    private int id_copy;
     private Game game;
     private Player player;
     public Copy (int id_copy,Game game,Player player)
@@ -20,6 +20,37 @@ public class Copy : Game //copy hérite de jeu car une copy est comme une instan
     public override string ToString()
     {
         return " Copy of  : " + Game.Name +" On "+Game.Console +"| Owned by : "+Player_owner.Pseudo;
+    }
+
+    public string ToStringList()
+    {
+        List<Loan> llist = new List<Loan>();
+        Loan L = new Loan();
+        llist = L.FindAllLoanByIdCopy(llist, Id_copy);
+        int nbr = llist.Count;
+        int flag = -1;
+        if(nbr>0)
+        {
+            for(int i=0;i<nbr;i++)
+            {
+                if (llist[i].Ongoing==1)
+                {
+                    flag = i;
+                }
+            }
+            if(flag!=-1)
+            {
+                return " Copy of  : " + Game.Name + " On " + Game.Console + " |Loaned to " + llist[flag].Player.Pseudo.ToUpper() +" since " + llist[flag].StartDate.ToShortDateString();
+            }
+            else
+            {
+                return " Copy of  : " + Game.Name + " On " + Game.Console +" |Not loaned at the moment"+ " Loaned : " + nbr +" time(s)";
+            }
+        }
+        else
+        {
+            return " Copy of  : " + Game.Name + " On " + Game.Console +" |Not loaned yet";
+        }
     }
 
     public Copy()
