@@ -30,7 +30,6 @@ public class UserDAO : DAO<User>
     {
         throw new NotImplementedException();
     }
-   
     public User FindUserByUsername(string username)
     {
         using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["GamesDB"].ConnectionString))
@@ -50,8 +49,7 @@ public class UserDAO : DAO<User>
                     {
                         while (readclientinfo.Read())
                         {
-                            //0 = Id du jeu , 1 = name , 2 = creditcost, 3 = console , 4 = rating
-                            User user2 = new User(readclientinfo.GetInt32(0), readclientinfo.GetString(1), readclientinfo.GetString(2));
+                            Player user2 = new Player(readclientinfo.GetInt32(0), readclientinfo.GetString(1), readclientinfo.GetString(2));
                             user = user2;
                         }
                     }

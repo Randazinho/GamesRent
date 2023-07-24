@@ -17,11 +17,30 @@ namespace GamesRent.WPF
     /// <summary>
     /// Logique d'interaction pour AdminAddGame.xaml
     /// </summary>
+    public class ConsoleItem
+    {
+        public string Console { get; set; }
+        public string Group { get; set; }
+    }
     public partial class AdminAddGame : Window
     {
+        string selectedConsoleName;
+        public List<ConsoleItem> ConsoleList { get; } = new List<ConsoleItem>
+        {
+            new ConsoleItem { Console = "XBOX SERIES", Group = "XBOX" },
+            new ConsoleItem { Console = "XBOX ONE", Group = "XBOX" },
+            new ConsoleItem { Console = "XBOX 360", Group = "XBOX" },
+            new ConsoleItem { Console = "PLAYSTATION 5", Group = "PLAYSTATION" },
+            new ConsoleItem { Console = "PLAYSTATION 4", Group = "PLAYSTATION" },
+            new ConsoleItem { Console = "PLAYSTATION 3", Group = "PLAYSTATION" },
+            new ConsoleItem { Console = "SWITCH", Group = "NINTENDO" },
+            new ConsoleItem { Console = "WII", Group = "NINTENDO" },
+            new ConsoleItem { Console = "DS", Group = "NINTENDO" }
+        };
         public AdminAddGame()
         {
             InitializeComponent();
+            DataContext = this; 
         }
 
         private void AdminGameMainMenu_Click(object sender, RoutedEventArgs e)
@@ -34,17 +53,16 @@ namespace GamesRent.WPF
         private void AddGame_Click(object sender, RoutedEventArgs e)
         {
             int crCost;
-            string name, console;
+            string name;
             try
             {
                 crCost = Convert.ToInt32(comboBoxNumbers.Text);
                 name = TxtBoxName.Text;
-                console= TxtBoxConsole.Text;
-                if (crCost > 0 & name!="" & console!="")
+                if (crCost > 0 & name != "")
                 {
                     Game G = new Game();
-                    G.CreateGameByAdmin(name, crCost, console);
-                    //recharge la page pour afficher le nouveau creditcost
+                    G.CreateGameByAdmin(name, crCost, selectedConsoleName);
+                    //recharge la page pour afficher le nouveau jeu
                     MessageBox.Show("Game added");
                     AdminGame dashboard = new AdminGame();
                     dashboard.Show();
@@ -55,7 +73,7 @@ namespace GamesRent.WPF
             catch
             {
                 MessageBox.Show("Error in the information filled in");
-                TxtBoxConsole.Text = "";
+                comboBoxConsole.Text = "";
                 TxtBoxName.Text = "";
             }
 
@@ -67,5 +85,17 @@ namespace GamesRent.WPF
                 int selectedNumber = (int)comboBoxNumbers.SelectedItem;
             }
         }
+        private void ComboBoxConsole_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (comboBoxConsole.SelectedItem != null)
+            {
+                var selectedConsole = comboBoxConsole.SelectedItem as ConsoleItem;
+                if (selectedConsole != null)
+                {
+                    selectedConsoleName = selectedConsole.Console;
+                }
+            }
+        }
+
     }
 }

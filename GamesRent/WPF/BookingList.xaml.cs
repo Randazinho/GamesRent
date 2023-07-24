@@ -67,7 +67,7 @@ namespace GamesRent.WPF
             try
             {
                 idbook = Convert.ToInt32(SelectedItem.Id);
-                MessageBox.Show(" " + idbook);
+                //MessageBox.Show(" " + idbook);
                 if (idbook > 0)
                 {
                     Booking B = new Booking();

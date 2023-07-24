@@ -27,6 +27,14 @@ public class Player : User
         this.rating = rating;
         this.Nbr_rater = nbr_rater;
     }
+
+    public Player(int id_player, string pseudo ,string password)
+    {
+        this.id_player = id_player;
+        this.pseudo = pseudo;
+        this.Password= password;
+    }
+
     public override string ToString()
     {
         return "->" + " |Pseudo :  " + pseudo + " |BirthDay :  " + dateOfBirth.ToShortDateString() +
@@ -175,5 +183,35 @@ public class Player : User
     {
         PlayerDAO PDAO = new PlayerDAO();
         PDAO.RatingPlayer(id_player,note);
+    }
+
+    public User FindUserByUsername(string username)
+    {
+        UserDAO UDAO = new UserDAO();
+        return UDAO.FindUserByUsername(username);
+    }
+
+    public int Login(string login, string password)
+    {
+        UserDAO UDAO = new UserDAO();
+        return UDAO.Login(login, password);
+    }
+
+    public void CreateNewUser(string username, string password, DateTime dateofbirth)
+    {
+        UserDAO UDAO = new UserDAO();
+        UDAO.CreateNewUser(username, password, dateofbirth);
+    }
+
+    public void UptadeToday(string today)
+    {
+        UserDAO UDAO = new UserDAO();
+        UDAO.UpdateToday(today);
+    }
+
+    public string GetDate()
+    {
+        UserDAO UDAO = new UserDAO();
+        return UDAO.GetDate();
     }
 }

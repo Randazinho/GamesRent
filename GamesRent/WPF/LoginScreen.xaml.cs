@@ -30,12 +30,12 @@ namespace GamesRent
         public LoginScreen()
         {
             //On check la var Today dans la BD si elle est égal à DateTime.Now ça veut dire qu'on l'a déjà éxécuté AddBirthdayBonus pour le jour donné
-            User U = new User();
-            string DateB = U.GetDate();
+            Player Pl = new Player();
+            string DateB = Pl.GetDate();
             if (DateTime.Now.ToShortDateString() != DateB)
             {
                 InitializeComponent();
-                U.UptadeToday(DateTime.Now.ToShortDateString());
+                Pl.UptadeToday(DateTime.Now.ToShortDateString());
                 Player P = new Player();
                 P.AddBirthDayBonus(DateTime.Now.ToString("d-M"));
             }
@@ -47,7 +47,7 @@ namespace GamesRent
 
         private void btnSubmitLogin_Click(object sender, RoutedEventArgs e)
         {
-            User user = new User();
+            Player user = new Player();
             username = txtUsername.Text;
             password = txtPassword.Password;
             if (username.Equals("") | password.Equals(""))
