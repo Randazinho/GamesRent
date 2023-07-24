@@ -231,7 +231,8 @@ public class LoanDAO : DAO<Loan>
             TimeSpan Ts = DateTime.Now - loan.EndDate;
             int nbrjour = (Int32)Ts.TotalDays;
             int amende = nbrjour * 5;
-            P.UpdateWalletByID(loan.Player.Id_player, amende,copy.Player_owner.Id_player);
+            P.UpdateWalletForBooking(loan.Player.Id_player,amende,"-");
+            P.UpdateWalletForBooking(copy.Player_owner.Id_player, amende, "+");
             MessageBox.Show("You have paid the fine of "+amende);
             note = note-nbrjour;
             if(note<0)
