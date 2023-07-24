@@ -7,8 +7,8 @@ using System.Windows.Documents;
 
 public class Admin : User
 {
-    private int id_admin = 0;
-    string date = "";
+    private int id_admin;
+    string date;
     public Admin(string date)
     {
         this.date = date;

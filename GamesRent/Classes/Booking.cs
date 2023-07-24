@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 public class Booking
 {
-    private int id_booking =0;
-    private DateTime bookingDate = new DateTime(2022, 1, 1); //date à laquelle le réservation est posée par un joueur
+    private int id_booking;
+    private DateTime bookingDate = new DateTime(); //date à laquelle le réservation est posée par un joueur
     private Player player = new Player();
     private Game game = new Game(); //parce le mec veut un certain jeu ballec de savoir quelle copie il va recevoir
-    private int week = 0; //pour savoir le nombre de semaine
+    private int week; //pour savoir le nombre de semaine
 
     public Booking (int id_booking, DateTime bookingDate, Player player, Game game, int week)
     {

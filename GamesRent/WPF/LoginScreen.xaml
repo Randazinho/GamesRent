@@ -5,23 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GamesRent"
         mc:Ignorable="d"
-        Title="Welcome to GamesRent !" WindowStartupLocation="CenterScreen" Background="White" WindowState="Maximized">
+        Title="Welcome to GamesRent !" WindowStartupLocation="CenterScreen"  WindowState="Maximized"
+        xmlns:gif="http://wpfanimatedgif.codeplex.com"
+        >
     <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <Border CornerRadius="10" Margin="5">
-            <Border.Background>
-                <ImageBrush ImageSource="../Images/background.jpg" />
-            </Border.Background>
+        <Grid>
+            <Image x:Name="mediaElement" gif:ImageBehavior.AnimatedSource="/Images/wall2.gif" Stretch="UniformToFill" />
             <StackPanel Margin="20" HorizontalAlignment="Center">
                 <Image Height="125" Width="250" Source="../Images/logo.png" Stretch="Uniform" />
                 <Label Content="Login" Foreground="BlueViolet" FontSize="25" HorizontalAlignment="Center" Background="Black"/>
                 <Separator></Separator>
                 <Label Content="Username" Foreground="White" FontSize="20" Margin="0,20,0,20" HorizontalAlignment="Center" Background="Black"/>
-                <TextBox    Name="txtUsername"  Background="Black"    FontSize="25" Foreground="White" Margin="40,0,40,0"   />
+                <TextBox Name="txtUsername" Background="Black" FontSize="25" Foreground="White" Margin="40,0,40,0" />
                 <Label Content="Password" Foreground="White" FontSize="20" Margin="0,20,0,20" HorizontalAlignment="Center" Background="Black"/>
-                <PasswordBox    Name="txtPassword"  Background="Black"    FontSize="20" Foreground="White" Margin="40,0,40,0"   />
+                <PasswordBox Name="txtPassword" Background="Black" FontSize="20" Foreground="White" Margin="40,0,40,0" />
                 <Button x:Name="btnSubmitLogin" Click="btnSubmitLogin_Click" Content="Connect" Background="White" Foreground="Black" FontSize="20" Margin="100,40,100,20"/>
                 <Button x:Name="btnSubmitCreate" Click="btnSubmitCreate_Click" Content="Sign Up" Background="White" Foreground="Black" FontSize="20" Margin="100,40,100,20"/>
             </StackPanel>
-        </Border>
+        </Grid>
     </ScrollViewer>
 </Window>
