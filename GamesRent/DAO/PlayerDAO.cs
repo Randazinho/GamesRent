@@ -149,12 +149,6 @@ public class PlayerDAO : DAO<Player>
             {
                 if (connection.State == ConnectionState.Closed)
                     connection.Open();
-                String updateWallet = "UPDATE dbo.Player SET Credit =Credit-@ammount WHERE Id_player = @id_borrower "; 
-                SqlCommand sqlupdate = new SqlCommand(updateWallet, connection);
-                sqlupdate.CommandType = CommandType.Text;
-                sqlupdate.Parameters.AddWithValue("@id_borrower", id_borrower);
-                sqlupdate.Parameters.AddWithValue("@ammount", ammount);
-                sqlupdate.ExecuteNonQuery();
                 String updateWallet2 = "UPDATE dbo.Player SET Credit =Credit+@ammount WHERE Id_player = @id_owner ";
                 SqlCommand sqlupdate2 = new SqlCommand(updateWallet2, connection);
                 sqlupdate2.CommandType = CommandType.Text;
@@ -173,6 +167,34 @@ public class PlayerDAO : DAO<Player>
             }
         }
     }
+
+    public void UpdateWalletForBooking(int id_player, int ammount, string operateur)
+    {
+        using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["GamesDB"].ConnectionString))
+        {
+            try
+            {
+                if (connection.State == ConnectionState.Closed)
+                    connection.Open();
+                String updateWallet = "UPDATE dbo.Player SET Credit =Credit "+operateur+" @ammount WHERE Id_player = @id_borrower ";
+                SqlCommand sqlupdate = new SqlCommand(updateWallet, connection);
+                sqlupdate.CommandType = CommandType.Text;
+                sqlupdate.Parameters.AddWithValue("@id_borrower", id_player);
+                sqlupdate.Parameters.AddWithValue("@ammount", ammount);
+                sqlupdate.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                MessageBox.Show("Update wallet by id");
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+    }
+
     public int FindLastId()
     {
         int id_user = 0;

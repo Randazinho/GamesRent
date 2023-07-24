@@ -70,8 +70,12 @@ namespace GamesRent.WPF
                 MessageBox.Show(" " + idbook);
                 if (idbook > 0)
                 {
-
                     Booking B = new Booking();
+                    B= B.Find(idbook);
+                    Game G = new Game();
+                    G= G.Find(B.Game.Id_game);
+                    int amount = G.CreditCost * B.Week;
+                    p.UpdateWalletForBooking(p.Id_player, amount, "+");
                     B.DeleteBooking(idbook);
                     //recharge la page pour afficher la nouvelle liste
                     BookingList dashboard = new BookingList(p.Id_player);
