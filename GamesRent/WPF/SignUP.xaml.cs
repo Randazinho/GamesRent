@@ -26,7 +26,7 @@ namespace GamesRent.WPF
 
         private void btnSubmitLogin_Click(object sender, RoutedEventArgs e)
         {
-            User User = new User();
+            Player User = new Player();
             string username = txtUsername.Text;
             string password = txtPassword.Password;
             string date = LabelForbirthday.Text;

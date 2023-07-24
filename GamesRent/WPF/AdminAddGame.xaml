@@ -15,7 +15,7 @@
                 <Image Height="120" Width="200" Source="../Images/addgame.png"/>
                 <Label Name="WelcomeLabel" Content="Add a Game" Background="Black" Foreground="White" FontSize="25" HorizontalAlignment="Center"/>
                 <Label Name="Formulaire" Content="------New Game------" Background="Black" Foreground="White" FontSize="25" HorizontalAlignment="Center"/>
-                <Label FontSize="15" Foreground="White" HorizontalAlignment="Center">Name</Label>
+                <Label FontSize="15" Foreground="White" HorizontalAlignment="Center">Title</Label>
                 <TextBox FontSize="15" Name="TxtBoxName" Background="White" Foreground="Black"/>
                 <Label FontSize="15" Foreground="White" HorizontalAlignment="Center">Credit Cost</Label>
                 <Grid>
@@ -36,7 +36,48 @@
                     </ComboBox>
                 </Grid>
                 <Label FontSize="15" Foreground="White" HorizontalAlignment="Center">Console</Label>
-                <TextBox FontSize="15" Name="TxtBoxConsole" Background="white" Foreground="Black"/>
+                <Grid>
+                    <Grid.Resources>
+                        <CollectionViewSource x:Key="ConsoleCollection" Source="{Binding DataContext.ConsoleList, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:AdminAddGame}}}">
+                            <CollectionViewSource.GroupDescriptions>
+                                <PropertyGroupDescription PropertyName="Group" />
+                            </CollectionViewSource.GroupDescriptions>
+                        </CollectionViewSource>
+
+                        <DataTemplate x:Key="ConsoleItemTemplate">
+                            <TextBlock Text="{Binding Console}" />
+                        </DataTemplate>
+
+                        <Style TargetType="GroupItem" x:Key="GroupContainerStyle">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate>
+                                        <Expander Header="{Binding Console}" IsExpanded="True">
+                                            <ItemsPresenter />
+                                        </Expander>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Grid.Resources>
+
+                    <ComboBox x:Name="comboBoxConsole" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150"
+              SelectionChanged="ComboBoxConsole_SelectionChanged">
+                        <ComboBox.GroupStyle>
+                            <GroupStyle ContainerStyle="{StaticResource GroupContainerStyle}" />
+                        </ComboBox.GroupStyle>
+
+                        <ComboBox.ItemsSource>
+                            <Binding Source="{StaticResource ConsoleCollection}" />
+                        </ComboBox.ItemsSource>
+
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Console}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </Grid>
                 <Button Name="AddGame" Click="AddGame_Click" FontSize="25" Margin="0,20,0,20" Content="Add this game" Background="Black" Foreground="DarkGreen"/>
                 <Button Name="AdminGameMainMenu" Click="AdminGameMainMenu_Click" FontSize="25" Margin="0,20,0,20" Content="Return" Background="Black" Foreground="White"/>
             </StackPanel>

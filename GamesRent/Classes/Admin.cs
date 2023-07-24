@@ -23,7 +23,6 @@ public class Admin : User
     {
         return "Admin n° : " + id_admin;
     }
-
     public string Date
     {
         get { return date; }
