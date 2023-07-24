@@ -102,7 +102,7 @@ public class PlayerDAO : DAO<Player>
         Game game = G.Find(id_game);
         BookingDAO BDAO = new BookingDAO();
         Booking booking = BDAO.FindABookByIdGameAndIDPlayer(id_game,idplayer);
-        if (player.Credit > game.CreditCost*week & booking==null)
+        if (player.Credit >= game.CreditCost*week & booking==null)
         {
             return 1;
         }
