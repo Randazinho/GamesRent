@@ -66,10 +66,6 @@ namespace GamesRent.WPF
                 {
                     Copy C = new Copy();
                     int idcopy =C.CreateCopy(id_game,p.Id_player);
-                    //recharge la page pour la nouvelle liste de copies
-                    GameWPF dashboard = new GameWPF(p.Id_player);
-                    dashboard.Show();
-                    this.Close();
                     //selectbooking
                     int idplayerborrower = G.SelectBooking(id_game);
                     if(idplayerborrower!=0)//on peut créer la loan
@@ -81,11 +77,19 @@ namespace GamesRent.WPF
                         Booking book = B.FindABookByIdGameAndIDPlayer(id_game, idplayerborrower);
                         B.DeleteBooking(book.Id_booking);
                         P.UpdateWalletByID(idplayerborrower, G.Find(id_game).CreditCost, p.Id_player);
-                        MessageBox.Show("Wallet uptaded");
+                        MessageBox.Show("Someone had already booked this game, loan created");
+                        //recharge la page pour la nouvelle liste de copies
+                        GameWPF dashboard = new GameWPF(p.Id_player);
+                        dashboard.Show();
+                        this.Close();
                     }
                     else
                     {
                         MessageBox.Show("No-one wants to rent this game at the moment, it has been added to your list of copies");
+                        //recharge la page pour la nouvelle liste de copies
+                        GameWPF dashboard = new GameWPF(p.Id_player);
+                        dashboard.Show();
+                        this.Close();
                     }
                 }
                 else throw new Exception("");

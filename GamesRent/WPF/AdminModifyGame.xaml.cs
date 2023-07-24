@@ -53,7 +53,7 @@ namespace GamesRent.WPF
             try
             {
                 id_game = Convert.ToInt32(SelectedItem.Id);
-                NewCrCost = Convert.ToInt32(TxtBoxCreditCost.Text);
+                NewCrCost = Convert.ToInt32(comboBoxNumbers.Text);
                 if (id_game > 0 & NewCrCost > 0)
                 {
                     //MessageBox.Show(id_game + " " + NewCrCost);
@@ -70,7 +70,6 @@ namespace GamesRent.WPF
             catch
             {
                 MessageBox.Show("Select a game");
-                TxtBoxCreditCost.Text = "";
             }
         }
         public class Item
@@ -82,6 +81,14 @@ namespace GamesRent.WPF
         private void RadioButton_Click(object sender, RoutedEventArgs e)
         {
             SelectedItem = ((RadioButton)sender).DataContext as Item;
+        }
+
+        private void ComboBoxNumbers_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            if (comboBoxNumbers.SelectedItem != null)
+            {
+                int selectedNumber = (int)comboBoxNumbers.SelectedItem;
+            }
         }
     }
 }

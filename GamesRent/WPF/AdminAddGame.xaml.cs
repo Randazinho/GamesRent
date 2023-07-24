@@ -37,7 +37,7 @@ namespace GamesRent.WPF
             string name, console;
             try
             {
-                crCost = Convert.ToInt32(TxtBoxCrediCost.Text);
+                crCost = Convert.ToInt32(comboBoxNumbers.Text);
                 name = TxtBoxName.Text;
                 console= TxtBoxConsole.Text;
                 if (crCost > 0 & name!="" & console!="")
@@ -57,7 +57,14 @@ namespace GamesRent.WPF
                 MessageBox.Show("Error in the information filled in");
                 TxtBoxConsole.Text = "";
                 TxtBoxName.Text = "";
-                TxtBoxCrediCost.Text = "";
+            }
+
+        }
+        private void ComboBoxNumbers_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            if (comboBoxNumbers.SelectedItem != null)
+            {
+                int selectedNumber = (int)comboBoxNumbers.SelectedItem;
             }
         }
     }

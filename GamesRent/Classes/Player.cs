@@ -7,16 +7,16 @@ using System.Windows.Documents;
 
 public class Player : User
 {
-    private int id_player = 0;
-    private int credit = 0;
-    private string pseudo = "";
+    private int id_player;
+    private int credit;
+    private string pseudo;
     private DateTime registrationDate = new DateTime();
     private DateTime dateOfBirth = new DateTime();
     private List<Copy> copys = new List<Copy>();
     private List<Booking> bookings = new List<Booking>();
     private List<Loan> loans = new List<Loan>();
-    private double rating =0;
-    private int nbr_rater =0;
+    private double rating;
+    private int nbr_rater;
     public Player(int id_player,int credit, string pseudo, DateTime registrationDate, DateTime dateOfBirth, double rating, int nbr_rater)
     {
         this.id_player = id_player;

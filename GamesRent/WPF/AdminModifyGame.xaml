@@ -3,13 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:GamesRent.WPF"
+        xmlns:local="clr-namespace:GamesRent.WPF" xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="Modify a game" WindowStartupLocation="CenterScreen" Background="White" WindowState="Maximized">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <Border CornerRadius="10" Margin="5">
             <Border.Background>
-                <ImageBrush ImageSource="../Images/background3.jpg" />
+                <ImageBrush ImageSource="../Images/background2.jpg" />
             </Border.Background>
             <StackPanel Margin="20" HorizontalAlignment="Center">
                 <Image Height="120" Width="200" Source="../Images/settings.png"/>
@@ -29,7 +29,23 @@
                     </StackPanel>
                 </Grid>
                 <Label FontSize="25" Foreground="White" HorizontalAlignment="Center">New Credit Cost</Label>
-                <TextBox FontSize="15" Name="TxtBoxCreditCost" Background="white" Foreground="Black"/>
+                <Grid>
+                    <ComboBox x:Name="comboBoxNumbers" HorizontalAlignment="Center" VerticalAlignment="Center" Width="40"
+                  SelectionChanged="ComboBoxNumbers_SelectionChanged" >
+                        <ComboBox.ItemsSource>
+                            <x:Array Type="{x:Type sys:Int32}">
+                                <sys:Int32>1</sys:Int32>
+                                <sys:Int32>2</sys:Int32>
+                                <sys:Int32>3</sys:Int32>
+                                <sys:Int32>4</sys:Int32>
+                                <sys:Int32>5</sys:Int32>
+                            </x:Array>
+                        </ComboBox.ItemsSource>
+                        <ComboBox.SelectedItem>
+                            <sys:Int32>1</sys:Int32>
+                        </ComboBox.SelectedItem>
+                    </ComboBox>
+                </Grid>
                 <Button Name="ModifyGame" Click="ModifyGame_Click" FontSize="25" Margin="0,20,0,20" Content="Edit this game" Background="Black" Foreground="Orange"/>
                 <Button Name="AdminGameMainMenu" Click="AdminGameMainMenu_Click" FontSize="25" Margin="0,20,0,20" Content="Return" Background="Black" Foreground="White"/>
             </StackPanel>

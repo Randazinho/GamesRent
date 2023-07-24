@@ -13,9 +13,9 @@ using System.Xml.Linq;
 
 public class User
 {
-    private int id_user = 0;
-    private string username = "";
-    private string password = "";
+    private int id_user;
+    private string username;
+    private string password;
     
     public User(int id_user,string username, string password)
     {

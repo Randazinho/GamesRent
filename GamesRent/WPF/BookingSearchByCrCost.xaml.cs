@@ -56,7 +56,7 @@ namespace GamesRent.WPF
                     if (loanAllowed == 1)
                     {
                         id_booking = B.CreateBookingByIdGame(p.Id_player, idgame,week);
-                        MessageBox.Show("ID de la booking : " + id_booking);
+                        //MessageBox.Show("ID de la booking : " + id_booking);
                         //ici check si copie available
                         int flag = G.CopyAvailable(idgame, p.Id_player, id_booking, week);
                         if (flag == 0)
@@ -92,12 +92,11 @@ namespace GamesRent.WPF
             catch
             {
                 MessageBox.Show("Select a game and the number of weeks");
-                TxtBoxCreditCost.Text = "";
                 BookGame.Visibility = Visibility.Collapsed;
                 numberListBox.Visibility = Visibility.Collapsed;
                 LabelWeeks.Visibility = Visibility.Collapsed;
                 LabelCreditCost.Visibility = Visibility.Visible;
-                TxtBoxCreditCost.Visibility = Visibility.Visible;
+                comboBoxNumbers.Visibility = Visibility.Visible;
                 Search.Visibility = Visibility.Visible;
                 lstGame.ItemsSource = null;
             }
@@ -105,12 +104,12 @@ namespace GamesRent.WPF
 
         private void Search_Click(object sender, RoutedEventArgs e)
         {
-            if (TxtBoxCreditCost.Text.Count() > 0)
+            if (comboBoxNumbers.Text.Count() > 0)
             {
                 int crCost = 0;
                 try
                 {
-                    crCost = Convert.ToInt32(TxtBoxCreditCost.Text);
+                    crCost = Convert.ToInt32(comboBoxNumbers.Text);
                     List<Game> glist = new List<Game>();
                     Game G = new Game();
                     glist = G.FindGameByCrCost(crCost, glist);
@@ -132,7 +131,7 @@ namespace GamesRent.WPF
                         numberListBox.Visibility = Visibility.Visible;
                         LabelWeeks.Visibility = Visibility.Visible;
                         LabelCreditCost.Visibility = Visibility.Collapsed;
-                        TxtBoxCreditCost.Visibility = Visibility.Collapsed;
+                        comboBoxNumbers.Visibility = Visibility.Collapsed;
                         Search.Visibility = Visibility.Collapsed;
                     }
                     else
@@ -143,19 +142,16 @@ namespace GamesRent.WPF
                         numberListBox.Visibility = Visibility.Collapsed;
                         LabelWeeks.Visibility = Visibility.Collapsed;
                         LabelCreditCost.Visibility = Visibility.Visible;
-                        TxtBoxCreditCost.Visibility = Visibility.Visible;
-                        TxtBoxCreditCost.Text = "";
+                        comboBoxNumbers.Visibility = Visibility.Visible;
                     }
                 }
                 catch
                 {
                     MessageBox.Show("Error in the information filled in");
-                    TxtBoxCreditCost.Text = "";
                     BookGame.Visibility = Visibility.Collapsed;
                     LabelWeeks.Visibility = Visibility.Collapsed;
                     LabelCreditCost.Visibility = Visibility.Visible;
-                    TxtBoxCreditCost.Visibility = Visibility.Visible;
-                    TxtBoxCreditCost.Text = "";
+                    comboBoxNumbers.Visibility = Visibility.Visible;
                     lstGame.ItemsSource = null;
                 }
             }
@@ -179,6 +175,14 @@ namespace GamesRent.WPF
             }
 
             numberListBox.ItemsSource = numbers;
+        }
+
+        private void ComboBoxNumbers_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            if (comboBoxNumbers.SelectedItem != null)
+            {
+                int selectedNumber = (int)comboBoxNumbers.SelectedItem;
+            }
         }
     }
 }

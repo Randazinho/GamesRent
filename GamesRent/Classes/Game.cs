@@ -9,7 +9,7 @@ public class Game
     private int id_game;
     private string name;
     private int creditCost;
-    private string console ="";
+    private string console;
     private List<Copy> copys = new List<Copy>();
 
     public Game(int id_game,string name, int creditCost, string console)
