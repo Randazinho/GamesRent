@@ -76,7 +76,7 @@ namespace GamesRent.WPF
                         //empecher de book plusieurs fois le même jeu par un même player en même temps
                         Booking book = B.FindABookByIdGameAndIDPlayer(id_game, idplayerborrower);
                         B.DeleteBooking(book.Id_booking);
-                        P.UpdateWalletByID(idplayerborrower, G.Find(id_game).CreditCost, p.Id_player);
+                        P.UpdateWalletForBooking(p.Id_player, G.Find(id_game).CreditCost * week, "+");
                         MessageBox.Show("Someone had already booked this game, loan created");
                         //recharge la page pour la nouvelle liste de copies
                         GameWPF dashboard = new GameWPF(p.Id_player);
