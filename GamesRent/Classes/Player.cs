@@ -37,17 +37,38 @@ public class Player : User
 
     public override string ToString()
     {
-        return "->" + " |Pseudo :  " + pseudo + " |BirthDay :  " + dateOfBirth.ToShortDateString() +
-           " |Credit(s) :  " + credit + " |Registration Date :  " + registrationDate.ToShortDateString() +
-           $" |Rating : {rating / nbr_rater:F1}/10";
+        if (nbr_rater > 0)
+        {
+            return "->" + " |Pseudo :  " + pseudo + " |BirthDay :  " + dateOfBirth.ToShortDateString() +
+               " |Credit(s) :  " + credit + " |Registration Date :  " + registrationDate.ToShortDateString() +
+               $" |Rating : {rating / nbr_rater:F1}/10";
+        }
+        else
+        {
+            return "->" + " |Pseudo :  " + pseudo + " |BirthDay :  " + dateOfBirth.ToShortDateString() +
+               " |Credit(s) :  " + credit + " |Registration Date :  " + registrationDate.ToShortDateString() +
+               " Not rated yet";
+        }
+
     }
 
     public string ToStringAboutMe()
     {
-        return
-            "\tYou have been registered since "+registrationDate.ToShortDateString()
-            + "\n\tYour birthday is " + dateOfBirth.ToShortDateString()
-            + $"\n\tYour reputation is {rating / nbr_rater:F1}/10 according to {nbr_rater} rating(s)\t";
+        if(nbr_rater > 0)
+        {
+            return
+           "\tYou have been registered since " + registrationDate.ToShortDateString()
+           + "\n\tYour birthday is " + dateOfBirth.ToShortDateString()
+           + $"\n\tYour reputation is {rating / nbr_rater:F1}/10 according to {nbr_rater} rating(s)\t";
+        }
+        else
+        {
+            return
+           "\tYou have been registered since " + registrationDate.ToShortDateString()
+           + "\n\tYour birthday is " + dateOfBirth.ToShortDateString()
+           + $"\n\tNot rated yet\t";
+        }
+       
     }
 
     public Player ()
