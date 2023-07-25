@@ -55,7 +55,7 @@ namespace GamesRent.WPF
                     {
                         id_booking = B.CreateBookingByIdGame(p.Id_player, idgame,week);
                         int amount = game.CreditCost * week;
-                        p.UpdateWalletForBooking(p.Id_player, amount,"-");
+                        p.UpdateWallet(p.Id_player, amount,"-");
                         //ici check si copie available
                         int flag = G.CopyAvailable(idgame, p.Id_player, id_booking, week);
                         if (flag == 0)

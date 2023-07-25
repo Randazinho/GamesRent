@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:GamesRent.WPF"
         mc:Ignorable="d"
         xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
-        
         Title="SearchByConsole" WindowStartupLocation="CenterScreen" Background="White" WindowState="Maximized">
+
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <Border CornerRadius="10" Margin="5">
             <Border.Background>
@@ -30,7 +30,48 @@
                     </StackPanel>
                 </Grid>
                 <Label FontSize="15" Name="LabelConsole" Foreground="White" HorizontalAlignment="Center">Console</Label>
-                <TextBox FontSize="15" Name="TxtBoxConsole" Background="White" Foreground="Black"/>
+                <Grid>
+                    <Grid.Resources>
+                        <CollectionViewSource x:Key="ConsoleCollection" Source="{Binding DataContext.ConsoleList, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:BookingSearchByConsole}}}">
+                            <CollectionViewSource.GroupDescriptions>
+                                <PropertyGroupDescription PropertyName="Group" />
+                            </CollectionViewSource.GroupDescriptions>
+                        </CollectionViewSource>
+
+                        <DataTemplate x:Key="ConsoleItemTemplate">
+                            <TextBlock Text="{Binding Console}" />
+                        </DataTemplate>
+
+                        <Style TargetType="GroupItem" x:Key="GroupContainerStyle">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate>
+                                        <Expander Header="{Binding Console}" IsExpanded="True">
+                                            <ItemsPresenter />
+                                        </Expander>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Grid.Resources>
+
+                    <ComboBox x:Name="comboBoxConsole" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150"
+              SelectionChanged="ComboBoxConsole_SelectionChanged">
+                        <ComboBox.GroupStyle>
+                            <GroupStyle ContainerStyle="{StaticResource GroupContainerStyle}" />
+                        </ComboBox.GroupStyle>
+
+                        <ComboBox.ItemsSource>
+                            <Binding Source="{StaticResource ConsoleCollection}" />
+                        </ComboBox.ItemsSource>
+
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Console}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </Grid>
                 <Button Name="Search" Click="Search_Click" FontSize="25" Margin="0,20,0,20" Content="Search" Background="Black" Foreground="BlueViolet"/>
                 <Label Name="LabelWeeks"  FontSize="20" Foreground="White" HorizontalAlignment="Center" Background="Black">For how many weeks ?</Label>
                 <ListBox x:Name="numberListBox" HorizontalAlignment="Center" VerticalAlignment="Center" Width="60" Height="100" Background="Black" Foreground="BlueViolet" SelectedIndex="0">

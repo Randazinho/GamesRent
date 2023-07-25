@@ -161,16 +161,10 @@ public class Player : User
         PDAO.AddBirthDayBonus(today);
     }
 
-    public void UpdateWalletByID(int id_borrower, int ammount, int id_owner)
+    public void UpdateWallet(int id_player, int ammount, string operateur)
     {
         PlayerDAO PDAO = new PlayerDAO();
-        PDAO.UpdateWalletByID(id_borrower,ammount,id_owner);
-    }
-
-    public void UpdateWalletForBooking(int id_player, int ammount, string operateur)
-    {
-        PlayerDAO PDAO = new PlayerDAO();
-        PDAO.UpdateWalletForBooking(id_player, ammount, operateur);
+        PDAO.UpdateWallet(id_player, ammount, operateur);
     }
 
     public int FindLastId()

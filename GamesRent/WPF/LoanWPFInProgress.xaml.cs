@@ -94,7 +94,7 @@ namespace GamesRent.WPF
                             //empecher de book plusieurs fois le même jeu par un même player en même temps
                             Booking book = B.FindABookByIdGameAndIDPlayer(id_game, idplayerborrower);
                             B.DeleteBooking(book.Id_booking);
-                            P.UpdateWalletForBooking(loan.Copy.Player_owner.Id_player, G.Find(id_game).CreditCost * week, "+");
+                            P.UpdateWallet(loan.Copy.Player_owner.Id_player, G.Find(id_game).CreditCost * week, "+");
                         }
                     }catch
                     {

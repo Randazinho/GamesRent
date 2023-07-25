@@ -141,34 +141,7 @@ public class PlayerDAO : DAO<Player>
         }
     }
 
-    public void UpdateWalletByID(int id_borrower, int ammount ,int id_owner)
-    {
-        using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["GamesDB"].ConnectionString))
-        {
-            try
-            {
-                if (connection.State == ConnectionState.Closed)
-                    connection.Open();
-                String updateWallet2 = "UPDATE dbo.Player SET Credit =Credit+@ammount WHERE Id_player = @id_owner ";
-                SqlCommand sqlupdate2 = new SqlCommand(updateWallet2, connection);
-                sqlupdate2.CommandType = CommandType.Text;
-                sqlupdate2.Parameters.AddWithValue("@id_owner", id_owner);
-                sqlupdate2.Parameters.AddWithValue("@ammount", ammount);
-                sqlupdate2.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                MessageBox.Show("Update wallet by id");
-            }
-            finally
-            {
-                connection.Close();
-            }
-        }
-    }
-
-    public void UpdateWalletForBooking(int id_player, int ammount, string operateur)
+    public void UpdateWallet(int id_player, int ammount, string operateur)
     {
         using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["GamesDB"].ConnectionString))
         {

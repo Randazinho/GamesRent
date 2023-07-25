@@ -75,7 +75,7 @@ namespace GamesRent.WPF
                     Game G = new Game();
                     G= G.Find(B.Game.Id_game);
                     int amount = G.CreditCost * B.Week;
-                    p.UpdateWalletForBooking(p.Id_player, amount, "+");
+                    p.UpdateWallet(p.Id_player, amount, "+");
                     B.DeleteBooking(idbook);
                     //recharge la page pour afficher la nouvelle liste
                     BookingList dashboard = new BookingList(p.Id_player);

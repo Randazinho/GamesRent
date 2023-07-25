@@ -22,11 +22,27 @@ namespace GamesRent.WPF
     public partial class BookingSearchByConsole : Window
     {
         public Player p;
+        string selectedConsoleName;
+        private List<ConsoleItem> consoleList;
+          public List<ConsoleItem> ConsoleList { get; } = new List<ConsoleItem>
+        {
+            new ConsoleItem { Console = "XBOX SERIES", Group = "XBOX" },
+            new ConsoleItem { Console = "XBOX ONE", Group = "XBOX" },
+            new ConsoleItem { Console = "XBOX 360", Group = "XBOX" },
+            new ConsoleItem { Console = "PLAYSTATION 5", Group = "PLAYSTATION" },
+            new ConsoleItem { Console = "PLAYSTATION 4", Group = "PLAYSTATION" },
+            new ConsoleItem { Console = "PLAYSTATION 3", Group = "PLAYSTATION" },
+            new ConsoleItem { Console = "SWITCH", Group = "NINTENDO" },
+            new ConsoleItem { Console = "WII", Group = "NINTENDO" },
+            new ConsoleItem { Console = "DS", Group = "NINTENDO" }
+        };
+
         public BookingSearchByConsole(int idplayer)
         {
             Player P = new Player();
             p = P.Find(idplayer);
             InitializeComponent();
+            DataContext = this;
             CreateNumberList();
             BookGame.Visibility = Visibility.Collapsed;
             numberListBox.Visibility = Visibility.Collapsed;
@@ -56,7 +72,7 @@ namespace GamesRent.WPF
                     {
                         id_booking = B.CreateBookingByIdGame(p.Id_player, idgame, week);
                         int amount = game.CreditCost * week;
-                        p.UpdateWalletForBooking(p.Id_player, amount,"-");
+                        p.UpdateWallet(p.Id_player, amount,"-");
                         //MessageBox.Show("ID de la booking : " + id_booking);
                         //ici check si copie available
                         int flag = G.CopyAvailable(idgame, p.Id_player, id_booking,week);
@@ -93,12 +109,11 @@ namespace GamesRent.WPF
             catch
             {
                 MessageBox.Show("Select a game and the number of weeks");
-                TxtBoxConsole.Text = "";
                 BookGame.Visibility = Visibility.Collapsed;
                 numberListBox.Visibility = Visibility.Collapsed;
                 LabelWeeks.Visibility = Visibility.Collapsed;
                 LabelConsole.Visibility = Visibility.Visible;
-                TxtBoxConsole.Visibility = Visibility.Visible;
+                comboBoxConsole.Visibility = Visibility.Visible;
                 Search.Visibility = Visibility.Visible;
                 lstGame.ItemsSource = null;
             }
@@ -106,9 +121,9 @@ namespace GamesRent.WPF
 
         private void Search_Click(object sender, RoutedEventArgs e)
         {
-            if (TxtBoxConsole.Text.Count() > 0)
+            if (selectedConsoleName.Count() > 0)
             {
-                string console = TxtBoxConsole.Text;
+                string console = selectedConsoleName;
                 List<Game> glist = new List<Game>();
                 Game G = new Game();
                 glist = G.FindGameByConsole(console, glist);
@@ -130,7 +145,7 @@ namespace GamesRent.WPF
                     numberListBox.Visibility = Visibility.Visible;
                     LabelWeeks.Visibility = Visibility.Visible;
                     LabelConsole.Visibility = Visibility.Collapsed;
-                    TxtBoxConsole.Visibility = Visibility.Collapsed;
+                    comboBoxConsole.Visibility = Visibility.Collapsed;
                     Search.Visibility = Visibility.Collapsed;
                 }
                 else
@@ -141,8 +156,7 @@ namespace GamesRent.WPF
                     numberListBox.Visibility = Visibility.Collapsed;
                     LabelWeeks.Visibility = Visibility.Collapsed;
                     LabelConsole.Visibility = Visibility.Visible;
-                    TxtBoxConsole.Visibility = Visibility.Visible;
-                    TxtBoxConsole.Text = "";
+                    comboBoxConsole.Visibility = Visibility.Visible;
                 }
             }
             else
@@ -165,6 +179,17 @@ namespace GamesRent.WPF
             }
 
             numberListBox.ItemsSource = numbers;
+        }
+        private void ComboBoxConsole_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (comboBoxConsole.SelectedItem != null)
+            {
+                var selectedConsole = comboBoxConsole.SelectedItem as ConsoleItem;
+                if (selectedConsole != null)
+                {
+                    selectedConsoleName = selectedConsole.Console;
+                }
+            }
         }
     }
 }
