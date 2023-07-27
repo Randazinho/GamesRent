@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:GamesRent.WPF"
         mc:Ignorable="d"
         xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
-        Title="SearchByConsole" WindowStartupLocation="CenterScreen" Background="White" WindowState="Maximized">
+        Title="SearchByConsole" WindowStartupLocation="CenterScreen" Background="White" WindowState="Maximized" FontFamily="Courier New">
 
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <Border CornerRadius="10" Margin="5">

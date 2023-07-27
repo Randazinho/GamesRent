@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GamesRent.WPF"
         mc:Ignorable="d"
-        Title="Rate your rater !" WindowStartupLocation="CenterScreen" Background="White">
+        Title="Rate your rater !" WindowStartupLocation="CenterScreen" Background="White" FontFamily="Courier New">
     <Border Background="Black" CornerRadius="10" Margin="5">
         <StackPanel Margin="20" HorizontalAlignment="Center">
             <Image Height="50" Width="100" Source="../Images/logo.png" Stretch="Uniform"/>
