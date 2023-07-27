@@ -41,7 +41,7 @@ namespace GamesRent.WPF
                 {
                     items.Add(new Item()
                     {
-                        Name = llist[i].ToString(),
+                        Name = llist[i].ToStringPlayer(),
                         Id = llist[i].Id_loan
                     });
                 }

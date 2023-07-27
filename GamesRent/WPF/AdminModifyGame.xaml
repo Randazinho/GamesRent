@@ -1,11 +1,11 @@
-﻿<Window x:Class="GamesRent.WPF.AdminModifyGame"
+﻿ <Window x:Class="GamesRent.WPF.AdminModifyGame"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GamesRent.WPF" xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="Modify a game" WindowStartupLocation="CenterScreen" Background="White" WindowState="Maximized">
+        Title="Modify a game" WindowStartupLocation="CenterScreen" Background="White" WindowState="Maximized" FontFamily="Courier New">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <Border CornerRadius="10" Margin="5">
             <Border.Background>

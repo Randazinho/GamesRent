@@ -57,14 +57,14 @@ public class Player : User
         if(nbr_rater > 0)
         {
             return
-           "\tYou have been registered since " + registrationDate.ToShortDateString()
-           + "\n\tYour birthday is " + dateOfBirth.ToShortDateString()
-           + $"\n\tYour reputation is {rating / nbr_rater:F1}/10 according to {nbr_rater} rating(s)\t";
+           "You have been registered since " + registrationDate.ToShortDateString()+"\t\t"
+           + "\nYour birthday is " + dateOfBirth.ToShortDateString()
+           + $"\nYour reputation is {rating / nbr_rater:F1}/10 according to {nbr_rater} rating(s)\t";
         }
         else
         {
             return
-           "\tYou have been registered since " + registrationDate.ToShortDateString()
+           "\tYou have been registered since " + registrationDate.ToShortDateString()+"\t"
            + "\n\tYour birthday is " + dateOfBirth.ToShortDateString()
            + $"\n\tNot rated yet\t";
         }

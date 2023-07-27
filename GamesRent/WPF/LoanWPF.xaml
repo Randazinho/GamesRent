@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GamesRent.WPF"
         mc:Ignorable="d"
-        Title="My Loan" WindowStartupLocation="CenterScreen" Background="White" WindowState="Maximized">
+        Title="My Loan" WindowStartupLocation="CenterScreen" Background="White" WindowState="Maximized" FontFamily="Courier New"> 
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <Border CornerRadius="10" Margin="5">
             <Border.Background>
