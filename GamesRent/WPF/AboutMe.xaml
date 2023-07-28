@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GamesRent.WPF"
         mc:Ignorable="d"
+        Icon="../Images/invers.png"
         Title="AboutMe" WindowStartupLocation="CenterScreen" Background="White" WindowState="Maximized" FontFamily="Courier New">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <Border CornerRadius="10" Margin="5">

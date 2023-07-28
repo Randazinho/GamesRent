@@ -8,7 +8,7 @@
         Title="Welcome to GamesRent !" WindowStartupLocation="CenterScreen"  WindowState="Maximized"
         xmlns:gif="http://wpfanimatedgif.codeplex.com"
         FontFamily="Courier New"
-        >
+        Icon="../Images/invers.png">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <Grid>
             <Image x:Name="mediaElement" gif:ImageBehavior.AnimatedSource="/Images/wall2.gif" Stretch="UniformToFill" />
