@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GamesRent.WPF"
         mc:Ignorable="d"
+        Icon="../Images/invers.png"
         xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
         Title="SearchByConsole" WindowStartupLocation="CenterScreen" Background="White" WindowState="Maximized" FontFamily="Courier New">
 

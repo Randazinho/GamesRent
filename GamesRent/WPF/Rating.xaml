@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GamesRent.WPF"
         mc:Ignorable="d"
+        Icon="../Images/invers.png"
         Title="Rate your rater !" WindowStartupLocation="CenterScreen" Background="White" FontFamily="Courier New">
     <Border Background="Black" CornerRadius="10" Margin="5">
         <StackPanel Margin="20" HorizontalAlignment="Center">

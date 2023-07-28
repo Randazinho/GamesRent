@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GamesRent.WPF"
         mc:Ignorable="d"
+        Icon="../Images/invers.png"
         Title="Admin Loan" WindowStartupLocation="CenterScreen" Background="White" WindowState="Maximized" FontFamily="Courier New">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <Border CornerRadius="10" Margin="5">
@@ -14,7 +15,7 @@
             <StackPanel Margin="20" HorizontalAlignment="Center">
                 <Image Height="120" Width="200" Source="../Images/loan.png" Stretch="Uniform" />
                 <Label Name="WelcomeLabel" Content="LOAN" Background="Black" Foreground="SlateGray" FontSize="25" HorizontalAlignment="Center"/>
-                <Label Name="Loans" Content="placeholder" Initialized="Loans_Initialized"  Background="Black"  Foreground="White" FontSize="25" HorizontalAlignment="Center"/>
+                <Label Name="Loans" Content="placeholder" Initialized="Loans_Initialized"  Background="Black"  Foreground="BlueViolet" FontSize="17" HorizontalAlignment="Center"/>
                 <Button Name="AdminMainMenu" Click="AdminMainMenu_Click" FontSize="25" Margin="0,20,0,20" Content="Return" Background="Black" Foreground="White"/>
             </StackPanel>
         </Border>
