@@ -72,7 +72,7 @@ namespace GamesRent.WPF
             }
             catch
             {
-                MessageBox.Show("Error in the information filled in");
+                MessageBox.Show("Enter the game title and select the console");
                 comboBoxConsole.Text = "";
                 TxtBoxName.Text = "";
             }
