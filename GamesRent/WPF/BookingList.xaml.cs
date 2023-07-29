@@ -86,7 +86,7 @@ namespace GamesRent.WPF
             }
             catch
             {
-                MessageBox.Show("Error with the Id selected");
+                MessageBox.Show("Select a booking");
             }
         }
         public Item SelectedItem { get; set; }

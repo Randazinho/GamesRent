@@ -311,7 +311,7 @@ public class GameDAO : DAO<Game>
                         Copy copy =C.Find(clist[j].Id_copy);
                         int id_player_owner = copy.Player_owner.Id_player;
                         //création de la loan
-                        if(player.Credit>(game.CreditCost)*week)  
+                        if(player.Credit+ (game.CreditCost) * week > (game.CreditCost)*week)  
                         {
                             L.CreateLoan(clist[j].Id_copy, id_player, week);
                             flag1 = 1;
