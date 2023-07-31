@@ -79,7 +79,7 @@ namespace GamesRent.WPF
                     dashboard.Show();
                     L.CalculateBalance(idloan);
                     ReturnGame.Visibility = Visibility.Hidden;
-                    lstBooking.Visibility = Visibility.Hidden;
+                    lstBooking.Visibility = Visibility.Collapsed;
                     try
                     {
                         //check si quelqu'un veut louer ce jeu car copy de nouveau available
