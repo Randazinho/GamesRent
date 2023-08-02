@@ -253,7 +253,7 @@ public class GameDAO : DAO<Game>
             }
             catch (Exception ex)
             {
-                MessageBox.Show("This game is currently being rented..");
+                MessageBox.Show("At least one copy of this game is in circulation, impossible to remove");
             }
             finally
             {

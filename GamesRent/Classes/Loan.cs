@@ -12,7 +12,7 @@ public class Loan
     private int id_loan;
     private DateTime startDate = new DateTime();
     private DateTime endDate = new DateTime();
-    private int ongoing;// Passe à true lorsque la location est en cours et va permettre de calculer l'amende si date dépassée (endDate) et que location toujours en cours
+    private int ongoing;
     private Player player;
     private Copy copy;
     public Loan(int id_loan, DateTime startDate, DateTime endDate, int ongoing, Player player, Copy copy)

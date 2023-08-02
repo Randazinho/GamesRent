@@ -61,7 +61,7 @@ namespace GamesRent.WPF
             }
             catch
             {
-                MessageBox.Show("Pick a good rating 1->10");
+                MessageBox.Show("Pick a rating 1->10");
             }
         }
 
