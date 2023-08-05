@@ -11,7 +11,7 @@ public class Admin : User
     string date;
     public Admin(string date)
     {
-        this.date = date;//date 
+        this.date = date;
     }
 
     public int Id_admin
