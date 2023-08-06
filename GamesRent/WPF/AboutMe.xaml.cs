@@ -63,7 +63,7 @@ namespace GamesRent.WPF
                 }
                 else
                 {
-                    starOpacity = 0.15; // Étoile vide
+                    starOpacity = 0.18; // Étoile vide
                 }
 
                 Image starImage = new Image
