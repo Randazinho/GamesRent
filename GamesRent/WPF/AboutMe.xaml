@@ -15,6 +15,8 @@
             <StackPanel Margin="20" HorizontalAlignment="Center">
                 <Image Height="120" Width="200" Source="../Images/user.png" Stretch="Uniform" />
                 <Label Name="AboutMeContent" Content="placeholder" Initialized="AboutMe_Initialized"  Background="Black" Foreground="BlueViolet" FontSize="30" HorizontalAlignment="Center"/>
+                <WrapPanel x:Name="starsPanel" HorizontalAlignment="Center" Background="Black">
+                </WrapPanel>
                 <Button Name="MainMenu" Click="MainMenu_Click" FontSize="25" Margin="0,20,0,20" Content="Return" Background="Black" Foreground="White"/>
             </StackPanel>
         </Border>

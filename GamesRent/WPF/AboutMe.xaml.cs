@@ -28,6 +28,7 @@ namespace GamesRent.WPF
             Player P = new Player();
             p = P.Find(idplayer);
             InitializeComponent();
+            DrawStars();
         }
         private void MainMenu_Click(object sender, RoutedEventArgs e)
         {
@@ -42,5 +43,40 @@ namespace GamesRent.WPF
             plr = P.Find(idplay);
             AboutMeContent.Content = plr.ToStringAboutMe();
         }
+        private void DrawStars()
+        {
+            double starSize = 30;
+            int filledStars = (int)((p.Rating/p.Nbr_rater)/2); // Nombre d'étoiles entières
+            double remainingStarValue = ((p.Rating / p.Nbr_rater) / 2) - filledStars; // Valeur de la demi-étoile restante
+
+            for (int i = 0; i < 5; i++)
+            {
+                double starOpacity;
+
+                if (i < filledStars)
+                {
+                    starOpacity = 1.0; // Étoile entière
+                }
+                else if (i == filledStars)
+                {
+                    starOpacity = remainingStarValue; // Demi-étoile (valeur de la demi-étoile restante)
+                }
+                else
+                {
+                    starOpacity = 0.15; // Étoile vide
+                }
+
+                Image starImage = new Image
+                {
+                    Source = new BitmapImage(new Uri("../Images/star.png", UriKind.Relative)), 
+                    Width = starSize,
+                    Height = starSize,
+                    Opacity = starOpacity
+                };
+
+                starsPanel.Children.Add(starImage);
+            }
+        }
+
     }
 }

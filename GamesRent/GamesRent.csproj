@@ -24,6 +24,7 @@
     <None Remove="Images\logo.png" />
     <None Remove="Images\name.png" />
     <None Remove="Images\settings.png" />
+    <None Remove="Images\star.png" />
     <None Remove="Images\user.png" />
     <None Remove="Images\wall10s.mp4" />
     <None Remove="Images\wall2.gif" />
@@ -56,6 +57,7 @@
     <Resource Include="Images\logo.png" />
     <Resource Include="Images\name.png" />
     <Resource Include="Images\settings.png" />
+    <Resource Include="Images\star.png" />
     <Resource Include="Images\user.png" />
     <Resource Include="Images\wall2.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
