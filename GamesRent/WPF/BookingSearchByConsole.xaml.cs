@@ -43,7 +43,6 @@ namespace GamesRent.WPF
             p = P.Find(idplayer);
             InitializeComponent();
             DataContext = this;
-            CreateNumberList();
             BookGame.Visibility = Visibility.Collapsed;
             numberListBox.Visibility = Visibility.Collapsed;
             LabelWeeks.Visibility = Visibility.Collapsed;
