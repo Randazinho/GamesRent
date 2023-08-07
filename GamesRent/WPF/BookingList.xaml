@@ -19,7 +19,7 @@
                         <ItemsControl ItemsSource="{Binding ItemsList}" Name="lstBooking">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <RadioButton Content="{Binding Name}" Foreground="BlueViolet" FontSize="14"
+                                    <RadioButton Content="{Binding Name}" Foreground="White" FontSize="14"
                          IsChecked="{Binding IsSelected, Mode=TwoWay}"
                          GroupName="Items"
                          Click="RadioButton_Click"/>

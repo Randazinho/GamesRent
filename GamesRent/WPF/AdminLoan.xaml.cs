@@ -22,6 +22,7 @@ namespace GamesRent.WPF
         public AdminLoan()
         {
             InitializeComponent();
+            LoadLoans();
         }
         private void AdminMainMenu_Click(object sender, RoutedEventArgs e)
         {
@@ -29,24 +30,12 @@ namespace GamesRent.WPF
             dashboard.Show();
             this.Close();
         }
-        private void Loans_Initialized(object sender, EventArgs e)
+        private void LoadLoans()
         {
-            try
-            {
-                List<Loan> loanlist = new List<Loan>();
-                Loan L = new Loan();
-                loanlist = L.FindAllLoan(loanlist);
-                string concats = "";
-                foreach (Loan l in loanlist)
-                {
-                    concats += l.ToString() + "\n";
-                }
-                Loans.Content = concats.Substring(0, concats.Length - 1);
-            }
-            catch
-            {
-                Loans.Content = "No loan for the moment";
-            }
+            List<Loan> loanlist = new List<Loan>();
+            Loan L = new Loan();
+            loanlist = L.FindAllLoan(loanlist);
+            LoanDataGrid.ItemsSource = loanlist;
         }
     }
 }

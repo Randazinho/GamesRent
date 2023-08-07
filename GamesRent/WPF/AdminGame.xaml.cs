@@ -22,18 +22,14 @@ namespace GamesRent.WPF
         public AdminGame()
         {
             InitializeComponent();
+            LoadGames();
         }
-        private void Games_Initialized(object sender, EventArgs e)
+        private void LoadGames()
         {
             List<Game> glist = new List<Game>();
             Game G = new Game();
             glist = G.FindAllGame(glist);
-            string concats = "";
-            foreach (Game g in glist)
-            {
-                concats += g.ToString() + "\n";
-            }
-            Games.Content = concats.Substring(0, concats.Length - 1);
+            GamesDataGrid.ItemsSource = glist;
         }
         private void AdminMainMenu_Click(object sender, RoutedEventArgs e)
         {

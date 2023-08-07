@@ -45,7 +45,7 @@ namespace GamesRent.WPF
                         Id = llist[i].Id_loan
                     });
                 }
-                lstBooking.ItemsSource = items;
+                lstLoan.ItemsSource = items;
                 ReturnGame.Visibility = Visibility.Visible;
             }
             else
@@ -79,7 +79,7 @@ namespace GamesRent.WPF
                     dashboard.Show();
                     L.CalculateBalance(idloan);
                     ReturnGame.Visibility = Visibility.Hidden;
-                    lstBooking.Visibility = Visibility.Collapsed;
+                    lstLoan.Visibility = Visibility.Collapsed;
                     try
                     {
                         //check si quelqu'un veut louer ce jeu car copy de nouveau available

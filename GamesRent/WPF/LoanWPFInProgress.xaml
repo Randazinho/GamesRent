@@ -16,10 +16,10 @@
                 <Image Height="120" Width="200" Source="../Images/loan.png" Stretch="Uniform" />
                 <Grid>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Black">
-                        <ItemsControl ItemsSource="{Binding ItemsList}" Name="lstBooking">
+                        <ItemsControl ItemsSource="{Binding ItemsList}" Name="lstLoan">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <RadioButton Content="{Binding Name}" Foreground="BlueViolet" FontSize="14"
+                                    <RadioButton Content="{Binding Name}" Foreground="White" FontSize="17"
                          IsChecked="{Binding IsSelected, Mode=TwoWay}"
                          GroupName="Items"
                          Click="RadioButton_Click"/>

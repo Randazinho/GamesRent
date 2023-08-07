@@ -22,6 +22,7 @@ namespace GamesRent.WPF
         public AdminUser()
         {
             InitializeComponent();
+            LoadPlayer();
         }
         private void AdminMainMenu_Click(object sender, RoutedEventArgs e)
         {
@@ -29,18 +30,12 @@ namespace GamesRent.WPF
             dashboard.Show();
             this.Close();
         }
-
-        private void Players_Initialized(object sender, EventArgs e)
+        private void LoadPlayer()
         {
-            List<Player> plrlist = new List<Player>();
+            List<Player> plist = new List<Player>();
             Player P = new Player();
-            plrlist = P.FindAllPlayer(plrlist);
-            string concats = "";
-            foreach (Player p in plrlist)
-            {
-                concats += p.ToString() + "\n";
-            }
-            Players.Content = concats.Substring(0, concats.Length-1);
+            plist = P.FindAllPlayer(plist);
+            PlayerDataGrid.ItemsSource = plist;
         }
     }
 }

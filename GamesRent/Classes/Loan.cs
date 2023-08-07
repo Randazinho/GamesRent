@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Buffers;
 using System.Collections.Generic;
 using System.Data.SqlTypes;
 using System.Linq;
@@ -39,7 +40,10 @@ public class Loan
     }
     public string ToStringPlayer()
     {
-        return "| Game Title : " + copy.Game.Name + "| Start Date : " + startDate.ToShortDateString() + "| End Date : " + endDate.ToShortDateString() + "| Ongoing : " + ongoing;
+        TimeSpan diff = endDate - startDate;
+        int day = (int)diff.TotalDays;
+        int week = day / 7;
+        return "| Game Title : " + copy.Game.Name + "| Start Date : " + startDate.ToShortDateString() + "| End Date : " + endDate.ToShortDateString() + "| Amount : " + ((copy.Game.CreditCost) * week) + " cr" + " | Owner "+ copy.Player_owner.Pseudo.ToUpper();
     }
 
     public Loan()

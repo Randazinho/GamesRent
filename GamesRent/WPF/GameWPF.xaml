@@ -19,7 +19,7 @@
                         <ItemsControl ItemsSource="{Binding ItemsList}" Name="lstCopy">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <GroupItem Content="{Binding Name}" Foreground="BlueViolet" FontSize="15"/>
+                                    <GroupItem Content="{Binding Name}" Foreground="White" FontSize="15"/>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
