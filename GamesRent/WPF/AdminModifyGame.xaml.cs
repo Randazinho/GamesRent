@@ -24,23 +24,16 @@ namespace GamesRent.WPF
         public AdminModifyGame()
         {
             InitializeComponent();
-            List<Item> Items = new List<Item>();
+            LoadGames();
+        }
+        private void LoadGames()
+        {
             List<Game> glist = new List<Game>();
             Game G = new Game();
             glist = G.FindAllGame(glist);
-            int games = glist.Count;
-            if (games > 0)
-            {
-                List<Item> items = new List<Item>();
-                for (int i = 0; i < games; i++)
-                {
-                    items.Add(new Item() { Name = glist[i].ToString(),
-                    Id =glist[i].Id_game});
-                }
-                lstGame.ItemsSource = items;
-            }
-            DataContext = this;
+            GamesDataGrid.ItemsSource = glist;
         }
+
         private void AdminGameMainMenu_Click(object sender, RoutedEventArgs e)
         {
             AdminGame dashboard = new AdminGame();
@@ -52,7 +45,8 @@ namespace GamesRent.WPF
             int id_game,NewCrCost;
             try
             {
-                id_game = Convert.ToInt32(SelectedItem.Id);
+                Game selectedGame = (Game)GamesDataGrid.SelectedItem;
+                id_game = Convert.ToInt32(selectedGame.Id_game);
                 NewCrCost = Convert.ToInt32(comboBoxNumbers.Text);
                 if (id_game > 0 & NewCrCost > 0)
                 {
@@ -77,10 +71,13 @@ namespace GamesRent.WPF
             public int Id { get; set; }
             public string Name { get; set; }
         }
-        public Item SelectedItem { get; set; }
-        private void RadioButton_Click(object sender, RoutedEventArgs e)
+        private void GamesDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SelectedItem = ((RadioButton)sender).DataContext as Item;
+            if (GamesDataGrid.SelectedItem != null)
+            {
+                Game selectedGame = (Game)GamesDataGrid.SelectedItem;
+                MessageBox.Show("Game selected");
+            }
         }
 
         private void ComboBoxNumbers_SelectionChanged(object sender, RoutedEventArgs e)

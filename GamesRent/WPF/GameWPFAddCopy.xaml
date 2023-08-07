@@ -15,20 +15,13 @@
             <StackPanel Margin="20" HorizontalAlignment="Center">
                 <Image Height="120" Width="200" Source="../Images/addgame.png"/>
                 <Label FontSize="25" Foreground="White" HorizontalAlignment="Center">A copy for which games?</Label>
-                <Grid>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Black">
-                        <ItemsControl ItemsSource="{Binding ItemsList}" Name="lstBooking">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <RadioButton Content="{Binding Name}" Foreground="White" FontSize="14"
-                         IsChecked="{Binding IsSelected, Mode=TwoWay}"
-                         GroupName="Items"
-                         Click="RadioButton_Click"/>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </StackPanel>
-                </Grid>
+                <DataGrid Name="GamesDataGrid" SelectionChanged="GamesDataGrid_SelectionChanged" IsReadOnly="true" AutoGenerateColumns="False" Background="Black" Foreground="Green" FontSize="17" HorizontalAlignment="Center" VerticalAlignment="Center" SelectionUnit="FullRow" SelectionMode="Single">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Game Title" Binding="{Binding Name}"/>
+                        <DataGridTextColumn Header="Console" Binding="{Binding Console}" />
+                        <DataGridTextColumn Header="Credit Cost" Binding="{Binding CreditCost}" />
+                    </DataGrid.Columns>
+                </DataGrid>
                 <Button Name="AddCopy" Click="AddCopy_Click" FontSize="25" Margin="0,20,0,20" Content="Add my copy" Background="Black" Foreground="DarkGreen"/>
                 <Button Name="MainMenu" Click="MainMenu_Click" FontSize="25" Margin="0,20,0,20" Content="Return" Background="Black" Foreground="White"/>
             </StackPanel>

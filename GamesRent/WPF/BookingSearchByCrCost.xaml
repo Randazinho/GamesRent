@@ -14,20 +14,13 @@
             </Border.Background>
             <StackPanel Margin="20" HorizontalAlignment="Center">
                 <Image Height="120" Width="200" Source="../Images/crCost.png" HorizontalAlignment="Center"/>
-                <Grid>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Black">
-                        <ItemsControl ItemsSource="{Binding ItemsList}" Name="lstGame">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <RadioButton Content="{Binding Name}" Foreground="White" FontSize="14" Background="white"
-                         IsChecked="{Binding IsSelected, Mode=TwoWay}"
-                         GroupName="Items"
-                         Click="RadioButton_Click"/>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </StackPanel>
-                </Grid>
+                <DataGrid Name="GamesDataGrid" SelectionChanged="GamesDataGrid_SelectionChanged" IsReadOnly="true" AutoGenerateColumns="False" Background="Black" Foreground="Black" FontSize="17" HorizontalAlignment="Center" VerticalAlignment="Center" SelectionUnit="FullRow" SelectionMode="Single">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Game Title" Binding="{Binding Name}"/>
+                        <DataGridTextColumn Header="Console" Binding="{Binding Console}" />
+                        <DataGridTextColumn Header="Credit Cost" Binding="{Binding CreditCost}" />
+                    </DataGrid.Columns>
+                </DataGrid>
                 <Label FontSize="15" Name="LabelCreditCost" Foreground="White" HorizontalAlignment="Center" Content="Credit Cost"/>
                 <Grid>
                     <ComboBox x:Name="comboBoxNumbers" HorizontalAlignment="Center" VerticalAlignment="Center" Width="40"

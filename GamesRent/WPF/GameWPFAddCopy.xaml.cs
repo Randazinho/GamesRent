@@ -30,30 +30,14 @@ namespace GamesRent.WPF
             Player P = new Player();
             p = P.Find(idplayer);
             InitializeComponent();
-            List<Item> Items = new List<Item>();
+            LoadGames();
+        }
+        private void LoadGames()
+        {
             List<Game> glist = new List<Game>();
             Game G = new Game();
             glist = G.FindAllGame(glist);
-            int booking = glist.Count;
-            if (booking > 0)
-            {
-                List<Item> items = new List<Item>();
-                for (int i = 0; i < booking; i++)
-                {
-                    items.Add(new Item()
-                    {
-                        Name = glist[i].ToString(),
-                        Id = glist[i].Id_game
-                    });
-                }
-                lstBooking.ItemsSource = items;
-            }
-            else
-            {
-                MessageBox.Show("No game available for the moment");
-                AddCopy.Visibility = Visibility.Collapsed;
-            }
-            DataContext = this;
+            GamesDataGrid.ItemsSource = glist;
         }
 
         private void AddCopy_Click(object sender, RoutedEventArgs e)
@@ -61,7 +45,8 @@ namespace GamesRent.WPF
             int id_game = 0;
             try
             {
-                id_game = Convert.ToInt32(SelectedItem.Id);
+                Game selectedGame = (Game)GamesDataGrid.SelectedItem;
+                id_game = Convert.ToInt32(selectedGame.Id_game);
                 if (id_game>0)
                 {
                     Copy C = new Copy();
@@ -107,10 +92,13 @@ namespace GamesRent.WPF
             this.Close();
         }
 
-        public Item SelectedItem { get; set; }
-        private void RadioButton_Click(object sender, RoutedEventArgs e)
+        private void GamesDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SelectedItem = ((RadioButton)sender).DataContext as Item;
+            if (GamesDataGrid.SelectedItem != null)
+            {
+                Game selectedGame = (Game)GamesDataGrid.SelectedItem;
+                MessageBox.Show("Game selected");
+            }
         }
     }
 }

@@ -15,20 +15,13 @@
             <StackPanel Margin="20" HorizontalAlignment="Center">
                 <Image Height="120" Width="200" Source="../Images/deletegame.png"/>
                 <Label Name="WelcomeLabel" Content="Delete a Game" Background="Black" Foreground="White" FontSize="25" HorizontalAlignment="Center"/>
-                <Grid>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Background="black">
-                        <ItemsControl ItemsSource="{Binding ItemsList}" Name="lstGame">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <RadioButton Content="{Binding Name}" Foreground="RED" FontSize="14" Background="white"
-                         IsChecked="{Binding IsSelected, Mode=TwoWay}"
-                         GroupName="Items"
-                         Click="RadioButton_Click"/>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </StackPanel>
-                </Grid>
+                <DataGrid Name="GamesDataGrid" SelectionChanged="GamesDataGrid_SelectionChanged" IsReadOnly="true" AutoGenerateColumns="False" Background="Black" Foreground="RED" FontSize="17" HorizontalAlignment="Center" VerticalAlignment="Center" SelectionUnit="FullRow" SelectionMode="Single">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Game Title" Binding="{Binding Name}"/>
+                        <DataGridTextColumn Header="Console" Binding="{Binding Console}" />
+                        <DataGridTextColumn Header="Credit Cost" Binding="{Binding CreditCost}" />
+                    </DataGrid.Columns>
+                </DataGrid>
                 <Button Name="DeleteGame" Click="DeleteGame_Click" FontSize="25" Margin="0,20,0,20" Content="Delete this game" Background="Black" Foreground="red"/>
                 <Button Name="AdminGameMainMenu" Click="AdminGameMainMenu_Click" FontSize="25" Margin="0,20,0,20" Content="Return" Background="Black" Foreground="White"/>
             </StackPanel>

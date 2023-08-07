@@ -30,6 +30,7 @@ namespace GamesRent.WPF
             BookGame.Visibility = Visibility.Collapsed;
             numberListBox.Visibility = Visibility.Collapsed;
             LabelWeeks.Visibility = Visibility.Collapsed;
+            GamesDataGrid.Visibility = Visibility.Collapsed;
         }
 
         private void Booking_Click(object sender, RoutedEventArgs e)
@@ -42,7 +43,8 @@ namespace GamesRent.WPF
         {
             try
             {
-                int idgame = Convert.ToInt32(SelectedItem.Id);
+                Game selectedGame = (Game)GamesDataGrid.SelectedItem;
+                int idgame = Convert.ToInt32(selectedGame.Id_game);
                 int week = (int)numberListBox.SelectedItem;
                 if (idgame > 0 & (week > 0 & week < 53))
                 {
@@ -98,7 +100,7 @@ namespace GamesRent.WPF
                 LabelTitle.Visibility = Visibility.Visible;
                 TxtBoxTitle.Visibility = Visibility.Visible;
                 Search.Visibility = Visibility.Visible;
-                lstGame.ItemsSource = null;
+                GamesDataGrid.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -113,16 +115,7 @@ namespace GamesRent.WPF
                 int games = glist.Count;
                 if (games > 0)
                 {
-                    List<Item> items = new List<Item>();
-                    for (int i = 0; i < games; i++)
-                    {
-                        items.Add(new Item()
-                        {
-                            Name = glist[i].ToString(),
-                            Id = glist[i].Id_game
-                        });
-                    }
-                    lstGame.ItemsSource = items;
+                    GamesDataGrid.ItemsSource = glist;
                     DataContext = this;
                     BookGame.Visibility = Visibility.Visible;
                     numberListBox.Visibility = Visibility.Visible;
@@ -130,11 +123,12 @@ namespace GamesRent.WPF
                     LabelTitle.Visibility = Visibility.Collapsed;
                     TxtBoxTitle.Visibility = Visibility.Collapsed;
                     Search.Visibility = Visibility.Collapsed;
+                    GamesDataGrid.Visibility = Visibility.Visible;
                 }
                 else
                 {
                     MessageBox.Show("No games found");
-                    lstGame.ItemsSource = null;
+                    GamesDataGrid.Visibility = Visibility.Collapsed;
                     BookGame.Visibility = Visibility.Collapsed;
                     numberListBox.Visibility = Visibility.Collapsed;
                     LabelWeeks.Visibility = Visibility.Collapsed;
@@ -148,10 +142,13 @@ namespace GamesRent.WPF
                 MessageBox.Show("Fill in at least one character");
             }
         }
-        public Item SelectedItem { get; set; }
-        private void RadioButton_Click(object sender, RoutedEventArgs e)
+        private void GamesDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SelectedItem = ((RadioButton)sender).DataContext as Item;
+            if (GamesDataGrid.SelectedItem != null)
+            {
+                Game selectedGame = (Game)GamesDataGrid.SelectedItem;
+                MessageBox.Show("Game selected");
+            }
         }
         private void CreateNumberList()
         {
