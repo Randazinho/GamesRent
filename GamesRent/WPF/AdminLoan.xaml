@@ -22,7 +22,7 @@
                         <DataGridTextColumn Header="Borrower" Binding="{Binding Player.Pseudo}" />
                         <DataGridTextColumn Header="Start Date" Binding="{Binding StartDate ,StringFormat={}{0:dd/MM/yyyy}}" />
                         <DataGridTextColumn Header="End Date" Binding="{Binding EndDate ,StringFormat={}{0:dd/MM/yyyy}}" />
-                        <DataGridTextColumn Header="Ongoing" Binding="{Binding Ongoing}" />
+                        <DataGridTextColumn Header="Ongoing" Binding="{Binding Ongoingstring}" />
                     </DataGrid.Columns>
                 </DataGrid>
                 <Button Name="AdminMainMenu" Click="AdminMainMenu_Click" FontSize="25" Margin="0,20,0,20" Content="Return" Background="Black" Foreground="White"/>

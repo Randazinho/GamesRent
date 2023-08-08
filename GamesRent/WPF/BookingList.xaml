@@ -48,7 +48,7 @@
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="Credit Cost" Binding="{Binding Game.CreditCost}">
+                        <DataGridTextColumn Header="Amount in credit(s)" Binding="{Binding Amount}">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="HorizontalAlignment" Value="Center" />

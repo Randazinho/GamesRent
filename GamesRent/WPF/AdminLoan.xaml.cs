@@ -35,7 +35,15 @@ namespace GamesRent.WPF
             List<Loan> loanlist = new List<Loan>();
             Loan L = new Loan();
             loanlist = L.FindAllLoan(loanlist);
-            LoanDataGrid.ItemsSource = loanlist;
+            if(loanlist.Count == 0)
+            {
+                LoanDataGrid.Visibility = Visibility.Collapsed;
+                MessageBox.Show("No Loan to show");
+            }
+            else
+            {
+                LoanDataGrid.ItemsSource = loanlist;
+            }
         }
     }
 }

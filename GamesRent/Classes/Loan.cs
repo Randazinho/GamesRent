@@ -17,6 +17,7 @@ public class Loan
     private int ongoing;
     private Player player;
     private Copy copy;
+    private string ongoingstring; //pour afficher yes/no à la place de 0/1
     public Loan(int id_loan, DateTime startDate, DateTime endDate, int ongoing, Player player, Copy copy)
     {
         this.id_loan = id_loan;
@@ -25,6 +26,14 @@ public class Loan
         this.ongoing = ongoing;
         this.player = player;
         this.copy = copy;
+        if(ongoing==1)
+        {
+            this.ongoingstring = "YES";
+        }
+        else
+        {
+            this.ongoingstring = "NO";
+        }
     }
 
     public Loan(int id_loan, DateTime startDate, DateTime endDate, int ongoing)
@@ -80,6 +89,12 @@ public class Loan
     {
         get { return ongoing; }
         set { ongoing = value; }
+    }
+
+    public string Ongoingstring
+    {
+        get { return ongoingstring; }
+        set { ongoingstring = value; }
     }
 
     public Loan Find(int id_loan)

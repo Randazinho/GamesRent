@@ -21,7 +21,7 @@
                         <DataGridTextColumn Header="Borrower" Binding="{Binding  Player.Pseudo}" />
                         <DataGridTextColumn Header="Start Date" Binding="{Binding StartDate ,StringFormat={}{0:dd/MM/yyyy}}" />
                         <DataGridTextColumn Header="End Date" Binding="{Binding EndDate ,StringFormat={}{0:dd/MM/yyyy}}" />
-                        <DataGridTextColumn Header="Ongoing" Binding="{Binding Ongoing}" />
+                        <DataGridTextColumn Header="Ongoing" Binding="{Binding Ongoingstring}" />
                     </DataGrid.Columns>
                 </DataGrid>
                 <Button Name="ReturnGame" Click="ReturnGame_Click" FontSize="25" Margin="0,20,0,20" Content="Return this game" Background="Black" Foreground="BlueViolet" Visibility="Hidden"/>

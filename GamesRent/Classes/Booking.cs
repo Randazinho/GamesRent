@@ -11,6 +11,7 @@ public class Booking
     private Player player = new Player();
     private Game game = new Game(); 
     private int week; //pour savoir le nombre de semaine
+    private double amount; //pour afficher le montant total sans calcul supp 
 
     public Booking (int id_booking, DateTime bookingDate, Player player, Game game, int week)
     {
@@ -19,6 +20,7 @@ public class Booking
         this.player = player;
         this.game = game;
         this.week = week;
+        this.amount = week * game.CreditCost;
     }
 
     public override string ToString()
@@ -68,6 +70,11 @@ public class Booking
     {
         get { return week; }
         set { week = value; }
+    }
+    public double Amount
+    {
+        get { return amount; }
+        set { amount = value; }
     }
     public Booking Find(int id_booking)
     {
