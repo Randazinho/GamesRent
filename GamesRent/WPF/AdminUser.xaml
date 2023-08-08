@@ -15,12 +15,6 @@
             <StackPanel Margin="20" HorizontalAlignment="Center">
                 <Image Height="120" Width="200" Source="../Images/user.png"/>
                 <DataGrid Name="PlayerDataGrid" IsReadOnly="True" AutoGenerateColumns="False" Background="Black" Foreground="BlueViolet" FontSize="17" HorizontalAlignment="Center">
-                    <DataGrid.Resources>
-                        <Style TargetType="DataGridCell">
-                            <Setter Property="Background" Value="Black"/>
-                            <Setter Property="Foreground" Value="White"/>
-                        </Style>
-                    </DataGrid.Resources>
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Pseudo" Binding="{Binding Pseudo}" />
                         <DataGridTextColumn Header="Credit" Binding="{Binding Credit}" />

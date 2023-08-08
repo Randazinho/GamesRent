@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,6 +26,7 @@ namespace GamesRent.WPF
             Player P = new Player();
             p = P.Find(idplayer);
             InitializeComponent();
+            LoadLoans();
         }
 
         private void MainMenu_Click(object sender, RoutedEventArgs e)
@@ -34,7 +36,7 @@ namespace GamesRent.WPF
             this.Close();
         }
 
-        private void Loans_Initialized(object sender, EventArgs e)
+        private void LoadLoans()
         {
             List<Loan> Llist = new List<Loan>();
             Loan L = new Loan();
@@ -42,15 +44,12 @@ namespace GamesRent.WPF
             string concats = "";
             if (Llist.Count > 0)
             {
-                foreach (Loan l in Llist)
-                {
-                    concats += l.ToStringPlayer() + "\n";
-                }
-                Loans.Content = concats.Substring(0, concats.Length - 1);
+                LoanDataGrid.ItemsSource = Llist;
+                LoanDataGrid.Visibility = Visibility.Visible;
             }
             else
             {
-                Loans.Content = "No Old Loan to show";
+                LoanDataGrid.Visibility = Visibility.Collapsed;
             }
         }
     }

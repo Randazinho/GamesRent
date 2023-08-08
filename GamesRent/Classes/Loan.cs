@@ -6,6 +6,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Automation;
 using System.Xml.Linq;
 
 public class Loan
@@ -38,14 +39,7 @@ public class Loan
     {
         return "| Game Title : " + copy.Game.Name + "| Borrower : " + Player.Pseudo + "| Start Date : " + startDate.ToShortDateString() + "| End Date : " + endDate.ToShortDateString() + "| Ongoing : " + ongoing;
     }
-    public string ToStringPlayer()
-    {
-        TimeSpan diff = endDate - startDate;
-        int day = (int)diff.TotalDays;
-        int week = day / 7;
-        return "| Game Title : " + copy.Game.Name + "| Start Date : " + startDate.ToShortDateString() + "| End Date : " + endDate.ToShortDateString() + "| Amount : " + ((copy.Game.CreditCost) * week) + " cr" + " | Owner "+ copy.Player_owner.Pseudo.ToUpper();
-    }
-
+    
     public Loan()
     {
 

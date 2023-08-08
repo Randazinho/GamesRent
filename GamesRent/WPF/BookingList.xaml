@@ -14,20 +14,50 @@
             </Border.Background>
             <StackPanel Margin="20" HorizontalAlignment="Center">
                 <Image Height="120" Width="200" Source="../Images/logo.png"/>
-                <Grid>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Black">
-                        <ItemsControl ItemsSource="{Binding ItemsList}" Name="lstBooking">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <RadioButton Content="{Binding Name}" Foreground="White" FontSize="14"
-                         IsChecked="{Binding IsSelected, Mode=TwoWay}"
-                         GroupName="Items"
-                         Click="RadioButton_Click"/>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </StackPanel>
-                </Grid>
+                <DataGrid Name="BookingDataGrid" SelectionChanged="BookingDataGrid_SelectionChanged" IsReadOnly="true" AutoGenerateColumns="False" Background="Black" Foreground="Black" FontSize="17" HorizontalAlignment="Center" VerticalAlignment="Center" SelectionUnit="FullRow" SelectionMode="Single">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Game Title" Binding="{Binding Game.Name}">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Console" Binding="{Binding Game.Console}">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Booking date" Binding="{Binding BookingDate ,StringFormat={}{0:dd/MM/yyyy}}">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Duration in week(s)" Binding="{Binding Week}">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Credit Cost" Binding="{Binding Game.CreditCost}">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
                 <Button Name="DeleteBooking" Click="DeleteBooking_Click" FontSize="25" Margin="0,20,0,20" Content="Delete this Booking" Background="Black" Foreground="red"/>
                 <Button Name="BookingMainMenu" Click="BookingMainMenu_Click" FontSize="25" Margin="0,20,0,20" Content="Return" Background="Black" Foreground="White"/>
             </StackPanel>

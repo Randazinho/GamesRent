@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,22 @@ namespace GamesRent.WPF
     /// </summary>
     public partial class BookingList : Window
     {
+        public class MultiplicationConverter : IMultiValueConverter
+        {
+            public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+            {
+                if (values.Length >= 2 && values[0] is int week && values[1] is int creditCost)
+                {
+                    return (week * creditCost).ToString();
+                }
+                return "";
+            }
+
+            public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+            {
+                throw new NotImplementedException();
+            }
+        }
         public Player p;
         public BookingList(int idplayer)
         {
@@ -35,21 +52,13 @@ namespace GamesRent.WPF
             int booking = blist.Count;
             if (booking > 0)
             {
-                List<Item> items = new List<Item>();
-                for (int i = 0; i < booking; i++)
-                {
-                    items.Add(new Item()
-                    {
-                        Name = blist[i].ToString(),
-                        Id = blist[i].Id_booking
-                    });
-                }
-                lstBooking.ItemsSource = items;
+                BookingDataGrid.ItemsSource = blist;
             }
             else
             {
                 MessageBox.Show("No booking for the moment");
                 DeleteBooking.Visibility = Visibility.Collapsed;
+                BookingDataGrid.Visibility = Visibility.Collapsed;
             }
             DataContext = this;
         }
@@ -66,7 +75,8 @@ namespace GamesRent.WPF
             int idbook = 0;
             try
             {
-                idbook = Convert.ToInt32(SelectedItem.Id);
+                Booking selectedBook = (Booking)BookingDataGrid.SelectedItem;
+                idbook = Convert.ToInt32(selectedBook.Id_booking);
                 //MessageBox.Show(" " + idbook);
                 if (idbook > 0)
                 {
@@ -89,10 +99,13 @@ namespace GamesRent.WPF
                 MessageBox.Show("Select a booking");
             }
         }
-        public Item SelectedItem { get; set; }
-        private void RadioButton_Click(object sender, RoutedEventArgs e)
+        private void BookingDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SelectedItem = ((RadioButton)sender).DataContext as Item;
+            if (BookingDataGrid.SelectedItem != null)
+            {
+                Booking selectedBooking = (Booking)BookingDataGrid.SelectedItem;
+                MessageBox.Show("Game selected");
+            }
         }
     }
 }

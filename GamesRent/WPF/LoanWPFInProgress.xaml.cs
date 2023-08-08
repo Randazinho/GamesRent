@@ -36,22 +36,15 @@ namespace GamesRent.WPF
             int loan = llist.Count;
             if (loan > 0)
             {
-                List<Item> items = new List<Item>();
-                for (int i = 0; i < loan; i++)
-                {
-                    items.Add(new Item()
-                    {
-                        Name = llist[i].ToStringPlayer(),
-                        Id = llist[i].Id_loan
-                    });
-                }
-                lstLoan.ItemsSource = items;
+                LoanDataGrid.ItemsSource = llist;
                 ReturnGame.Visibility = Visibility.Visible;
+                LoanDataGrid.Visibility = Visibility.Visible;
             }
             else
             {
                 MessageBox.Show("No loan in progress for the moment");
                 ReturnGame.Visibility = Visibility.Collapsed;
+                LoanDataGrid.Visibility = Visibility.Collapsed;
             }
             DataContext = this;
         }
@@ -65,9 +58,11 @@ namespace GamesRent.WPF
         
         private void ReturnGame_Click(object sender, RoutedEventArgs e)
         {
+            int idloan;
             try
             {
-                int idloan = Convert.ToInt32(SelectedItem.Id);
+                Loan selectedLoan = (Loan)LoanDataGrid.SelectedItem;
+                idloan = Convert.ToInt32(selectedLoan.Id_loan);
                 if (idloan > 0)
                 {
                     Loan L = new Loan();
@@ -79,7 +74,7 @@ namespace GamesRent.WPF
                     dashboard.Show();
                     L.CalculateBalance(idloan);
                     ReturnGame.Visibility = Visibility.Hidden;
-                    lstLoan.Visibility = Visibility.Collapsed;
+                    LoanDataGrid.Visibility = Visibility.Collapsed;
                     try
                     {
                         //check si quelqu'un veut louer ce jeu car copy de nouveau available
@@ -109,10 +104,13 @@ namespace GamesRent.WPF
             }
         }
 
-        public Item SelectedItem { get; set; }
-        private void RadioButton_Click(object sender, RoutedEventArgs e)
+        private void LoanDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SelectedItem = ((RadioButton)sender).DataContext as Item;
+            if (LoanDataGrid.SelectedItem != null)
+            {
+                Loan selectedLoan = (Loan)LoanDataGrid.SelectedItem;
+                MessageBox.Show("Loan selected");
+            }
         }
     }
 }
