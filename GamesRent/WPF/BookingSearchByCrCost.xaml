@@ -21,7 +21,7 @@
                         <DataGridTextColumn Header="Credit Cost" Binding="{Binding CreditCost}" />
                     </DataGrid.Columns>
                 </DataGrid>
-                <Label FontSize="15" Name="LabelCreditCost" Foreground="White" HorizontalAlignment="Center" Content="Credit Cost"/>
+                <Label FontSize="20" Name="LabelCreditCost" Foreground="White" Background="Black" HorizontalAlignment="Center" Content="Maximum Credit Cost ?"/>
                 <Grid>
                     <ComboBox x:Name="comboBoxNumbers" HorizontalAlignment="Center" VerticalAlignment="Center" Width="40"
                   SelectionChanged="ComboBoxNumbers_SelectionChanged" >
