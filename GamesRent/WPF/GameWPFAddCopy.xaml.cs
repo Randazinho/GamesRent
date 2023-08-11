@@ -63,6 +63,7 @@ namespace GamesRent.WPF
                         B.DeleteBooking(book.Id_booking);
                         P.UpdateWallet(p.Id_player, G.Find(id_game).CreditCost * week, "+");
                         MessageBox.Show("Someone had already booked this game, loan created");
+                        C.Borrow(idcopy);
                         //recharge la page pour la nouvelle liste de copies
                         GameWPF dashboard = new GameWPF(p.Id_player);
                         dashboard.Show();

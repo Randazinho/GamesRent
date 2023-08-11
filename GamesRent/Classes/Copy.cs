@@ -10,11 +10,13 @@ public class Copy : Game //copy hérite de jeu car une copy est comme une instan
     private int id_copy;
     private Game game;
     private Player player;
-    public Copy (int id_copy,Game game,Player player)
+    private string available;
+    public Copy (int id_copy, Game game, Player player, string available)
     {
         this.id_copy = id_copy;
         this.Game = game;
         this.player = player;
+        this.available = available;
     }
 
     public override string ToString()
@@ -44,12 +46,12 @@ public class Copy : Game //copy hérite de jeu car une copy est comme une instan
             }
             else
             {
-                return " Copy of  : " + Game.Name + " On " + Game.Console +" |Not loaned at the moment"+ " Loaned : " + nbr +" time(s)";
+                return " Copy of  : " + Game.Name + " On " + Game.Console +" | Available : "+available + " | Loaned : " + nbr +" time(s)";
             }
         }
         else
         {
-            return " Copy of  : " + Game.Name + " On " + Game.Console +" |Not loaned yet";
+            return " Copy of  : " + Game.Name + " On " + Game.Console +" | Available : "+available;
         }
     }
 
@@ -87,6 +89,17 @@ public class Copy : Game //copy hérite de jeu car une copy est comme une instan
         }
     }
 
+    public string Available
+    {
+        get
+        {
+            return available;
+        }
+        set
+        {
+            available = value;
+        }
+    }
     public Copy Find(int id_copy)
     {
         CopyDAO CDAO = new CopyDAO();
@@ -114,6 +127,18 @@ public class Copy : Game //copy hérite de jeu car une copy est comme une instan
     {
         CopyDAO CDAO = new CopyDAO();
         return CDAO.FindLastId(id_copy);
+    }
+
+    public void ReleaseCopy(int id_copy)
+    {
+        CopyDAO CDAO = new CopyDAO();
+        CDAO.ReleaseCopy(id_copy);
+    }
+
+    public void Borrow(int id_copy)
+    {
+        CopyDAO CDAO = new CopyDAO();
+        CDAO.Borrow(id_copy);
     }
 
     public void DeleteCopy(int id_copy)

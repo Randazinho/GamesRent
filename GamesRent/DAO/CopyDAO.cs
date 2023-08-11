@@ -8,6 +8,7 @@ using System.Net.Sockets;
 using System.Reflection.PortableExecutable;
 using System.Runtime.InteropServices;
 using System.Windows;
+using System.Windows.Automation;
 using System.Xml.Linq;
 
 public class CopyDAO : DAO<Copy>
@@ -49,7 +50,7 @@ public class CopyDAO : DAO<Copy>
                         while (reader.Read())
                         {
                             //0 = Id copy , 1 = id jeu, 2 = id joueur
-                            Copy logcop2 = new Copy(reader.GetInt32(0), G.Find(reader.GetInt32(1)), P.Find(reader.GetInt32(2)));
+                            Copy logcop2 = new Copy(reader.GetInt32(0), G.Find(reader.GetInt32(1)), P.Find(reader.GetInt32(2)), reader.GetString(3));
                             logcop = logcop2;
                         }
                     }
@@ -86,7 +87,7 @@ public class CopyDAO : DAO<Copy>
                 {
                     while (reader.Read())
                     {
-                        Copy cop = new Copy(reader.GetInt32(0), G.Find(reader.GetInt32(1)), P.Find(reader.GetInt32(2)));
+                        Copy cop = new Copy(reader.GetInt32(0), G.Find(reader.GetInt32(1)), P.Find(reader.GetInt32(2)), reader.GetString(3));
                         Copies.Add(cop);
                     }
                 }
@@ -115,7 +116,7 @@ public class CopyDAO : DAO<Copy>
                 {
                     while (reader.Read())
                     {
-                        Copy cop = new Copy(reader.GetInt32(0), G.Find(reader.GetInt32(1)), P.Find(reader.GetInt32(2)));
+                        Copy cop = new Copy(reader.GetInt32(0), G.Find(reader.GetInt32(1)), P.Find(reader.GetInt32(2)), reader.GetString(3));
                         Copies.Add(cop);
                     }
                 }
@@ -135,15 +136,17 @@ public class CopyDAO : DAO<Copy>
         {
             Copy C = new Copy();
             int id_copy = 0;
+            string available = "YES";
             try
             {
                 if (connection.State == ConnectionState.Closed)
                     connection.Open();
-                String addGame = "INSERT INTO dbo.[Copy] (VideoGame_id, Player_owner_id) VALUES (@id_game, @id_player)";
+                String addGame = "INSERT INTO dbo.[Copy] (VideoGame_id, Player_owner_id,Available) VALUES (@id_game, @id_player,@available)";
                 SqlCommand sqlinsert = new SqlCommand(addGame, connection);
                 sqlinsert.CommandType = CommandType.Text;
                 sqlinsert.Parameters.AddWithValue("@id_game", id_game);
                 sqlinsert.Parameters.AddWithValue("@id_player", id_player);
+                sqlinsert.Parameters.AddWithValue("@available", available);
                 sqlinsert.ExecuteNonQuery();
                 id_copy = C.FindLastId(id_copy);
             }
@@ -191,6 +194,60 @@ public class CopyDAO : DAO<Copy>
             }
         }
         return id_copy;
+    }
+
+    public void ReleaseCopy(int idcopy)
+    {
+        string available = "YES";
+        using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["GamesDB"].ConnectionString))
+        {
+            try
+            {
+                if (connection.State == ConnectionState.Closed)
+                    connection.Open();
+                String updateGame = "UPDATE dbo.Copy SET Available = @available WHERE Id_copy =@idcopy ";
+                SqlCommand sqlupdate = new SqlCommand(updateGame, connection);
+                sqlupdate.CommandType = CommandType.Text;
+                sqlupdate.Parameters.AddWithValue("@available", available);
+                sqlupdate.Parameters.AddWithValue("@idcopy", idcopy);
+                sqlupdate.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+    }
+
+    public void Borrow(int idcopy)
+    {
+        string available = "NO";
+        using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["GamesDB"].ConnectionString))
+        {
+            try
+            {
+                if (connection.State == ConnectionState.Closed)
+                    connection.Open();
+                String updateGame = "UPDATE dbo.Copy SET Available = @available WHERE Id_copy =@idcopy ";
+                SqlCommand sqlupdate = new SqlCommand(updateGame, connection);
+                sqlupdate.CommandType = CommandType.Text;
+                sqlupdate.Parameters.AddWithValue("@available", available);
+                sqlupdate.Parameters.AddWithValue("@idcopy", idcopy);
+                sqlupdate.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
     }
 
     public void DeleteCopy(int id_copy)

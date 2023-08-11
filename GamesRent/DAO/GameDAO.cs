@@ -319,6 +319,7 @@ public class GameDAO : DAO<Game>
                                 " |Booking deleted");
                             B.DeleteBooking(id_booking);
                             P.UpdateWallet(id_player_owner,crcost*week, "+");
+                            C.Borrow(clist[j].Id_copy);
                             //MessageBox.Show("Wallet uptaded");
                             return 1;
                         }
@@ -349,6 +350,7 @@ public class GameDAO : DAO<Game>
                             " |Booking deleted");
                         B.DeleteBooking(id_booking);
                         P.UpdateWallet(id_player_owner,crcost*week,"+");
+                        C.Borrow(clist[j].Id_copy);
                         //MessageBox.Show("Wallet uptaded");
                         return 1;
                     }

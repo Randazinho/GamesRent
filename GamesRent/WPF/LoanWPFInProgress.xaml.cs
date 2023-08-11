@@ -68,6 +68,7 @@ namespace GamesRent.WPF
                     Loan L = new Loan();
                     L.EndLoan(idloan);
                     Loan loan = new Loan();
+                    Copy C = new Copy();
                     loan = L.Find(idloan);
                     //MessageBox.Show("Ongoing changed");
                     Rating dashboard = new Rating(loan.Copy.Id_copy);//id copy
@@ -90,6 +91,11 @@ namespace GamesRent.WPF
                             Booking book = B.FindABookByIdGameAndIDPlayer(id_game, idplayerborrower);
                             B.DeleteBooking(book.Id_booking);
                             P.UpdateWallet(loan.Copy.Player_owner.Id_player, G.Find(id_game).CreditCost * week, "+");
+                            C.Borrow(idcopy);
+                        }
+                        else
+                        {
+                            C.ReleaseCopy(idcopy); //rendre la copie dispo car personne ne la veut
                         }
                     }catch
                     {
